@@ -1,1 +1,17 @@
-{}
+{
+  "https://www.kyoceradome-osaka.jp/schedule/": {
+    "hash": "874ccec938474defd4c8b0efa2226af9de421c4eb9f1cafaaf402609f9ecb02d",
+    "checkedAt": "2026-10-12T12:43:04.222892+00:00",
+    "status": "ok"
+  },
+  "https://www.osaka-johall.com/schedule/": {
+    "checkedAt": "2026-10-12T12:43:04.222892+00:00",
+    "status": "error",
+    "error": "404 Client Error: Not Found for url: https://www.osaka-johall.com/schedule/"
+  },
+  "https://www.intex-osaka.com/jp/event/": {
+    "hash": "6d82a3c5d553bb1c340bc66108ad42292a12beb76c9a49ee7e51cb193c138c49",
+    "checkedAt": "2026-10-12T12:43:04.222892+00:00",
+    "status": "ok"
+  }
+}

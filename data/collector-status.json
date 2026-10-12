@@ -1,1 +1,9 @@
-{"checkedAt":null,"sources":0,"fetched":0,"structuredEventsExtractedThisRun":0,"totalAutoEvents":0,"newAlerts":0,"note":"GitHub Actionsを初回実行してください。"}
+{
+  "checkedAt": "2026-10-12T12:43:04.222892+00:00",
+  "sources": 3,
+  "fetched": 2,
+  "structuredEventsExtractedThisRun": 0,
+  "totalAutoEvents": 0,
+  "newAlerts": 1,
+  "note": "抽出件数は構造化データが掲載されている場合のみ。ページ変更だけでは日程変更・中止と断定しません。"
+}
