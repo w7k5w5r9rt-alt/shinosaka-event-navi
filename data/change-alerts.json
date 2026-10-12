@@ -1,34 +1,34 @@
 [
   {
-    "id": "change-d4bf1b4ce6737a15",
+    "id": "change-b38346a95926194e",
     "type": "page_changed",
     "title": "京セラドーム大阪 公式スケジュール のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "京セラドーム大阪 公式スケジュール",
     "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=3&yearId=2027",
-    "detectedAt": "2026-10-12T18:37:17.111418+00:00",
+    "detectedAt": "2026-10-12T18:42:44.476780+00:00",
     "status": "要確認",
     "priority": "info"
   },
   {
-    "id": "change-4d70876ced9d4c33",
+    "id": "change-158373ce0f8aa5ef",
     "type": "page_changed",
     "title": "万博記念公園 公式イベント一覧 のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "万博記念公園 公式イベント一覧",
     "url": "https://www.expo70-park.jp/events/during-events/",
-    "detectedAt": "2026-10-12T18:37:17.111418+00:00",
+    "detectedAt": "2026-10-12T18:42:44.476780+00:00",
     "status": "要確認",
     "priority": "info"
   },
   {
-    "id": "change-4c51d3b62a47c752",
+    "id": "change-2448ba2c453caf05",
     "type": "page_changed",
     "title": "ガンバ大阪 公式試合日程 のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "ガンバ大阪 公式試合日程",
     "url": "https://www.gamba-osaka.net/game/",
-    "detectedAt": "2026-10-12T18:37:17.111418+00:00",
+    "detectedAt": "2026-10-12T18:42:44.476780+00:00",
     "status": "要確認",
     "priority": "info"
   },
@@ -39,7 +39,7 @@
     "message": "ページ取得は成功しましたが、イベントを読み取れませんでした。公式日程との照合が必要です。",
     "source": "大阪城ホール 公式スケジュール",
     "url": "https://www.osaka-johall.com/event/?ym=202702",
-    "detectedAt": "2026-10-12T18:37:17.111418+00:00",
+    "detectedAt": "2026-10-12T18:42:44.476780+00:00",
     "status": "要確認",
     "priority": "info"
   },
