@@ -1,0 +1,9 @@
+{
+  "checkedAt": "2026-10-12T12:18:08.056071+00:00",
+  "sources": 3,
+  "fetched": 2,
+  "structuredEventsExtractedThisRun": 0,
+  "totalAutoEvents": 0,
+  "newAlerts": 1,
+  "note": "抽出件数は構造化データが掲載されている場合のみ。ページ変更だけでは日程変更・中止と断定しません。"
+}
