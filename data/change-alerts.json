@@ -1,12 +1,1 @@
-[
-  {
-    "id": "fetch-error-75b0103a5e686aca",
-    "type": "fetch_error",
-    "title": "大阪城ホール 公式スケジュール の取得に失敗",
-    "message": "通信エラーまたはページ構造の変更の可能性があります。中止とは判断しないでください。",
-    "source": "大阪城ホール 公式スケジュール",
-    "url": "https://www.osaka-johall.com/schedule/",
-    "detectedAt": "2026-10-12T12:18:08.056071+00:00",
-    "status": "要確認"
-  }
-]
+[]
