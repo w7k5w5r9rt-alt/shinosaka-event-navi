@@ -1,9 +1,9 @@
 {
-  "checkedAt": "2026-10-12T12:43:04.222892+00:00",
+  "checkedAt": "2026-10-12T12:53:26.705522+00:00",
   "sources": 3,
-  "fetched": 2,
+  "fetched": 13,
   "structuredEventsExtractedThisRun": 0,
   "totalAutoEvents": 0,
-  "newAlerts": 1,
-  "note": "抽出件数は構造化データが掲載されている場合のみ。ページ変更だけでは日程変更・中止と断定しません。"
+  "newAlerts": 0,
+  "note": "京セラドームの本文抽出は試験運用。大阪城ホール・インテックスは構造化データのみ。イベント消失から中止を推定しません。"
 }
