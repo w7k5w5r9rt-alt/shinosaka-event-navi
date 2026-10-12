@@ -1,9 +1,9 @@
 {
-  "checkedAt": "2026-10-12T13:10:51.590259+00:00",
-  "sources": 3,
-  "fetched": 13,
+  "checkedAt": "2026-10-12T13:43:16.744447+00:00",
+  "sources": 14,
+  "fetched": 14,
   "structuredEventsExtractedThisRun": 85,
   "totalAutoEvents": 55,
   "newAlerts": 6,
-  "note": "京セラドーム・大阪城ホールの本文抽出は試験運用。インテックスは構造化データのみ。イベント消失から中止を推定しません。"
+  "note": "インテックス大阪は公式JSON-LDに加え、コスモスクエア開発協議会の予定表を補助出典として利用。消失から中止を推定しません。"
 }
