@@ -273,6 +273,39 @@ def intex_supplement(html, src, url):
     print('INTEX timetable extracted '+str(len(found))+' events',flush=True)
     return list({e['id']:e for e in found}.values())
 
+def expo_park(html, src, url):
+    """Conservative extraction from official expo70-park event list.
+
+    Only linked event headings with a nearby explicit Japanese date are accepted.
+    Long exhibitions are retained as one range, not fabricated daily events.
+    """
+    soup = BeautifulSoup(html, 'html.parser')
+    out = []
+    for a in soup.select('a[href]'):
+        href = urljoin(url, a.get('href', ''))
+        if urlparse(href).netloc not in ('www.expo70-park.jp', 'expo70-park.jp'): continue
+        title = normalize(a.get_text(' ', strip=True))
+        if not (5 <= len(title) <= 130): continue
+        if not re.search(r'/event(?:s)?/', urlparse(href).path): continue
+        if href.rstrip('/') == url.rstrip('/'): continue
+        parent = a
+        # Official event cards typically place the date adjacent to the title.
+        for _ in range(3):
+            if parent.parent is None: break
+            parent = parent.parent
+            txt = normalize(parent.get_text(' ', strip=True))
+            if len(txt) > 550: break
+            dates = re.findall(r'(20\d{2})年\s*(\d{1,2})月\s*(\d{1,2})日', txt)
+            if not dates: continue
+            try: start = date(*map(int, dates[0])).isoformat()
+            except ValueError: break
+            if not (TODAY.isoformat() <= start <= (TODAY+timedelta(days=190)).isoformat()): break
+            ev = make_event(src, title, start, href, '公園イベント', notes='公式一覧から取得。期間や実施日を詳細ページで確認。')
+            if ev: out.append(ev)
+            break
+    return list({e['id']: e for e in out}.values())
+
+
 def diagnose_page(html, src, url, method, response):
     soup = BeautifulSoup(html, 'html.parser')
     for tag in soup(['script', 'style', 'noscript', 'svg']): tag.decompose()
@@ -301,6 +334,8 @@ def main():
             targets += [(f'https://www.kyoceradome-osaka.jp/schedule/?monthId={m}&yearId={y}', 'kyocera', src) for y, m in months()]
         elif 'osaka-johall.com' in host:
             targets += [(f'https://www.osaka-johall.com/event/?ym={y:04d}{m:02d}', 'johall', src) for y, m in months()]
+        elif 'expo70-park.jp' in host:
+            targets.append((base, 'expo_park', src))
         elif 'intex-osaka.com' in host:
             has_intex = True
             targets.append((base, 'structured', src))
@@ -326,8 +361,9 @@ def main():
             if method == 'kyocera': parsed = kyocera(html, src, url)
             elif method == 'johall': parsed = johall(html, src, url)
             elif method == 'intex_supplement': parsed = intex_supplement(html, src, url)
+            elif method == 'expo_park': parsed = expo_park(html, src, url)
             else: parsed = structured(html, src, url)
-            if not parsed and method in ('structured', 'intex_supplement'):
+            if not parsed and method in ('structured', 'intex_supplement', 'expo_park'):
                 diagnose_page(html, src, url, method, response)
             fetched += 1
             extracted += len(parsed)
