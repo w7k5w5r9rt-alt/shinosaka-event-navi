@@ -1,9 +1,9 @@
 {
-  "checkedAt": "2026-10-12T15:17:53.855860+00:00",
-  "sources": 14,
-  "fetched": 14,
-  "structuredEventsExtractedThisRun": 170,
-  "totalAutoEvents": 141,
-  "newAlerts": 12,
+  "checkedAt": "2026-10-12T15:18:25.251989+00:00",
+  "sources": 16,
+  "fetched": 16,
+  "structuredEventsExtractedThisRun": 201,
+  "totalAutoEvents": 172,
+  "newAlerts": 6,
   "note": "インテックス大阪は公式JSON-LDに加え、コスモスクエア開発協議会の予定表を補助出典として利用。消失から中止を推定しません。"
 }

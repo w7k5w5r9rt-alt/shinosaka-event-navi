@@ -1,85 +1,97 @@
 {
   "https://www.kyoceradome-osaka.jp/schedule/?monthId=10&yearId=2026": {
-    "hash": "8b0514a99281391500289d557b06facb2716c9a03b3a3dcc875503f223430af2",
-    "checkedAt": "2026-10-12T15:17:53.855860+00:00",
+    "hash": "c0aed26398bb2a33411a72367abac78809ff61d8d1089e082c78f5c5b2615d2d",
+    "checkedAt": "2026-10-12T15:18:25.251989+00:00",
     "status": "ok",
     "extracted": 3
   },
   "https://www.kyoceradome-osaka.jp/schedule/?monthId=11&yearId=2026": {
-    "hash": "25b170d1f416fc191e0fbd4e7a3d11665fff314ed2915058ce5ed40a67a464db",
-    "checkedAt": "2026-10-12T15:17:53.855860+00:00",
+    "hash": "bff38754907e45add068edb87d4592d21d92621b4d85683ca313e87e9bef4602",
+    "checkedAt": "2026-10-12T15:18:25.251989+00:00",
     "status": "ok",
     "extracted": 18
   },
   "https://www.kyoceradome-osaka.jp/schedule/?monthId=12&yearId=2026": {
-    "hash": "44ef7d07b800437dac7a096f6e1da0c3c7fd4eb42b1a2a7e160e9013e26b17a6",
-    "checkedAt": "2026-10-12T15:17:53.855860+00:00",
+    "hash": "2dfc6979e4d311d5a0bce95e1cfd4bf9eceb8a055f7e2f56aac4bc2ae3b9da9c",
+    "checkedAt": "2026-10-12T15:18:25.251989+00:00",
     "status": "ok",
     "extracted": 10
   },
   "https://www.kyoceradome-osaka.jp/schedule/?monthId=1&yearId=2027": {
-    "hash": "f4a721f753bac977b933d4d90891b20192283999fae659d392b46e0fe65e2aab",
-    "checkedAt": "2026-10-12T15:17:53.855860+00:00",
+    "hash": "83870e51c4fee660d1039c2b044d36f77e49f8308c80b472cf98f6111acb924f",
+    "checkedAt": "2026-10-12T15:18:25.251989+00:00",
     "status": "ok",
     "extracted": 10
   },
   "https://www.kyoceradome-osaka.jp/schedule/?monthId=2&yearId=2027": {
-    "hash": "0ebe0b3029e813f870d686b75b8a5b4219434bf1db380cf9d9c94bdb1d41f6e2",
-    "checkedAt": "2026-10-12T15:17:53.855860+00:00",
+    "hash": "a63576667d12919187052830a6c434bb83573e5130f040e72c2fa038078555eb",
+    "checkedAt": "2026-10-12T15:18:25.251989+00:00",
     "status": "ok",
     "extracted": 6
   },
   "https://www.kyoceradome-osaka.jp/schedule/?monthId=3&yearId=2027": {
-    "hash": "8641cef54b448975831b68ae425e604f42940dd9ce0ae36345bbf8ab7f89ba6b",
-    "checkedAt": "2026-10-12T15:17:53.855860+00:00",
+    "hash": "2d8cfd97155ed7f44ee47f8f51adb5aa6e5118495a65dc0d37466bbc7872e67b",
+    "checkedAt": "2026-10-12T15:18:25.251989+00:00",
     "status": "ok",
     "extracted": 2
   },
   "https://www.osaka-johall.com/event/?ym=202610": {
     "hash": "12a7d6a379622b96db509612904727c3462608c633cb4962a7176e7584cb961b",
-    "checkedAt": "2026-10-12T15:17:53.855860+00:00",
+    "checkedAt": "2026-10-12T15:18:25.251989+00:00",
     "status": "ok",
     "extracted": 6
   },
   "https://www.osaka-johall.com/event/?ym=202611": {
     "hash": "0755c6c8d019bec9de44b9b0127aa88517ba71e34c84162869cbdf5495f8106a",
-    "checkedAt": "2026-10-12T15:17:53.855860+00:00",
+    "checkedAt": "2026-10-12T15:18:25.251989+00:00",
     "status": "ok",
     "extracted": 6
   },
   "https://www.osaka-johall.com/event/?ym=202612": {
     "hash": "74ee28902731282d932967e4821ff25b38134ff98e9844e55090c1ac944afe19",
-    "checkedAt": "2026-10-12T15:17:53.855860+00:00",
+    "checkedAt": "2026-10-12T15:18:25.251989+00:00",
     "status": "ok",
     "extracted": 6
   },
   "https://www.osaka-johall.com/event/?ym=202701": {
     "hash": "5d4f52e21c4a87f6ad4930f4e4a4bf63d27973b9df4adf844ebdcb1358885014",
-    "checkedAt": "2026-10-12T15:17:53.855860+00:00",
+    "checkedAt": "2026-10-12T15:18:25.251989+00:00",
     "status": "ok",
     "extracted": 6
   },
   "https://www.osaka-johall.com/event/?ym=202702": {
     "hash": "32d7470cb890de381b3426547c3ee8afab07ca6c202a3de80b73289c40c1f204",
-    "checkedAt": "2026-10-12T15:17:53.855860+00:00",
+    "checkedAt": "2026-10-12T15:18:25.251989+00:00",
     "status": "ok",
     "extracted": 6
   },
   "https://www.osaka-johall.com/event/?ym=202703": {
     "hash": "33c985fb921e35efc14089b3f94af5e33a495c1b763c8580e4067e392f039c11",
-    "checkedAt": "2026-10-12T15:17:53.855860+00:00",
+    "checkedAt": "2026-10-12T15:18:25.251989+00:00",
     "status": "ok",
     "extracted": 6
   },
   "https://www.intex-osaka.com/jp/event/": {
     "hash": "6d82a3c5d553bb1c340bc66108ad42292a12beb76c9a49ee7e51cb193c138c49",
-    "checkedAt": "2026-10-12T15:17:53.855860+00:00",
+    "checkedAt": "2026-10-12T15:18:25.251989+00:00",
+    "status": "ok",
+    "extracted": 0
+  },
+  "https://www.expo70-park.jp/events/during-events/": {
+    "hash": "d5d036380112e71915156c273200e1c31e190805797953941eea0748fa15ce24",
+    "checkedAt": "2026-10-12T15:18:25.251989+00:00",
+    "status": "ok",
+    "extracted": 31
+  },
+  "https://www.jleague.jp/club/gosaka/": {
+    "hash": "ae7dfd5260f39cf3145d4a5d89d6bc0b74565e9616e6751e72793439355e5dd1",
+    "checkedAt": "2026-10-12T15:18:25.251989+00:00",
     "status": "ok",
     "extracted": 0
   },
   "https://www.cosmosquare-djc.jp/eventinfo/": {
     "hash": "1b4223f8738c3d52f945201a9a535f951824533362e64f0b0628fa5056ec2fa8",
-    "checkedAt": "2026-10-12T15:17:53.855860+00:00",
+    "checkedAt": "2026-10-12T15:18:25.251989+00:00",
     "status": "ok",
     "extracted": 85
   }
