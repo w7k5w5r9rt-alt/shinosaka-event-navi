@@ -68,47 +68,44 @@ def make_event(src, title, day, url, category='その他', time='', notes=''):
 
 def kyocera(html, src, url):
     soup = BeautifulSoup(html, 'html.parser')
-    # Prefer the event detail area; exclude calendar navigation which repeats dates.
-    lines = [normalize(s) for s in soup.get_text('\n').splitlines()]
-    lines = [s for s in lines if s]
-    try:
-        start = lines.index('DETAIL')
-        lines = lines[start + 1:]
-    except ValueError:
-        pass
-    for marker in ('BY DATE', '日程から探す'):
-        if marker in lines:
-            lines = lines[:lines.index(marker)]
-            break
-    found = []
-    i = 0
-    while i < len(lines):
-        match = DATE.fullmatch(lines[i])
-        if not match:
-            i += 1
-            continue
-        day = '%04d-%02d-%02d' % tuple(map(int, match.groups()))
-        j = i + 1
-        while j < len(lines) and not DATE.fullmatch(lines[j]) and j - i < 35:
-            j += 1
-        chunk = lines[i + 1:j]
-        if '日時' not in chunk:
-            i = max(j, i + 1)
-            continue
-        heading = chunk[:chunk.index('日時')]
-        ignore = {'コンサート', '野球', 'エンターテインメント', '販売・展示・その他', 'その他のスポーツ', 'アリーナ', 'スカイホール', '詳細を見る'}
-        names = [s for s in heading if s not in ignore and not s.startswith('開場') and not s.startswith('開始')]
-        title = names[0] if names else ''
-        if title == '非公開イベント':
-            i = max(j, i + 1)
-            continue
-        category = next((s for s in heading if s in ignore), 'その他')
-        times = re.findall(r'(?:開始時間|開演)\s*[:：]?\s*(\d{1,2}:\d{2})', ' '.join(chunk))
-        ev = make_event(src, title, day, url, category, times[0] if times else '')
-        if ev:
-            found.append(ev)
-        i = max(j, i + 1)
-    return found
+    for tag in soup(['script', 'style', 'noscript', 'svg']): tag.decompose()
+    text = normalize(soup.get_text(' ', strip=True))
+    # A published event block has: date, performer/title, category, 日時, date.
+    # Avoid interpreting the calendar's date-only navigation as an event.
+    date_pat = r'(20\d{2})年\s*(\d{1,2})月\s*(\d{1,2})日(?:[（(][^）)]{1,4}[）)])?'
+    cat_pat = r'(コンサート|野球|エンターテインメント|販売・展示・その他|その他のスポーツ)'
+    pat = re.compile(date_pat + r'\s+(.{2,260}?)\s+' + cat_pat + r'\s+日時\s+' + date_pat)
+    result = []
+    for m in pat.finditer(text):
+        y, mo, d = map(int, m.group(1, 2, 3))
+        if (y, mo, d) != tuple(map(int, m.group(6, 7, 8))): continue
+        title = normalize(m.group(4))
+        if title == '非公開イベント' or 'イベント詳細' in title or len(title) > 180: continue
+        day = f'{y:04d}-{mo:02d}-{d:02d}'
+        following = text[m.end():m.end()+180]
+        tm = re.search(r'(?:開始時間|開演)\s*[:：]?\s*(\d{1,2}:\d{2})', following)
+        ev = make_event(src, title, day, url, m.group(5), tm.group(1) if tm else '')
+        if ev: result.append(ev)
+    return list({e['id']:e for e in result}.values())
+
+
+def johall(html, src, url):
+    soup = BeautifulSoup(html, 'html.parser')
+    for tag in soup(['script', 'style', 'noscript', 'svg']): tag.decompose()
+    text = normalize(soup.get_text(' ', strip=True))
+    # Month pages contain cards: YYYY/MM/DD genre title 開場 HH:MM 開演 HH:MM.
+    pat = re.compile(r'(20\d{2})/(\d{1,2})/(\d{1,2})\s+(音楽・芸能|集会・式典|スポーツ|展示・販売|その他|イベント)\s+(.{2,180}?)\s+(?:開場|開演|開始)\s+')
+    found=[]
+    for m in pat.finditer(text):
+        y, mo, d = map(int, m.group(1,2,3))
+        title = normalize(m.group(5))
+        if len(title)>120: continue
+        day=f'{y:04d}-{mo:02d}-{d:02d}'
+        following=text[m.end():m.end()+100]
+        tm=re.search(r'(?:開演|開始)\s*(\d{1,2}:\d{2})', following)
+        ev=make_event(src,title,day,url,m.group(4),tm.group(1) if tm else '')
+        if ev: found.append(ev)
+    return list({e['id']:e for e in found}.values())
 
 
 def walk_event(obj, out):
@@ -191,7 +188,7 @@ def main():
         if 'kyoceradome-osaka.jp' in host:
             targets = [('https://www.kyoceradome-osaka.jp/schedule/?monthId=%d&yearId=%d' % (m, y), 'kyocera') for y, m in months()]
         elif 'osaka-johall.com' in host:
-            targets = [('https://www.osaka-johall.com/event/?ym=%04d%02d' % (y, m), 'structured') for y, m in months()]
+            targets = [('https://www.osaka-johall.com/event/?ym=%04d%02d' % (y, m), 'johall') for y, m in months()]
         else:
             targets = [(base, 'structured')]
         for url, method in targets:
@@ -207,7 +204,7 @@ def main():
                                    'type': 'page_changed', 'title': src['name'] + ' のページ変更を検知',
                                    'message': 'ページの変更を検知。イベントの変更・中止を意味するとは限りません。',
                                    'source': src['name'], 'url': url, 'detectedAt': NOW, 'status': '要確認'})
-                parsed = kyocera(html, src, url) if method == 'kyocera' else structured(html, src, url)
+                parsed = kyocera(html, src, url) if method == 'kyocera' else (johall(html, src, url) if method == 'johall' else structured(html, src, url))
                 if not parsed and (url == targets[0][0]):
                     diagnose_page(html, src, url, method, response)
                 fetched += 1
@@ -235,7 +232,7 @@ def main():
     write_json('source-state.json', states)
     write_json('collector-status.json', {'checkedAt': NOW, 'sources': len(sources), 'fetched': fetched,
                'structuredEventsExtractedThisRun': extracted, 'totalAutoEvents': len(events),
-               'newAlerts': len(alerts), 'note': '京セラドームの本文抽出は試験運用。大阪城ホール・インテックスは構造化データのみ。イベント消失から中止を推定しません。'})
+               'newAlerts': len(alerts), 'note': '京セラドーム・大阪城ホールの本文抽出は試験運用。インテックスは構造化データのみ。イベント消失から中止を推定しません。'})
     print(json.dumps({'fetched': fetched, 'extracted': extracted, 'alerts': len(alerts)}, ensure_ascii=False))
 
 
