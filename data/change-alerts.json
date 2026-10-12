@@ -1,5 +1,75 @@
 [
   {
+    "id": "change-867d9cb1789ad76b",
+    "type": "page_changed",
+    "title": "京セラドーム大阪 公式スケジュール のページ変更を検知",
+    "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
+    "source": "京セラドーム大阪 公式スケジュール",
+    "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=10&yearId=2026",
+    "detectedAt": "2026-10-12T15:24:03.101011+00:00",
+    "status": "要確認"
+  },
+  {
+    "id": "change-cae1b7f99505fe37",
+    "type": "page_changed",
+    "title": "京セラドーム大阪 公式スケジュール のページ変更を検知",
+    "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
+    "source": "京セラドーム大阪 公式スケジュール",
+    "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=11&yearId=2026",
+    "detectedAt": "2026-10-12T15:24:03.101011+00:00",
+    "status": "要確認"
+  },
+  {
+    "id": "change-11a6bb4bdad56fc6",
+    "type": "page_changed",
+    "title": "京セラドーム大阪 公式スケジュール のページ変更を検知",
+    "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
+    "source": "京セラドーム大阪 公式スケジュール",
+    "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=12&yearId=2026",
+    "detectedAt": "2026-10-12T15:24:03.101011+00:00",
+    "status": "要確認"
+  },
+  {
+    "id": "change-92a8cb253d71ed51",
+    "type": "page_changed",
+    "title": "京セラドーム大阪 公式スケジュール のページ変更を検知",
+    "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
+    "source": "京セラドーム大阪 公式スケジュール",
+    "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=1&yearId=2027",
+    "detectedAt": "2026-10-12T15:24:03.101011+00:00",
+    "status": "要確認"
+  },
+  {
+    "id": "change-d5b3abfff024ca00",
+    "type": "page_changed",
+    "title": "京セラドーム大阪 公式スケジュール のページ変更を検知",
+    "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
+    "source": "京セラドーム大阪 公式スケジュール",
+    "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=2&yearId=2027",
+    "detectedAt": "2026-10-12T15:24:03.101011+00:00",
+    "status": "要確認"
+  },
+  {
+    "id": "change-58a01098189215ff",
+    "type": "page_changed",
+    "title": "京セラドーム大阪 公式スケジュール のページ変更を検知",
+    "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
+    "source": "京セラドーム大阪 公式スケジュール",
+    "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=3&yearId=2027",
+    "detectedAt": "2026-10-12T15:24:03.101011+00:00",
+    "status": "要確認"
+  },
+  {
+    "id": "change-c91f66b2fa9774c0",
+    "type": "page_changed",
+    "title": "万博記念公園 公式イベント一覧 のページ変更を検知",
+    "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
+    "source": "万博記念公園 公式イベント一覧",
+    "url": "https://www.expo70-park.jp/events/during-events/",
+    "detectedAt": "2026-10-12T15:24:03.101011+00:00",
+    "status": "要確認"
+  },
+  {
     "id": "change-9fc3c2ff3d2f5193",
     "type": "page_changed",
     "title": "京セラドーム大阪 公式スケジュール のページ変更を検知",

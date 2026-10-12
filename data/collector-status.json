@@ -1,9 +1,9 @@
 {
-  "checkedAt": "2026-10-12T15:18:25.251989+00:00",
+  "checkedAt": "2026-10-12T15:24:03.101011+00:00",
   "sources": 16,
   "fetched": 16,
-  "structuredEventsExtractedThisRun": 201,
-  "totalAutoEvents": 172,
-  "newAlerts": 6,
-  "note": "インテックス大阪は公式JSON-LDに加え、コスモスクエア開発協議会の予定表を補助出典として利用。消失から中止を推定しません。"
+  "structuredEventsExtractedThisRun": 211,
+  "totalAutoEvents": 182,
+  "newAlerts": 7,
+  "note": "万博記念公園とガンバ大阪ホームゲームも収集対象。来場者数は実測未確認。消失から中止を推定しません。"
 }
