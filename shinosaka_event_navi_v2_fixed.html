@@ -17,6 +17,7 @@
 <div class="panel"><div class="phead"><h2>宿泊実績を入力</h2><span class="tag">手動入力</span></div><p class="muted">イベント日とホテル実績を照らし合わせるための簡易計算です。入力値はこのブラウザ内に保存されます。</p>
 <div class="kpi-grid"><div class="kpi"><label>対象日</label><input type="date" id="kDate"></div><div class="kpi"><label>販売可能客室数</label><input type="number" id="kRooms" min="1" value="100"></div><div class="kpi"><label>販売客室数</label><input type="number" id="kSold" min="0" value="0"></div><div class="kpi"><label>客室売上（円）</label><input type="number" id="kRevenue" min="0" value="0"></div><div class="kpi"><label>競合平均料金（円・任意）</label><input type="number" id="kComp" min="0" placeholder="未入力可"></div><div class="kpi"><label>メモ</label><input id="kMemo" placeholder="例：料金見直し済み"></div></div>
 <button class="btn primary" id="saveKpi" style="width:100%;margin-top:10px">この日の実績を保存</button><div id="kpiResult" class="result"><span class="muted">稼働率・ADR・RevPARがここに表示されます。</span></div></div>
+<div class="panel"><div class="phead"><h2>宿泊需要の要確認日</h2><span class="tag">仮スコア</span></div><p class="muted">イベント規模・アクセス・開催時間などから、料金や予約状況を確認したい日を表示します。</p><div id="demandList" class="list"></div></div>
 <div class="panel"><div class="phead"><h2>保存した日別実績</h2><button class="btn ghost" id="exportKpi">CSV出力</button></div><div class="tablewrap"><table><thead><tr><th>日付</th><th>稼働率</th><th>ADR</th><th>RevPAR</th><th></th></tr></thead><tbody id="kpiTable"></tbody></table></div></div>
 </section>
 <section id="view-admin" hidden>
