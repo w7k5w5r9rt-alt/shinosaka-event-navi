@@ -1,5 +1,32 @@
 [
-  {"name":"京セラドーム大阪 公式スケジュール","url":"https://www.kyoceradome-osaka.jp/schedule/","kind":"html","venue":"京セラドーム大阪"},
-  {"name":"大阪城ホール 公式スケジュール","url":"https://www.osaka-johall.com/schedule/","kind":"html","venue":"大阪城ホール"},
-  {"name":"インテックス大阪 公式イベント情報","url":"https://www.intex-osaka.com/jp/event/","kind":"html","venue":"インテックス大阪"}
+  {
+    "name": "京セラドーム大阪 公式スケジュール",
+    "url": "https://www.kyoceradome-osaka.jp/schedule/",
+    "kind": "html",
+    "venue": "京セラドーム大阪"
+  },
+  {
+    "name": "大阪城ホール 公式スケジュール",
+    "url": "https://www.osaka-johall.com/schedule/",
+    "kind": "html",
+    "venue": "大阪城ホール"
+  },
+  {
+    "name": "インテックス大阪 公式イベント情報",
+    "url": "https://www.intex-osaka.com/jp/event/",
+    "kind": "html",
+    "venue": "インテックス大阪"
+  },
+  {
+    "name": "万博記念公園 公式イベント一覧",
+    "url": "https://www.expo70-park.jp/events/during-events/",
+    "kind": "html",
+    "venue": "万博記念公園"
+  },
+  {
+    "name": "ガンバ大阪 Jリーグ公式日程",
+    "url": "https://www.jleague.jp/club/gosaka/",
+    "kind": "html",
+    "venue": "パナソニックスタジアム吹田"
+  }
 ]
