@@ -97,20 +97,52 @@ def kyocera(html, src, url):
 
 
 def johall(html, src, url):
+    """Extract Osaka-Jo Hall entries without requiring category or showtime.
+
+    A schedule may publish a date and title but omit opening time/category.
+    Split on explicit YYYY/MM/DD tokens, then inspect each bounded segment.
+    """
     soup = BeautifulSoup(html, 'html.parser')
-    for tag in soup(['script', 'style', 'noscript', 'svg']): tag.decompose()
+    for tag in soup(['script', 'style', 'noscript', 'svg']):
+        tag.decompose()
     text = normalize(soup.get_text(' ', strip=True))
-    pat = re.compile(r'(20\d{2})/(\d{1,2})/(\d{1,2})\s+(音楽・芸能|集会・式典|スポーツ|展示・販売|その他|イベント)\s+(.{2,180}?)\s+(?:開場|開演|開始)\s+')
+    date_re = re.compile(r'(?<!\d)(20\d{2})\s*[/年.-]\s*(\d{1,2})\s*[/月.-]\s*(\d{1,2})\s*日?(?!\d)')
+    markers = list(date_re.finditer(text))
+    categories = r'(?:音楽[・･]芸能|集会[・･]式典|スポーツ|展示[・･]販売|その他|イベント|コンサート)'
+    # Navigation text and timetable labels must not become event titles.
+    bad = re.compile(r'^(?:公演スケジュール|イベントスケジュール|イベント一覧|前月|翌月|一覧|詳細|チケット|スケジュール|公演情報|検索|トップページ)$')
     found = []
-    for m in pat.finditer(text):
-        y, mo, d = map(int, m.group(1, 2, 3))
-        title = normalize(m.group(5))
-        if len(title) > 120: continue
-        day = f'{y:04d}-{mo:02d}-{d:02d}'
-        following = text[m.end():m.end()+100]
-        tm = re.search(r'(?:開演|開始)\s*(\d{1,2}:\d{2})', following)
-        ev = make_event(src, title, day, 'https://www.osaka-johall.com/event/?ym='+day[:7].replace('-',''), m.group(4), tm.group(1) if tm else '')
-        if ev: found.append(ev)
+    for i, marker in enumerate(markers):
+        y, mo, d = map(int, marker.group(1, 2, 3))
+        try:
+            day = date(y, mo, d).isoformat()
+        except ValueError:
+            continue
+        if not (TODAY <= date(y, mo, d) <= TODAY + timedelta(days=190)):
+            continue
+        # Limit the segment so a navigation date does not absorb a whole page.
+        next_pos = markers[i+1].start() if i+1 < len(markers) else len(text)
+        segment = text[marker.end():min(next_pos, marker.end()+450)].strip(' ：:|・-')
+        segment = re.sub(r'^(?:\([月火水木金土日]\)|（[月火水木金土日]）|[月火水木金土日]曜?日?)\s*', '', segment)
+        segment = re.sub(r'^'+categories+r'\s*', '', segment)
+        segment = re.sub(r'^(?:公演名|イベント名|タイトル)\s*[:：]?\s*', '', segment)
+        if not segment:
+            continue
+        title = re.split(r'\s+(?:開場|開演|開始|終演|お問い合わせ|お問合せ|問合せ|チケット|料金|主催|詳細|公式サイト|時間)\s*[:：]?', segment, maxsplit=1)[0]
+        title = normalize(title).strip(' ：:|・-')
+        # Avoid parsing a date-only calendar or month navigation as an event.
+        if not (4 <= len(title) <= 140) or bad.fullmatch(title):
+            continue
+        if re.match(r'^(?:20\d{2}年|\d{1,2}月|\d{1,2}日|\d{1,2}:\d{2})', title):
+            continue
+        if re.search(r'(?:プライバシー|アクセスマップ|サイトマップ|お問い合わせフォーム)', title):
+            continue
+        tm = re.search(r'(?:開演|開始)\s*[:：]?\s*(\d{1,2}:\d{2})', segment)
+        cat_match = re.match(categories, segment)
+        category = cat_match.group(0) if cat_match else 'ライブ・コンサート' if re.search(r'LIVE|ライブ|コンサート|TOUR', title, re.I) else 'その他'
+        ev = make_event(src, title, day, 'https://www.osaka-johall.com/event/?ym='+day[:7].replace('-',''), category, tm.group(1) if tm else '')
+        if ev:
+            found.append(ev)
     return list({e['id']: e for e in found}.values())
 
 
@@ -394,11 +426,16 @@ def main():
             elif method == 'expo_park': parsed = expo_park(html, src, url)
             elif method == 'gamba_games': parsed = gamba_games(html, src, url)
             else: parsed = structured(html, src, url)
-            if not parsed and method in ('structured', 'intex_supplement', 'expo_park', 'gamba_games'):
+            if not parsed and method in ('johall', 'kyocera', 'structured', 'intex_supplement', 'expo_park', 'gamba_games'):
                 diagnose_page(html, src, url, method, response)
             fetched += 1
             extracted += len(parsed)
-            states[url] = {'hash': digest, 'checkedAt': NOW, 'status': 'ok', 'extracted': len(parsed)}
+            states[url] = {'hash': digest, 'checkedAt': NOW, 'status': 'ok' if parsed else 'zero_extracted', 'extracted': len(parsed)}
+            if not parsed and method in ('johall', 'kyocera'):
+                alerts.append({'id': 'zero-events-' + hashlib.sha256((url + TODAY.isoformat()).encode()).hexdigest()[:16],
+                    'type': 'zero_extracted', 'title': src['name'] + ' の抽出件数が0件',
+                    'message': 'ページ取得は成功しましたが、イベントを読み取れませんでした。公式日程との照合が必要です。',
+                    'source': src['name'], 'url': url, 'detectedAt': NOW, 'status': '要確認'})
             for ev in parsed:
                 before = events.get(ev['id'])
                 if before and before.get('status') in ('cancelled','postponed') and ev['status']=='scheduled':
@@ -439,8 +476,8 @@ def main():
         elif typ in ('explicit_status', 'event_changed'):
             key = ('important', a.get('id'))
             a = dict(a, priority='important')
-        elif typ == 'fetch_error':
-            key = ('fetch_error', a.get('url') or a.get('source'))
+        elif typ in ('fetch_error', 'zero_extracted'):
+            key = (typ, a.get('url') or a.get('source'))
             a = dict(a, priority='info')
         else:
             key = ('other', a.get('id') or a.get('title'))
