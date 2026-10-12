@@ -143,6 +143,39 @@ def structured(html, src, url):
     return out
 
 
+def diagnose_page(html, src, url, method, response):
+    """Print bounded, non-sensitive page structure hints for failed extraction."""
+    soup = BeautifulSoup(html, 'html.parser')
+    for tag in soup(['script', 'style', 'noscript', 'svg']):
+        tag.decompose()
+    title = normalize(soup.title.get_text(' ', strip=True)) if soup.title else ''
+    headings = [normalize(t.get_text(' ', strip=True))[:100] for t in soup.select('h1,h2,h3,h4')][:12]
+    text = normalize(soup.get_text(' ', strip=True))
+    patterns = [r'20\d{2}年\s*\d{1,2}月\s*\d{1,2}日',
+                r'20\d{2}[-/]\d{1,2}[-/]\d{1,2}',
+                r'\d{1,2}月\s*\d{1,2}日', r'\d{1,2}/\d{1,2}']
+    samples = []
+    for pat in patterns:
+        for match in list(re.finditer(pat, text))[:3]:
+            a, b = max(0, match.start()-85), min(len(text), match.end()+160)
+            excerpt = text[a:b]
+            if excerpt not in samples:
+                samples.append(excerpt)
+    candidate_links = []
+    for a in soup.find_all('a', href=True):
+        label = normalize(a.get_text(' ', strip=True))
+        href = a.get('href', '')
+        if (re.search(r'event|schedule|detail|公演|イベント|開催', href+' '+label, re.I)
+                and label and len(candidate_links) < 10):
+            candidate_links.append({'text': label[:65], 'href': href[:140]})
+    report = {'venue': src.get('venue'), 'method': method, 'requestedUrl': url,
+              'finalUrl': response.url, 'htmlBytes': len(html), 'title': title[:160],
+              'headings': headings, 'dateSamples': samples[:8],
+              'candidateLinks': candidate_links, 'textStart': text[:450],
+              'jsonLdCount': len(BeautifulSoup(html, 'html.parser').find_all('script', type='application/ld+json'))}
+    print('DIAGNOSTIC ' + json.dumps(report, ensure_ascii=False), flush=True)
+
+
 def main():
     sources = read_json('sources.json', [])
     old_events = read_json('data/auto-events.json', [])
@@ -175,6 +208,8 @@ def main():
                                    'message': 'ページの変更を検知。イベントの変更・中止を意味するとは限りません。',
                                    'source': src['name'], 'url': url, 'detectedAt': NOW, 'status': '要確認'})
                 parsed = kyocera(html, src, url) if method == 'kyocera' else structured(html, src, url)
+                if not parsed and (url == targets[0][0]):
+                    diagnose_page(html, src, url, method, response)
                 fetched += 1
                 extracted += len(parsed)
                 states[url] = {'hash': digest, 'checkedAt': NOW, 'status': 'ok', 'extracted': len(parsed)}
