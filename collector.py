@@ -1,4 +1,4 @@
-"""Shinosaka Event Navi collector (v1.3): Kyocera, Osaka-Jo Hall, Intex Osaka.
+"""Shinosaka Event Navi collector (v1.4): Kyocera, Osaka-Jo Hall, Intex Osaka.
 Requires requests and beautifulsoup4. Run: python collector.py
 Intex supplementary listings are attributed to Cosmosquare Development Council.
 """
@@ -52,6 +52,16 @@ def event_id(venue, title, day):
     return 'auto-' + hashlib.sha256(raw.encode()).hexdigest()[:16]
 
 
+def explicit_status(text):
+    """Only act on explicit announcement language in a collected event title."""
+    t = normalize(text)
+    if re.search(r'(?:公演|開催|イベント|試合|大会)?(?:中止|開催中止|公演中止|中止のお知らせ|CANCELLED|CANCELED)', t, re.I):
+        return 'cancelled'
+    if re.search(r'(?:公演|開催|イベント|試合|大会)?(?:延期|開催延期|公演延期|延期のお知らせ|POSTPONED)', t, re.I):
+        return 'postponed'
+    return 'scheduled'
+
+
 def make_event(src, title, day, url, category='その他', time='', notes=''):
     title = normalize(title)
     if not title or title == '非公開イベント':
@@ -62,7 +72,7 @@ def make_event(src, title, day, url, category='その他', time='', notes=''):
             'venue': venue, 'scale': 3, 'access': 3, 'url': url,
             'notes': '公開情報から自動抽出。日時・変更・中止は主催者・会場の公式サイトで再確認。' + (' ' + notes if notes else ''),
             'source': src['name'], 'verified': False, 'autoCollected': True,
-            'status': 'scheduled', 'checkedAt': NOW}
+            'status': explicit_status(title + ' ' + notes), 'checkedAt': NOW}
 
 
 def kyocera(html, src, url):
@@ -324,12 +334,20 @@ def main():
             states[url] = {'hash': digest, 'checkedAt': NOW, 'status': 'ok', 'extracted': len(parsed)}
             for ev in parsed:
                 before = events.get(ev['id'])
+                if before and before.get('status') in ('cancelled','postponed') and ev['status']=='scheduled':
+                    # Do not reverse an explicit cancellation just because a page still lists the event.
+                    ev['status']=before['status']
                 if before and (before.get('time') != ev['time'] or before.get('status') != ev['status']):
                     alerts.append({'id': 'event-change-' + hashlib.sha256((ev['id'] + ev['time'] + ev['status']).encode()).hexdigest()[:16],
                         'type': 'event_changed', 'title': ev['title'] + ' の内容変更候補',
                         'message': '開演時刻または状態が変更された可能性があります。公式情報をご確認ください。',
                         'source': src['name'], 'url': ev.get('url') or url, 'detectedAt': NOW, 'status': '要確認'})
                 events[ev['id']] = ev
+                if ev['status'] in ('cancelled','postponed') and (not before or before.get('status') != ev['status']):
+                    alerts.append({'id':'status-'+hashlib.sha256((ev['id']+ev['status']).encode()).hexdigest()[:16],
+                        'type':'explicit_status','title':ev['title']+' の'+('中止' if ev['status']=='cancelled' else '延期')+'表記を検知',
+                        'message':'収集元のイベント表記に中止・延期の文言があります。公式情報で再確認してください。',
+                        'source':src['name'],'url':ev.get('url') or url,'detectedAt':NOW,'status':'要確認'})
         except Exception as exc:
             states[url] = {'checkedAt': NOW, 'status': 'error', 'error': str(exc)[:300]}
             alerts.append({'id': 'fetch-error-' + hashlib.sha256((url + TODAY.isoformat()).encode()).hexdigest()[:16],
