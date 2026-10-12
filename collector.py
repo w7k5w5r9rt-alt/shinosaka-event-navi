@@ -306,6 +306,34 @@ def expo_park(html, src, url):
     return list({e['id']: e for e in out}.values())
 
 
+
+def gamba_games(html, src, url):
+    """Gamba official fixtures: HOME matches at Panasonic Stadium only.
+    Away fixtures and other venues are deliberately excluded.
+    """
+    soup = BeautifulSoup(html, 'html.parser')
+    for t in soup(['script','style','noscript','svg']): t.decompose()
+    text = normalize(soup.get_text(' ', strip=True))
+    # Official listing: HOME 10.24(土) 16:00 ＠パナスタ ... vs. 京都サンガF.C.
+    pattern = re.compile(r'\bHOME\s+(\d{1,2})\.(\d{1,2})\s*[（(][月火水木金土日][）)]\s+(\d{1,2}:\d{2})\s+＠\s*(パナスタ|吹田S|吹田Ｓ|パナソニック\s*スタジアム\s*吹田)(.{0,300}?)\bvs[.．]\s*(.{2,70}?)(?=\s+(?:試合情報|FC\d|一般販売|チケット購入|HOME|AWAY|明治安田|AFC|天皇杯|Jリーグ)|$)',re.I)
+    found=[]
+    for m in pattern.finditer(text):
+        month,day=map(int,m.group(1,2))
+        # season crosses calendar year; use nearest future year within 190 days
+        dates=[]
+        for year in (TODAY.year,TODAY.year+1):
+            try: dt=date(year,month,day)
+            except ValueError: continue
+            if TODAY <= dt <= TODAY+timedelta(days=190): dates.append(dt)
+        if not dates: continue
+        dt=min(dates)
+        opponent=normalize(m.group(6)).strip(' ・-')
+        if not opponent or len(opponent)>55: continue
+        ev=make_event(src,'ガンバ大阪 vs '+opponent,dt.isoformat(),url,'スポーツ',m.group(3),notes='公式試合日程のHOME表記と会場表記を照合。来場者数は未公表。')
+        if ev: found.append(ev)
+    print('GAMBA home matches extracted '+str(len(found)),flush=True)
+    return list({e['id']:e for e in found}.values())
+
 def diagnose_page(html, src, url, method, response):
     soup = BeautifulSoup(html, 'html.parser')
     for tag in soup(['script', 'style', 'noscript', 'svg']): tag.decompose()
@@ -334,6 +362,8 @@ def main():
             targets += [(f'https://www.kyoceradome-osaka.jp/schedule/?monthId={m}&yearId={y}', 'kyocera', src) for y, m in months()]
         elif 'osaka-johall.com' in host:
             targets += [(f'https://www.osaka-johall.com/event/?ym={y:04d}{m:02d}', 'johall', src) for y, m in months()]
+        elif 'gamba-osaka.net' in host:
+            targets.append((base, 'gamba_games', src))
         elif 'expo70-park.jp' in host:
             targets.append((base, 'expo_park', src))
         elif 'intex-osaka.com' in host:
@@ -362,8 +392,9 @@ def main():
             elif method == 'johall': parsed = johall(html, src, url)
             elif method == 'intex_supplement': parsed = intex_supplement(html, src, url)
             elif method == 'expo_park': parsed = expo_park(html, src, url)
+            elif method == 'gamba_games': parsed = gamba_games(html, src, url)
             else: parsed = structured(html, src, url)
-            if not parsed and method in ('structured', 'intex_supplement', 'expo_park'):
+            if not parsed and method in ('structured', 'intex_supplement', 'expo_park', 'gamba_games'):
                 diagnose_page(html, src, url, method, response)
             fetched += 1
             extracted += len(parsed)
@@ -402,7 +433,7 @@ def main():
     write_json('source-state.json', states)
     write_json('collector-status.json', {'checkedAt': NOW, 'sources': len(targets), 'fetched': fetched,
         'structuredEventsExtractedThisRun': extracted, 'totalAutoEvents': len(events),
-        'newAlerts': len(alerts), 'note': 'インテックス大阪は公式JSON-LDに加え、コスモスクエア開発協議会の予定表を補助出典として利用。消失から中止を推定しません。'})
+        'newAlerts': len(alerts), 'note': '万博記念公園とガンバ大阪ホームゲームも収集対象。来場者数は実測未確認。消失から中止を推定しません。'})
     print(json.dumps({'fetched': fetched, 'extracted': extracted, 'alerts': len(alerts),
                       'intexSupplementEnabled': has_intex}, ensure_ascii=False))
 
