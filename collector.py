@@ -1,4 +1,4 @@
-"""Shinosaka Event Navi collector (v1.2): Kyocera, Osaka-Jo Hall, Intex Osaka.
+"""Shinosaka Event Navi collector (v1.3): Kyocera, Osaka-Jo Hall, Intex Osaka.
 Requires requests and beautifulsoup4. Run: python collector.py
 Intex supplementary listings are attributed to Cosmosquare Development Council.
 """
@@ -6,6 +6,8 @@ import hashlib
 import json
 import os
 import re
+from io import BytesIO
+import pdfplumber
 from datetime import date, datetime, timezone, timedelta
 from urllib.parse import urlparse, urljoin
 import requests
@@ -17,7 +19,7 @@ os.makedirs(DATA, exist_ok=True)
 NOW = datetime.now(timezone.utc).isoformat()
 JST = timezone(timedelta(hours=9))
 TODAY = datetime.now(JST).date()
-HEADERS = {'User-Agent': 'Mozilla/5.0 (compatible; ShinosakaEventNavi/1.2; event information verification)'}
+HEADERS = {'User-Agent': 'Mozilla/5.0 (compatible; ShinosakaEventNavi/1.3; event information verification)'}
 INTEX_SUPPLEMENT = 'https://www.cosmosquare-djc.jp/eventinfo/'
 
 
@@ -97,7 +99,7 @@ def johall(html, src, url):
         day = f'{y:04d}-{mo:02d}-{d:02d}'
         following = text[m.end():m.end()+100]
         tm = re.search(r'(?:開演|開始)\s*(\d{1,2}:\d{2})', following)
-        ev = make_event(src, title, day, url, m.group(4), tm.group(1) if tm else '')
+        ev = make_event(src, title, day, 'https://www.osaka-johall.com/event/?ym='+day[:7].replace('-',''), m.group(4), tm.group(1) if tm else '')
         if ev: found.append(ev)
     return list({e['id']: e for e in found}.values())
 
@@ -150,6 +152,11 @@ def parse_intex_period(raw, default_year):
     if not parts:
         parts = re.findall(r'(?:(20\d{2})\s*[/.-]\s*)?(\d{1,2})\s*[/.-]\s*(\d{1,2})', s)
     if not parts: return []
+    # Japanese schedules often omit the month on the end date: 10月14日〜16日.
+    if len(parts) == 1:
+        short_end = re.search(r'[〜～~\-]\s*(\d{1,2})\s*日', s)
+        if short_end:
+            parts.append(('',parts[0][1],short_end.group(1)))
     try:
         sy, sm, sd = parts[0]
         sy = int(sy or default_year)
@@ -164,57 +171,97 @@ def parse_intex_period(raw, default_year):
     return event_days(first.isoformat(), last.isoformat())
 
 
-def intex_supplement(html, src, url):
-    """Parse event rows from Cosmosquare Development Council's Intex timetable.
+def parse_intex_rows(rows, src, source_url, year):
+    """Only consume rows already scoped to the Intex timetable."""
+    found = []
+    for cells in rows:
+        if len(cells) < 3: continue
+        title, period, hours = (normalize(str(x or '').replace('\n', ' ')) for x in cells[:3])
+        if not title or '催物名称' in title.replace(' ', '') or len(title) > 250: continue
+        days = parse_intex_period(period, year)
+        if not days: continue
+        tm = re.search(r'(?<!\d)([01]?\d|2[0-3])[:：]([0-5]\d)', hours)
+        start_time = f'{int(tm.group(1)):02d}:{tm.group(2)}' if tm else ''
+        link = next((str(x).strip() for x in cells[3:] if str(x or '').strip().startswith(('https://','http://'))), source_url)
+        for day in days:
+            if TODAY.isoformat() <= day <= (TODAY + timedelta(days=190)).isoformat():
+                ev = make_event(src, title, day, link, '展示会・見本市', start_time,
+                                '補助出典：コスモスクエア開発協議会のインテックス大阪予定表。')
+                if ev: found.append(ev)
+    return found
 
-    The page is a supplementary source, not the Intex official event database.
-    It contains multiple tables, so only rows in an Intex-labelled section are read.
-    """
+
+def intex_supplement(html, src, url):
+    """Read Intex-only HTML tables or the linked timetable PDF (never ATC rows)."""
     soup = BeautifulSoup(html, 'html.parser')
-    result = []
-    current_year = TODAY.year
-    in_intex_section = False
-    for node in soup.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'table']):
+    found = []
+    year = TODAY.year
+    # Some pages render the PDF's text as HTML tables; only accept Intex-labelled tables.
+    section = False
+    for node in soup.find_all(['h1','h2','h3','h4','h5','p','table']):
         if node.name != 'table':
             heading = normalize(node.get_text(' ', strip=True))
-            year = re.search(r'(20\d{2})年', heading)
-            if year: current_year = int(year.group(1))
-            if 'インテックス大阪' in heading:
-                in_intex_section = True
-            elif re.search(r'(?:ATC|大阪南港|その他のイベント|コスモスクエア)', heading) and 'インテックス大阪' not in heading:
-                in_intex_section = False
+            if 'インテックス大阪' in heading and ('予定表' in heading or 'イベント' in heading):
+                section = True
+                m = re.search(r'(20\d{2})年', heading)
+                if m: year = int(m.group(1))
+            elif 'ATCイベントスケジュール' in heading:
+                section = False
             continue
-        # Some pages place "インテックス大阪 2026年10月～11月分予定表" inside a table caption/header.
-        table_text = normalize(node.get_text(' ', strip=True))
-        table_heading = normalize(node.find('caption').get_text(' ', strip=True)) if node.find('caption') else ''
-        head = ' '.join(normalize(r.get_text(' ', strip=True)) for r in node.find_all('tr', limit=3))
-        if 'インテックス大阪' in (table_heading + ' ' + head[:200]): in_intex_section = True
-        year = re.search(r'(20\d{2})年', table_heading + ' ' + head[:200])
-        if year: current_year = int(year.group(1))
-        # Require an event table header, not a generic calendar or unrelated content.
-        if not (in_intex_section and '催' in head and ('会期' in head or '開催日' in head)):
-            continue
-        for row in node.find_all('tr'):
-            cells = row.find_all(['td', 'th'], recursive=False)
-            if len(cells) < 2: continue
-            title = normalize(cells[0].get_text(' ', strip=True))
-            period = normalize(cells[1].get_text(' ', strip=True))
-            if not title or '催物' in title or title in ('催 物 名 称', 'イベント名'): continue
-            days = parse_intex_period(period, current_year)
-            if not days: continue
-            times = normalize(cells[2].get_text(' ', strip=True)) if len(cells) > 2 else ''
-            tm = re.search(r'(?<!\d)(\d{1,2}):(\d{2})', times)
-            start_time = f'{int(tm.group(1)):02d}:{tm.group(2)}' if tm and int(tm.group(1)) < 24 else ''
-            link = next((a.get('href') for c in cells[3:] for a in c.find_all('a', href=True)), None)
-            event_url = urljoin(url, link) if link else url
-            # Keep one event per date to fit the existing app's auto-event schema.
-            for day in days:
-                if day < TODAY.isoformat() or day > (TODAY + timedelta(days=190)).isoformat(): continue
-                ev = make_event(src, title, day, event_url, '展示会・見本市', start_time,
-                                '補助出典：コスモスクエア開発協議会のインテックス大阪予定表。')
-                if ev: result.append(ev)
-    return list({e['id']: e for e in result}.values())
+        heading = normalize(node.get_text(' ', strip=True)[:250])
+        if 'インテックス大阪' in heading and '予定表' in heading:
+            section = True
+            m = re.search(r'(20\d{2})年', heading)
+            if m: year = int(m.group(1))
+        if not section: continue
+        rows = []
+        for tr in node.find_all('tr'):
+            cells = tr.find_all(['td','th'], recursive=False)
+            row = [c.get_text(' ',strip=True) for c in cells]
+            for c in cells[3:]:
+                a = c.find('a',href=True)
+                if a: row.append(urljoin(url,a['href']))
+            rows.append(row)
+        found.extend(parse_intex_rows(rows,src,url,year))
+    if found: return list({e['id']:e for e in found}.values())
 
+    # Published event timetable is commonly a linked PDF rather than HTML tables.
+    pdf_links = []
+    for a in soup.find_all('a',href=True):
+        href = urljoin(url,a['href'])
+        label = normalize(a.get_text(' ',strip=True))
+        if urlparse(href).netloc.endswith('cosmosquare-djc.jp') and ('.pdf' in href.lower()):
+            pdf_links.append((href,label))
+    # Also support embedded PDF links (iframe/embed/object).
+    for node in soup.select('iframe[src],embed[src],object[data]'):
+        href = urljoin(url,node.get('src') or node.get('data'))
+        if '.pdf' in href.lower() and urlparse(href).netloc.endswith('cosmosquare-djc.jp'):
+            pdf_links.append((href,''))
+    # Current issue first; avoid excessive downloads and stale issues.
+    for pdf_url, _ in list(dict(pdf_links).items())[:3]:
+        try:
+            response = requests.get(pdf_url,headers=HEADERS,timeout=25)
+            response.raise_for_status()
+            if not response.content.startswith(b'%PDF'): continue
+            with pdfplumber.open(BytesIO(response.content)) as pdf:
+                for page in pdf.pages[:4]:
+                    page_text = page.extract_text() or ''
+                    m = re.search(r'インテックス大阪\s*(20\d{2})年',page_text)
+                    if not m: continue
+                    pdf_year = int(m.group(1))
+                    for table in page.extract_tables():
+                        rows = [[normalize(c or '') for c in row] for row in table if row]
+                        if not rows: continue
+                        # Only the table with Intex exhibition headers, not ATC schedule.
+                        header = ' '.join(' '.join(r) for r in rows[:2]).replace(' ','')
+                        if '催物名称' not in header or '会期' not in header: continue
+                        found.extend(parse_intex_rows(rows,src,pdf_url,pdf_year))
+                    if found: break
+        except Exception as exc:
+            print('INTEX PDF WARNING '+str(exc)[:180],flush=True)
+        if found: break
+    print('INTEX timetable extracted '+str(len(found))+' events',flush=True)
+    return list({e['id']:e for e in found}.values())
 
 def diagnose_page(html, src, url, method, response):
     soup = BeautifulSoup(html, 'html.parser')
@@ -289,6 +336,10 @@ def main():
                 'type': 'fetch_error', 'title': src['name'] + ' の取得に失敗',
                 'message': 'サイト取得失敗。中止とは判断しないでください。',
                 'source': src['name'], 'url': url, 'detectedAt': NOW, 'status': '要確認'})
+    # Repair old Osaka-Jo Hall URLs accidentally pointing to the last crawled month.
+    for ev in events.values():
+        if ev.get('venue') == '大阪城ホール' and re.fullmatch(r'20\d{2}-\d{2}-\d{2}',ev.get('start','')):
+            ev['url'] = 'https://www.osaka-johall.com/event/?ym=' + ev['start'][:7].replace('-','')
     # Retain prior records on errors; disappearance alone does not imply cancellation.
     write_json('auto-events.json', sorted(events.values(), key=lambda e: (e.get('start', ''), e.get('title', ''))))
     merged = {a.get('id'): a for a in old_alerts if isinstance(a, dict) and a.get('id')}
