@@ -427,9 +427,27 @@ def main():
             ev['url'] = 'https://www.osaka-johall.com/event/?ym=' + ev['start'][:7].replace('-','')
     # Retain prior records on errors; disappearance alone does not imply cancellation.
     write_json('auto-events.json', sorted(events.values(), key=lambda e: (e.get('start', ''), e.get('title', ''))))
-    merged = {a.get('id'): a for a in old_alerts if isinstance(a, dict) and a.get('id')}
-    merged.update({a['id']: a for a in alerts})
-    write_json('change-alerts.json', sorted(merged.values(), key=lambda a: a.get('detectedAt', ''), reverse=True)[:300])
+    # Retain actionable notices; collapse page changes to one latest notice per URL.
+    # A changed page is not evidence of event cancellation or rescheduling.
+    merged = {}
+    for a in [*old_alerts, *alerts]:
+        if not isinstance(a, dict): continue
+        typ = a.get('type', '')
+        if typ == 'page_changed':
+            key = ('page_changed', (a.get('source') or a.get('title') or a.get('url') or '').split(' のページ変更を検知')[0].strip())
+            a = dict(a, priority='info')
+        elif typ in ('explicit_status', 'event_changed'):
+            key = ('important', a.get('id'))
+            a = dict(a, priority='important')
+        elif typ == 'fetch_error':
+            key = ('fetch_error', a.get('url') or a.get('source'))
+            a = dict(a, priority='info')
+        else:
+            key = ('other', a.get('id') or a.get('title'))
+        if key[1] and (key not in merged or a.get('detectedAt','') >= merged[key].get('detectedAt','')):
+            merged[key] = a
+    notices = sorted(merged.values(), key=lambda a: (a.get('priority') == 'important', a.get('detectedAt','')), reverse=True)[:200]
+    write_json('change-alerts.json', notices)
     write_json('source-state.json', states)
     write_json('collector-status.json', {'checkedAt': NOW, 'sources': len(targets), 'fetched': fetched,
         'structuredEventsExtractedThisRun': extracted, 'totalAutoEvents': len(events),
