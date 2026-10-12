@@ -26,7 +26,7 @@
 <div class="panel"><div class="phead"><h2>イベントデータ</h2><div style="display:flex;gap:6px"><button class="btn secondary" id="export">JSON出力</button><button class="btn ghost" id="csv">CSV出力</button></div></div><p class="muted">端末変更やバックアップに使えます。JSONファイルを読み込むと、イベントデータを復元できます。</p><input type="file" id="importFile" accept=".json,application/json"><div class="actions"><button class="btn ghost" id="resetDemo">サンプルイベントを再読み込み</button><button class="btn ghost" id="clearDemo">サンプルのみ削除</button></div><div class="muted" id="lastSaved" style="margin-top:10px"></div></div>
 <div class="panel"><h2 style="font-size:16px;margin:0 0 8px">重複・更新の扱い</h2><ul class="muted" style="padding-left:18px;line-height:1.8"><li>登録時に「イベント名＋会場＋開始日」が一致する候補を検知します。</li><li>編集時に変更前の内容と更新時刻を記録します。</li><li>公式サイトの変更・中止を自動検知する機能は、バックエンド連携後に実装します。</li></ul></div>
 </section>
-<footer>新大阪イベントナビ v4.1 · 重複表示を整理 · ブラウザ内保存 · 実務利用前に公式情報を再確認</footer>
+<footer>新大阪イベントナビ v4.2 · 重複表示を整理 · ブラウザ内保存 · 実務利用前に公式情報を再確認</footer>
 </main>
 <div class="modalback" id="back"><div class="modal"><h2 id="modalTitle">イベント登録</h2><form id="form"><input id="eid" type="hidden"><div class="formgrid">
 <label class="field full">イベント名<input id="title" required></label><label class="field">開始日<input id="start" type="date" required></label><label class="field">終了日<input id="end" type="date" required></label><label class="field">開始時刻<input id="time" type="time"></label><label class="field">ジャンル<select id="category"><option>ライブ・コンサート</option><option>展示会・見本市</option><option>スポーツ</option><option>学会・会議</option><option>その他</option></select></label><label class="field full">会場<input id="place" required></label><label class="field">規模<select id="scale"><option value="1">小規模・不明</option><option value="2">中規模</option><option value="3">大規模</option><option value="4">特大規模</option></select></label><label class="field">アクセス影響<select id="access"><option value="1">遠め・不明</option><option value="2">アクセス良好</option><option value="3">新大阪利用が見込まれる</option></select></label><label class="field full">公式URL<input id="url" type="url" placeholder="https://..."></label><label class="field full">メモ<input id="notes" placeholder="終演時間、規模の根拠など"></label></div><div class="modalactions"><button class="btn ghost" type="button" id="cancel">キャンセル</button><button class="btn primary" type="submit">保存</button></div><button class="btn ghost" type="button" id="del" style="display:none;width:100%;margin-top:8px">削除</button></form></div></div>
@@ -93,7 +93,7 @@ function persist(){localStorage.setItem('shn-v2-events',JSON.stringify(events));
   // Consecutive dates of the same automatically collected event become one display card.
   const groups=[];
   for(const e of autos.slice().sort((a,b)=>a.start.localeCompare(b.start))){
-   const candidate=groups.find(g=>g.venue===e.venue&&titleKey(g.title)===titleKey(e.title)&&
+   const candidate=groups.find(g=>g.venue===e.venue&&titleKey(cleanedTitle(g.title))===titleKey(cleanedTitle(e.title))&&
     e.start<=iso(addDays(date(g.end),1))&&e.end>=g.start);
    if(candidate){
     if(e.end>candidate.end)candidate.end=e.end;
