@@ -97,54 +97,75 @@ def kyocera(html, src, url):
 
 
 def johall(html, src, url):
-    """Extract Osaka-Jo Hall entries without requiring category or showtime.
+    """Parse Osaka-Jo Hall's monthly event table and its full-date highlights.
 
-    A schedule may publish a date and title but omit opening time/category.
-    Split on explicit YYYY/MM/DD tokens, then inspect each bounded segment.
+    The monthly table shows '28（水）', not '2026/10/28'.  Read the month
+    from the requested URL and bind those day labels to that month.
     """
     soup = BeautifulSoup(html, 'html.parser')
     for tag in soup(['script', 'style', 'noscript', 'svg']):
         tag.decompose()
+
     text = normalize(soup.get_text(' ', strip=True))
-    date_re = re.compile(r'(?<!\d)(20\d{2})\s*[/年.-]\s*(\d{1,2})\s*[/月.-]\s*(\d{1,2})\s*日?(?!\d)')
-    markers = list(date_re.finditer(text))
-    categories = r'(?:音楽[・･]芸能|集会[・･]式典|スポーツ|展示[・･]販売|その他|イベント|コンサート)'
-    # Navigation text and timetable labels must not become event titles.
-    bad = re.compile(r'^(?:公演スケジュール|イベントスケジュール|イベント一覧|前月|翌月|一覧|詳細|チケット|スケジュール|公演情報|検索|トップページ)$')
-    found = []
-    for i, marker in enumerate(markers):
-        y, mo, d = map(int, marker.group(1, 2, 3))
+    month_match = re.search(r'[?&]ym=(20\d{2})(0[1-9]|1[0-2])', url)
+    found = {}
+
+    # Monthly event table: isolate it from "近日開催のイベント".
+    if month_match:
+        year, month = map(int, month_match.groups())
+        heading = re.search(rf'{year}年\s*{month}月のイベント', text)
+        if heading:
+            section = text[heading.end():]
+            section = re.split(r'\s+(?:トップ|OSAKA-JO HALL|会社情報)\s+', section, 1)[0]
+            day_re = re.compile(r'(?<!\d)([1-9]|[12]\d|3[01])\s*[（(][月火水木金土日][）)]')
+            matches = list(day_re.finditer(section))
+            for i, marker in enumerate(matches):
+                day_num = int(marker.group(1))
+                try:
+                    day_date = date(year, month, day_num)
+                except ValueError:
+                    continue
+                if not (TODAY <= day_date <= TODAY + timedelta(days=190)):
+                    continue
+                stop = matches[i+1].start() if i+1 < len(matches) else len(section)
+                segment = section[marker.end():stop].strip()
+                # Event title ends before the opening / starting time.
+                title = re.split(
+                    r'\s+(?:開場|開演|開始|座席|主催|音楽[・･]芸能|集会[・･]式典|物販[・･]展示|スポーツ)\s*',
+                    segment, maxsplit=1
+                )[0].strip()
+                title = re.sub(r'^[-・:：\s]+|[-・:：\s]+$', '', title)
+                if not (3 <= len(title) <= 150) or title in ('日付', 'イベント名', 'ジャンル', '会場'):
+                    continue
+                tm = re.search(r'(?:開演|開始)\s*[:：]?\s*(\d{1,2}:\d{2})', segment)
+                category = '音楽・芸能' if re.search(r'LIVE|ライブ|コンサート|TOUR|音楽・芸能', segment, re.I) else 'その他'
+                ev = make_event(src, title, day_date.isoformat(), url, category, tm.group(1) if tm else '')
+                if ev:
+                    found[ev['id']] = ev
+
+    # "近日開催" entries carry a full date and can be used as a fallback.
+    full_re = re.compile(r'(?<!\d)(20\d{2})/(\d{1,2})/(\d{1,2})\s+(音楽[・･]芸能|集会[・･]式典|スポーツ|物販[・･]展示|その他)\s+')
+    matches = list(full_re.finditer(text))
+    for i, marker in enumerate(matches):
         try:
-            day = date(y, mo, d).isoformat()
+            day_date = date(*map(int, marker.group(1, 2, 3)))
         except ValueError:
             continue
-        if not (TODAY <= date(y, mo, d) <= TODAY + timedelta(days=190)):
+        if not (TODAY <= day_date <= TODAY + timedelta(days=190)):
             continue
-        # Limit the segment so a navigation date does not absorb a whole page.
-        next_pos = markers[i+1].start() if i+1 < len(markers) else len(text)
-        segment = text[marker.end():min(next_pos, marker.end()+450)].strip(' ：:|・-')
-        segment = re.sub(r'^(?:\([月火水木金土日]\)|（[月火水木金土日]）|[月火水木金土日]曜?日?)\s*', '', segment)
-        segment = re.sub(r'^'+categories+r'\s*', '', segment)
-        segment = re.sub(r'^(?:公演名|イベント名|タイトル)\s*[:：]?\s*', '', segment)
-        if not segment:
-            continue
-        title = re.split(r'\s+(?:開場|開演|開始|終演|お問い合わせ|お問合せ|問合せ|チケット|料金|主催|詳細|公式サイト|時間)\s*[:：]?', segment, maxsplit=1)[0]
-        title = normalize(title).strip(' ：:|・-')
-        # Avoid parsing a date-only calendar or month navigation as an event.
-        if not (4 <= len(title) <= 140) or bad.fullmatch(title):
-            continue
-        if re.match(r'^(?:20\d{2}年|\d{1,2}月|\d{1,2}日|\d{1,2}:\d{2})', title):
-            continue
-        if re.search(r'(?:プライバシー|アクセスマップ|サイトマップ|お問い合わせフォーム)', title):
+        stop = matches[i+1].start() if i+1 < len(matches) else len(text)
+        segment = text[marker.end():stop]
+        title = re.split(r'\s+(?:開場|開演|開始|座席|主催)\s*', segment, maxsplit=1)[0].strip()
+        if not (3 <= len(title) <= 150):
             continue
         tm = re.search(r'(?:開演|開始)\s*[:：]?\s*(\d{1,2}:\d{2})', segment)
-        cat_match = re.match(categories, segment)
-        category = cat_match.group(0) if cat_match else 'ライブ・コンサート' if re.search(r'LIVE|ライブ|コンサート|TOUR', title, re.I) else 'その他'
-        ev = make_event(src, title, day, 'https://www.osaka-johall.com/event/?ym='+day[:7].replace('-',''), category, tm.group(1) if tm else '')
+        ev = make_event(src, title, day_date.isoformat(), url, marker.group(4), tm.group(1) if tm else '')
         if ev:
-            found.append(ev)
-    return list({e['id']: e for e in found}.values())
+            found[ev['id']] = ev
 
+    print('JOHALL', url, 'extracted', len(found),
+          'titles', [e['title'] for e in found.values()][:20], flush=True)
+    return list(found.values())
 
 def walk_event(obj, out):
     if isinstance(obj, list):
