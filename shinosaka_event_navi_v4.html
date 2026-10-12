@@ -283,7 +283,7 @@ function renderDemand(){
  arr.sort((a,b)=>$('#dSort').value==='date'?a.day.localeCompare(b.day):b.points-a.points||a.day.localeCompare(b.day));
  arr=arr.slice(0,40);
  target.innerHTML=arr.length?arr.map(x=>`<div class="dayrow"><div class="circle">${x.points}</div><div><strong>${fmt(x.day)} 宿泊分 ・ ${x.items.length}件関連</strong><small>${esc([...new Set(x.items.map(v=>v.e.venue))].join('、'))}</small><small>推定宿泊需要：${x.total.toLocaleString('ja-JP')}人泊相当（前泊を含む日別配分）</small><small>会場内同日重複は最大値で補正。仮定値であり実績・販売推奨価格ではありません。</small></div></div>`).join(''):'<div class="empty">該当日がありません。</div>';
- renderDemandCalendar(rows);
+ // Unified calendar is rendered by renderCal().
 }
 $('#modeDemand').onclick=()=>{calendarMode='demand';renderCal()};
 $('#modeEvents').onclick=()=>{calendarMode='events';renderCal()};
