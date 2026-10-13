@@ -111,7 +111,9 @@ def johall(html, src, url):
     heading = re.search(rf'{year}\s*年\s*0?{month}\s*月\s*の\s*イベント', text)
     if not heading:
         print('JOHALL monthly heading missing', url, 'headings',
-              re.findall(r'.{0,12}月.{0,12}イベント', text)[:5], flush=True)
+              re.findall(r'.{0,12}月.{0,12}イベント', text)[:5],
+              'page_title', soup.title.get_text(' ', strip=True) if soup.title else '',
+              'text_sample', text[:350], flush=True)
         return []
     section = text[heading.end():]
     section = re.split(r'\s+(?:トップ|OSAKA-JO HALL|会社情報)\s+', section, maxsplit=1)[0]
@@ -456,6 +458,14 @@ def main():
             ev['url'] = 'https://www.osaka-johall.com/event/?ym=' + ev['start'][:7].replace('-','')
     # Retain prior records on errors; disappearance alone does not imply cancellation.
     write_json('auto-events.json', sorted(events.values(), key=lambda e: (e.get('start', ''), e.get('title', ''))))
+    # Remove stale extraction/fetch warnings only when a subsequent run actually
+    # extracted events from the exact same URL. A successful HTTP request alone
+    # does not prove that the schedule parser is healthy.
+    recovered_urls = {u for u, state in states.items()
+                      if state.get('status') == 'ok' and state.get('extracted', 0) > 0}
+    old_alerts = [a for a in old_alerts if not (
+        isinstance(a, dict) and a.get('type') in ('zero_extracted', 'fetch_error')
+        and a.get('url') in recovered_urls)]
     # Retain actionable notices; collapse page changes to one latest notice per URL.
     # A changed page is not evidence of event cancellation or rescheduling.
     merged = {}
