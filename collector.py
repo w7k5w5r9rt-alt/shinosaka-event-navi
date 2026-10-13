@@ -403,6 +403,66 @@ def diagnose_page(html, src, url, method, response):
         'headings': headings, 'textStart': txt[:350]}, ensure_ascii=False), flush=True)
 
 
+
+
+def osaka_mice_calendar(html, src, url):
+    """Official Osaka MICE convention/exhibition calendar.
+    Only collect entries with an explicit event title and period, and only
+    when the date is in the next 190 days. No attendee counts are inferred.
+    """
+    soup = BeautifulSoup(html, 'html.parser')
+    for tag in soup(['script', 'style', 'noscript', 'svg']):
+        tag.decompose()
+    results = []
+    current_year = None
+    date_re = re.compile(r'(?:(20\d{2})[年/.-]\s*)?(\d{1,2})[月/]\s*(\d{1,2})\s*(?:[〜～~\-－–—]+\s*(?:(20\d{2})[年/.-]\s*)?(?:(\d{1,2})[月/])?\s*(\d{1,2}))?')
+    for tr in soup.select('tr'):
+        cells = tr.find_all(['th', 'td'], recursive=False)
+        if len(cells) < 2:
+            continue
+        period = normalize(cells[0].get_text(' ', strip=True))
+        title = normalize(cells[1].get_text(' ', strip=True))
+        match = date_re.search(period)
+        if not match or not title or len(title) > 180 or title in ('イベント名', '会期'):
+            continue
+        # The official calendar groups events under year headings. Prefer an
+        # explicit year in the date; otherwise locate a year heading above row.
+        year = int(match.group(1)) if match.group(1) else None
+        if not year:
+            prev = tr.find_previous(['h2', 'h3', 'h4', 'caption'])
+            if prev:
+                year_match = re.search(r'20\d{2}', prev.get_text(' ', strip=True))
+                if year_match: year = int(year_match.group())
+        if not year:
+            # Calendar tables can omit year; do not guess for cross-year data.
+            continue
+        try:
+            start = date(year, int(match.group(2)), int(match.group(3)))
+            end_year = int(match.group(4)) if match.group(4) else year
+            end_month = int(match.group(5)) if match.group(5) else int(match.group(2))
+            end_day = int(match.group(6)) if match.group(6) else int(match.group(3))
+            end = date(end_year, end_month, end_day)
+            if end < start and not match.group(4):
+                end = date(year + 1, end_month, end_day)
+        except ValueError:
+            continue
+        if end < TODAY or start > TODAY + timedelta(days=190) or (end-start).days > 31:
+            continue
+        link = cells[1].find('a', href=True)
+        detail_url = urljoin(url, link['href']) if link else url
+        category = '学会・展示会' if re.search(r'学会|展示会|EXPO|コンベンション|国際会議|Conference|Congress', title, re.I) else 'ビジネスイベント'
+        # Venue is not always published in the summary. Do not assign an
+        # arbitrary building or inflate venue-specific demand assumptions.
+        event = make_event(src, title, start.isoformat(), detail_url, category,
+                           notes='大阪観光局MICEカレンダー掲載。会場・参加人数は個別の公式情報で要確認。')
+        if event:
+            event['end'] = end.isoformat()
+            event['scale'] = 1
+            event['access'] = 1
+            results.append(event)
+    print('OSAKA MICE calendar extracted ' + str(len(results)), flush=True)
+    return list({e['id']: e for e in results}.values())
+
 def main():
     sources = read_json('sources.json', [])
     old_events = read_json('data/auto-events.json', [])
@@ -423,6 +483,8 @@ def main():
             targets += [(f'https://www.kyoceradome-osaka.jp/schedule/?monthId={m}&yearId={y}', 'kyocera', src) for y, m in months()]
         elif 'osaka-johall.com' in host:
             targets += [(f'https://www.osaka-johall.com/event/?ym={y:04d}{m:02d}', 'johall', src) for y, m in months()]
+        elif 'mice.osaka-info.jp' in host:
+            targets.append((base, 'osaka_mice_calendar', src))
         elif 'gamba-osaka.net' in host:
             targets.append((base, 'gamba_games', src))
         elif 'expo70-park.jp' in host:
@@ -454,6 +516,7 @@ def main():
             elif method == 'intex_supplement': parsed = intex_supplement(html, src, url)
             elif method == 'expo_park': parsed = expo_park(html, src, url)
             elif method == 'gamba_games': parsed = gamba_games(html, src, url)
+            elif method == 'osaka_mice_calendar': parsed = osaka_mice_calendar(html, src, url)
             else: parsed = structured(html, src, url)
             if not parsed and method in ('johall', 'kyocera', 'structured', 'intex_supplement', 'expo_park', 'gamba_games') and not (method == 'structured' and 'intex-osaka.com' in urlparse(url).netloc):
                 diagnose_page(html, src, url, method, response)
@@ -564,7 +627,7 @@ def main():
         'healthyTargets': healthy, 'attentionTargets': suspect, 'sourceSummary': source_summary,
         'checkedAt': NOW, 'sources': len(targets), 'fetched': fetched,
         'structuredEventsExtractedThisRun': extracted, 'totalAutoEvents': len(events),
-        'newAlerts': len(alerts), 'note': '万博記念公園とガンバ大阪ホームゲームも収集対象。来場者数は実測未確認。消失から中止を推定しません。'})
+        'newAlerts': len(alerts), 'note': '万博記念公園・ガンバ大阪ホームゲーム・大阪観光局MICEカレンダーも収集対象。来場者数は実測未確認。消失から中止を推定しません。'})
     print(json.dumps({'fetched': fetched, 'extracted': extracted, 'alerts': len(alerts),
                       'intexSupplementEnabled': has_intex}, ensure_ascii=False))
 

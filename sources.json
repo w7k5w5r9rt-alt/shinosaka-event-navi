@@ -28,5 +28,11 @@
     "url": "https://www.gamba-osaka.net/game/",
     "kind": "html",
     "venue": "パナソニックスタジアム吹田"
+  },
+  {
+    "name": "大阪観光局 MICEカレンダー",
+    "url": "https://mice.osaka-info.jp/businesses/calendar/",
+    "kind": "html",
+    "venue": "大阪市内（会場要確認）"
   }
 ]
