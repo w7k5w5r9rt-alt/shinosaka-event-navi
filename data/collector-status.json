@@ -1,51 +1,56 @@
 {
   "schemaVersion": 2,
   "health": "warning",
-  "healthyTargets": 14,
-  "attentionTargets": 2,
+  "healthyTargets": 15,
+  "attentionTargets": 1,
   "sourceSummary": {
     "京セラドーム大阪": {
       "ok": 6,
+      "monitor_only": 0,
       "empty_unverified": 0,
       "suspect_empty": 0,
       "error": 0,
       "extracted": 49,
-      "lastCheckedAt": "2026-10-13T12:28:34.219962+00:00"
+      "lastCheckedAt": "2026-10-13T12:36:39.050974+00:00"
     },
     "大阪城ホール": {
       "ok": 5,
+      "monitor_only": 0,
       "empty_unverified": 1,
       "suspect_empty": 0,
       "error": 0,
       "extracted": 43,
-      "lastCheckedAt": "2026-10-13T12:28:34.219962+00:00"
+      "lastCheckedAt": "2026-10-13T12:36:39.050974+00:00"
     },
     "インテックス大阪": {
       "ok": 1,
-      "empty_unverified": 1,
+      "monitor_only": 1,
+      "empty_unverified": 0,
       "suspect_empty": 0,
       "error": 0,
       "extracted": 85,
-      "lastCheckedAt": "2026-10-13T12:28:34.219962+00:00"
+      "lastCheckedAt": "2026-10-13T12:36:39.050974+00:00"
     },
     "万博記念公園": {
       "ok": 1,
+      "monitor_only": 0,
       "empty_unverified": 0,
       "suspect_empty": 0,
       "error": 0,
       "extracted": 32,
-      "lastCheckedAt": "2026-10-13T12:28:34.219962+00:00"
+      "lastCheckedAt": "2026-10-13T12:36:39.050974+00:00"
     },
     "パナソニックスタジアム吹田": {
       "ok": 1,
+      "monitor_only": 0,
       "empty_unverified": 0,
       "suspect_empty": 0,
       "error": 0,
       "extracted": 10,
-      "lastCheckedAt": "2026-10-13T12:28:34.219962+00:00"
+      "lastCheckedAt": "2026-10-13T12:36:39.050974+00:00"
     }
   },
-  "checkedAt": "2026-10-13T12:28:34.219962+00:00",
+  "checkedAt": "2026-10-13T12:36:39.050974+00:00",
   "sources": 16,
   "fetched": 16,
   "structuredEventsExtractedThisRun": 219,
