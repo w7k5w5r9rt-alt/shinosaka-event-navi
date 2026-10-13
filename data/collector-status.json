@@ -12,7 +12,7 @@
       "suspect_empty": 0,
       "error": 0,
       "extracted": 49,
-      "lastCheckedAt": "2026-10-13T12:44:41.377472+00:00"
+      "lastCheckedAt": "2026-10-13T12:46:25.977230+00:00"
     },
     "大阪城ホール": {
       "ok": 5,
@@ -22,7 +22,7 @@
       "suspect_empty": 0,
       "error": 0,
       "extracted": 43,
-      "lastCheckedAt": "2026-10-13T12:44:41.377472+00:00"
+      "lastCheckedAt": "2026-10-13T12:46:25.977230+00:00"
     },
     "インテックス大阪": {
       "ok": 1,
@@ -32,7 +32,7 @@
       "suspect_empty": 0,
       "error": 0,
       "extracted": 85,
-      "lastCheckedAt": "2026-10-13T12:44:41.377472+00:00"
+      "lastCheckedAt": "2026-10-13T12:46:25.977230+00:00"
     },
     "万博記念公園": {
       "ok": 1,
@@ -42,7 +42,7 @@
       "suspect_empty": 0,
       "error": 0,
       "extracted": 32,
-      "lastCheckedAt": "2026-10-13T12:44:41.377472+00:00"
+      "lastCheckedAt": "2026-10-13T12:46:25.977230+00:00"
     },
     "パナソニックスタジアム吹田": {
       "ok": 1,
@@ -52,10 +52,10 @@
       "suspect_empty": 0,
       "error": 0,
       "extracted": 10,
-      "lastCheckedAt": "2026-10-13T12:44:41.377472+00:00"
+      "lastCheckedAt": "2026-10-13T12:46:25.977230+00:00"
     }
   },
-  "checkedAt": "2026-10-13T12:44:41.377472+00:00",
+  "checkedAt": "2026-10-13T12:46:25.977230+00:00",
   "sources": 16,
   "fetched": 16,
   "structuredEventsExtractedThisRun": 219,
