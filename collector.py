@@ -406,6 +406,37 @@ def diagnose_page(html, src, url, method, response):
 
 
 
+# v7.9: Event-specific venue confirmations from organizers' official pages.
+# Match BOTH exact title and start date. Never infer a venue from an event type.
+# Extend this registry only after checking the organizer's current-year page.
+MICE_VERIFIED_VENUES = {
+    ('2026-10-13', '第9回 EDIX（教育総合展）大阪'): ('グランキューブ大阪', 'https://www.edix-expo.jp/osaka/ja-jp/about.html'),
+    ('2026-10-30', '第39回日本サイコオンコロジー学会総会'): ('高槻城公園芸術文化劇場ほか（高槻市）', 'https://convention.jtbcom.co.jp/jpos39/summary/index.html'),
+    ('2026-11-06', '第21回アジア太平洋ヘルニア学会学術集会'): ('グランキューブ大阪', 'https://aphs2026.jp/ap/profile.html'),
+    ('2026-11-17', '第55回日本免疫学会学術集会'): ('グランキューブ大阪', 'https://www2.aeplan.co.jp/jsi2026/outline.html'),
+    ('2026-11-21', '日本NP学会第12回学術集会'): ('森ノ宮医療大学（大阪市住之江区）', 'https://jsnp2026.jp/outline.html'),
+    ('2027-01-28', '第60回日本臨床腎移植学会'): ('グランキューブ大阪', 'https://p-forest.co.jp/jscrt60/contents/outline.html'),
+    ('2027-03-10', '第97回日本衛生学会学術総会'): ('大阪市中央公会堂', 'https://www.knt.co.jp/ec/2026/jsh2027/gaiyo.html'),
+    ('2027-03-14', '第40回近畿小児科学会'): ('グランキューブ大阪', 'https://square.umin.ac.jp/~kinki40/index.html'),
+    ('2027-03-27', '第10回日本リンパ浮腫学会総会'): ('近畿大学おおさかメディカルキャンパス（堺市）', 'https://square.umin.ac.jp/jles10/index.html'),
+}
+
+
+def apply_mice_venue(event):
+    """Use only date-and-title matched organizer-confirmed locations."""
+    found = MICE_VERIFIED_VENUES.get((event['start'], event['title']))
+    if not found:
+        event['notes'] += ' 会場：公式情報未照合（自動推測は行わない）。'
+        return False
+    venue, official_url = found
+    event['venue'] = venue
+    event['id'] = event_id(venue, event['title'], event['start'])
+    event['notes'] += ' 会場は主催者公式サイトで確認済み（確認時点の情報）。公式会場情報：' + official_url
+    # Keep the MICE calendar as the event's source; link to the organizer for venue verification.
+    event['url'] = official_url
+    return True
+
+
 def osaka_mice_calendar(html, src, url):
     """Parse the official Japanese partial calendar, including 2027 entries.
     Years must come from nearby year headings; historical sections are ignored.
@@ -456,8 +487,10 @@ def osaka_mice_calendar(html, src, url):
                 event['end'] = end.isoformat()
                 event['scale'] = 1
                 event['access'] = 1
+                apply_mice_venue(event)
                 results.append(event)
     results = list({e['id']: e for e in results}.values())
+    print('OSAKA MICE venue confirmed ' + str(sum(e['venue'] != src.get('venue') for e in results)) + '/' + str(len(results)), flush=True)
     print('OSAKA MICE calendar extracted ' + str(len(results)) + ' titles ' +
           repr([e['title'] for e in results[:12]]), flush=True)
     if not results:
