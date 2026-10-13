@@ -21,6 +21,7 @@ JST = timezone(timedelta(hours=9))
 TODAY = datetime.now(JST).date()
 HEADERS = {'User-Agent': 'Mozilla/5.0 (compatible; ShinosakaEventNavi/1.3; event information verification)'}
 INTEX_SUPPLEMENT = 'https://www.cosmosquare-djc.jp/eventinfo/'
+MICE_PARTIAL = 'https://mice.osaka-info.jp/businesses/calendar/_partial/ja/index.html'
 
 
 def read_json(name, default):
@@ -406,104 +407,66 @@ def diagnose_page(html, src, url, method, response):
 
 
 def osaka_mice_calendar(html, src, url):
-    """Official Osaka MICE convention/exhibition calendar.
-    Only collect entries with an explicit event title and period, and only
-    when the date is in the next 190 days. No attendee counts are inferred.
+    """Parse the official Japanese partial calendar, including 2027 entries.
+    Years must come from nearby year headings; historical sections are ignored.
     """
     soup = BeautifulSoup(html, 'html.parser')
     for tag in soup(['script', 'style', 'noscript', 'svg']):
         tag.decompose()
     results = []
     current_year = None
-    date_re = re.compile(r'(?:(20\d{2})[年/.-]\s*)?(\d{1,2})[月/]\s*(\d{1,2})\s*(?:[〜～~\-－–—]+\s*(?:(20\d{2})[年/.-]\s*)?(?:(\d{1,2})[月/])?\s*(\d{1,2}))?')
-    for tr in soup.select('tr'):
-        cells = tr.find_all(['th', 'td'], recursive=False)
-        if len(cells) < 2:
+    historical = False
+    date_re = re.compile(r'(\d{1,2})\s*[./月]\s*(\d{1,2})\s*[日]?\s*[〜～~\-－–—]+\s*(?:(\d{1,2})\s*[./月]\s*)?(\d{1,2})')
+    # Headings in the partial identify the year for each table. Skip 'past events'.
+    for node in soup.find_all(['h1', 'h2', 'h3', 'h4', 'table']):
+        if node.name != 'table':
+            heading = normalize(node.get_text(' ', strip=True))
+            match_year = re.search(r'(20\d{2})\s*年?', heading)
+            if match_year:
+                current_year = int(match_year.group(1))
+                historical = bool(re.search(r'過去|past', heading, re.I))
             continue
-        period = normalize(cells[0].get_text(' ', strip=True))
-        title = normalize(cells[1].get_text(' ', strip=True))
-        match = date_re.search(period)
-        if not match or not title or len(title) > 180 or title in ('イベント名', '会期'):
+        if not current_year or historical:
             continue
-        # The official calendar groups events under year headings. Prefer an
-        # explicit year in the date; otherwise locate a year heading above row.
-        year = int(match.group(1)) if match.group(1) else None
-        if not year:
-            prev = tr.find_previous(['h2', 'h3', 'h4', 'caption'])
-            if prev:
-                year_match = re.search(r'20\d{2}', prev.get_text(' ', strip=True))
-                if year_match: year = int(year_match.group())
-        if not year:
-            # Calendar tables can omit year; do not guess for cross-year data.
-            continue
-        try:
-            start = date(year, int(match.group(2)), int(match.group(3)))
-            end_year = int(match.group(4)) if match.group(4) else year
-            end_month = int(match.group(5)) if match.group(5) else int(match.group(2))
-            end_day = int(match.group(6)) if match.group(6) else int(match.group(3))
-            end = date(end_year, end_month, end_day)
-            if end < start and not match.group(4):
-                end = date(year + 1, end_month, end_day)
-        except ValueError:
-            continue
-        if end < TODAY or start > TODAY + timedelta(days=190) or (end-start).days > 31:
-            continue
-        link = cells[1].find('a', href=True)
-        detail_url = urljoin(url, link['href']) if link else url
-        category = '学会・展示会' if re.search(r'学会|展示会|EXPO|コンベンション|国際会議|Conference|Congress', title, re.I) else 'ビジネスイベント'
-        # Venue is not always published in the summary. Do not assign an
-        # arbitrary building or inflate venue-specific demand assumptions.
-        event = make_event(src, title, start.isoformat(), detail_url, category,
-                           notes='大阪観光局MICEカレンダー掲載。会場・参加人数は個別の公式情報で要確認。')
-        if event:
-            event['end'] = end.isoformat()
-            event['scale'] = 1
-            event['access'] = 1
-            results.append(event)
-    # The official calendar may render entries outside HTML tables. Try
-    # semantic list/card blocks without inventing missing years or dates.
-    if not results:
-        for node in soup.select('article, li, .event, .calendar-item, .event-item, .schedule-item'):
-            if node.find('tr'):
+        for tr in node.select('tr'):
+            cells = tr.find_all(['th', 'td'], recursive=False)
+            if len(cells) < 2:
                 continue
-            body = normalize(node.get_text(' ', strip=True))
-            if not (12 <= len(body) <= 600):
-                continue
-            match = re.search(r'(20\d{2})[年/.-]\s*(\d{1,2})[月/.-]\s*(\d{1,2})日?', body)
-            if not match:
+            period = normalize(cells[0].get_text(' ', strip=True))
+            title = normalize(cells[1].get_text(' ', strip=True))
+            m = date_re.search(period)
+            if not m or not title or title in ('イベント名', 'Event Name') or len(title) > 180:
                 continue
             try:
-                start = date(*map(int, match.groups()))
+                start = date(current_year, int(m.group(1)), int(m.group(2)))
+                end_month = int(m.group(3)) if m.group(3) else start.month
+                end = date(current_year, end_month, int(m.group(4)))
+                if end < start:
+                    end = date(current_year + 1, end_month, int(m.group(4)))
             except ValueError:
                 continue
-            if not TODAY <= start <= TODAY + timedelta(days=190):
+            if end < TODAY or start > TODAY + timedelta(days=190) or (end-start).days > 31:
                 continue
-            heading = node.find(['h2','h3','h4','h5'])
-            anchor = node.find('a', href=True)
-            title = normalize(heading.get_text(' ', strip=True)) if heading else (normalize(anchor.get_text(' ', strip=True)) if anchor else '')
-            if not (5 <= len(title) <= 180) or re.fullmatch(r'20\d{2}|詳細|もっと見る', title):
-                continue
-            detail_url = urljoin(url, anchor['href']) if anchor else url
-            event = make_event(src, title, start.isoformat(), detail_url, '学会・展示会',
+            link = cells[1].find('a', href=True)
+            detail_url = urljoin(url, link['href']) if link else 'https://mice.osaka-info.jp/businesses/calendar/'
+            category = '学会・展示会' if re.search(r'学会|展示会|EXPO|コンベンション|国際会議|Conference|Congress', title, re.I) else 'ビジネスイベント'
+            event = make_event(src, title, start.isoformat(), detail_url, category,
                 notes='大阪観光局MICEカレンダー掲載。会場・参加人数は個別の公式情報で要確認。')
             if event:
+                event['end'] = end.isoformat()
                 event['scale'] = 1
                 event['access'] = 1
                 results.append(event)
-    # Print safe structural diagnostics if no entries were extracted. Do not
-    # silently treat a successful HTTP request as successful event extraction.
+    results = list({e['id']: e for e in results}.values())
+    print('OSAKA MICE calendar extracted ' + str(len(results)) + ' titles ' +
+          repr([e['title'] for e in results[:12]]), flush=True)
     if not results:
-        text = normalize(soup.get_text(' ', strip=True))
-        links = [(normalize(a.get_text(' ', strip=True))[:45], a.get('href','')[:110])
-                 for a in soup.find_all('a', href=True) if re.search(r'202[6-9]|calendar|event|学会|展示', str(a), re.I)]
-        scripts = [tag.get('src','')[:150] for tag in BeautifulSoup(html, 'html.parser').find_all('script', src=True)]
         print('OSAKA MICE DIAGNOSTIC ' + json.dumps({
-            'htmlBytes':len(html), 'tables':len(soup.select('table')),
-            'rows':len(soup.select('tr')), 'articles':len(soup.select('article')),
-            'textSample':text[:900], 'calendarLinks':links[:15],
-            'scriptSources':scripts[:12]}, ensure_ascii=False), flush=True)
-    print('OSAKA MICE calendar extracted ' + str(len(results)), flush=True)
-    return list({e['id']: e for e in results}.values())
+            'htmlBytes': len(html), 'tables': len(soup.select('table')),
+            'headings': [normalize(x.get_text(' ', strip=True))[:90] for x in soup.select('h2,h3,h4')][:20],
+            'textSample': normalize(soup.get_text(' ', strip=True))[:900]
+        }, ensure_ascii=False), flush=True)
+    return results
 
 def main():
     sources = read_json('sources.json', [])
@@ -526,7 +489,7 @@ def main():
         elif 'osaka-johall.com' in host:
             targets += [(f'https://www.osaka-johall.com/event/?ym={y:04d}{m:02d}', 'johall', src) for y, m in months()]
         elif 'mice.osaka-info.jp' in host:
-            targets.append((base, 'osaka_mice_calendar', src))
+            targets.append((MICE_PARTIAL, 'osaka_mice_calendar', src))
         elif 'gamba-osaka.net' in host:
             targets.append((base, 'gamba_games', src))
         elif 'expo70-park.jp' in host:
@@ -560,7 +523,7 @@ def main():
             elif method == 'gamba_games': parsed = gamba_games(html, src, url)
             elif method == 'osaka_mice_calendar': parsed = osaka_mice_calendar(html, src, url)
             else: parsed = structured(html, src, url)
-            if not parsed and method in ('johall', 'kyocera', 'structured', 'intex_supplement', 'expo_park', 'gamba_games', 'osaka_mice_calendar') and not (method == 'structured' and 'intex-osaka.com' in urlparse(url).netloc):
+            if not parsed and method in ('johall', 'kyocera', 'structured', 'intex_supplement', 'expo_park', 'gamba_games') and not (method == 'structured' and 'intex-osaka.com' in urlparse(url).netloc):
                 diagnose_page(html, src, url, method, response)
             fetched += 1
             extracted += len(parsed)
