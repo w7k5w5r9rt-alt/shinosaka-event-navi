@@ -33,8 +33,19 @@ def read_json(name, default):
 
 
 def write_json(name, obj):
-    with open(os.path.join(DATA, name), 'w', encoding='utf-8') as f:
-        json.dump(obj, f, ensure_ascii=False, indent=2)
+    # Atomic replacement prevents partially written JSON after interruption.
+    import tempfile
+    fd, tmp = tempfile.mkstemp(prefix='.pending-', suffix='.json', dir=DATA)
+    try:
+        with os.fdopen(fd, 'w', encoding='utf-8') as f:
+            json.dump(obj, f, ensure_ascii=False, indent=2)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, os.path.join(DATA, name))
+    finally:
+        if os.path.exists(tmp):
+            os.unlink(tmp)
+
 
 
 def months(n=6):
@@ -378,6 +389,8 @@ def main():
     events = {e['id']: e for e in old_events if isinstance(e, dict) and e.get('id')}
     alerts, states = [], {}
     fetched = extracted = 0
+    healthy = 0
+    suspect = 0
     targets = []
     has_intex = False
     for src in sources:
@@ -424,8 +437,16 @@ def main():
                 diagnose_page(html, src, url, method, response)
             fetched += 1
             extracted += len(parsed)
-            states[url] = {'hash': digest, 'checkedAt': NOW, 'status': 'ok' if parsed else 'zero_extracted', 'extracted': len(parsed)}
-            if not parsed and method in ('johall', 'kyocera'):
+            # Empty future months can be legitimate. An unexpected drop from >0 is suspect.
+            prev_count = int(prev.get('extracted', 0) or 0)
+            status_kind = 'ok' if parsed else ('suspect_empty' if prev_count > 0 else 'empty_unverified')
+            if status_kind == 'ok': healthy += 1
+            else: suspect += 1
+            states[url] = {'hash': digest, 'checkedAt': NOW, 'status': status_kind,
+                           'extracted': len(parsed), 'previousExtracted': prev_count,
+                           'method': method, 'venue': src.get('venue', src.get('name',''))}
+
+            if not parsed and status_kind == 'suspect_empty' and method in ('johall', 'kyocera'):
                 alerts.append({'id': 'zero-events-' + hashlib.sha256((url + TODAY.isoformat()).encode()).hexdigest()[:16],
                     'type': 'zero_extracted', 'title': src['name'] + ' の抽出件数が0件',
                     'message': 'ページ取得は成功しましたが、イベントを読み取れませんでした。公式日程との照合が必要です。',
@@ -447,7 +468,8 @@ def main():
                         'message':'収集元のイベント表記に中止・延期の文言があります。公式情報で再確認してください。',
                         'source':src['name'],'url':ev.get('url') or url,'detectedAt':NOW,'status':'要確認'})
         except Exception as exc:
-            states[url] = {'checkedAt': NOW, 'status': 'error', 'error': str(exc)[:300]}
+            suspect += 1
+            states[url] = {'checkedAt': NOW, 'status': 'error', 'error': str(exc)[:300], 'method': method, 'venue': src.get('venue', src.get('name',''))}
             alerts.append({'id': 'fetch-error-' + hashlib.sha256((url + TODAY.isoformat()).encode()).hexdigest()[:16],
                 'type': 'fetch_error', 'title': src['name'] + ' の取得に失敗',
                 'message': 'サイト取得失敗。中止とは判断しないでください。',
@@ -457,7 +479,20 @@ def main():
         if ev.get('venue') == '大阪城ホール' and re.fullmatch(r'20\d{2}-\d{2}-\d{2}',ev.get('start','')):
             ev['url'] = 'https://www.osaka-johall.com/event/?ym=' + ev['start'][:7].replace('-','')
     # Retain prior records on errors; disappearance alone does not imply cancellation.
-    write_json('auto-events.json', sorted(events.values(), key=lambda e: (e.get('start', ''), e.get('title', ''))))
+    # Reject malformed records rather than publish a damaged shared feed.
+    valid_events = []
+    for ev in events.values():
+        if not isinstance(ev, dict) or not all(ev.get(k) for k in ('id','title','start','end','venue')):
+            raise ValueError('Malformed event: '+repr(ev)[:200])
+        for key in ('start','end'):
+            date.fromisoformat(ev[key])
+        if ev['end'] < ev['start']:
+            raise ValueError('Invalid event date range: '+str(ev['id']))
+        valid_events.append(ev)
+    if old_events and len(valid_events) < len(old_events) * 0.8:
+        raise RuntimeError('Safety stop: event feed shrank unexpectedly')
+    write_json('auto-events.json', sorted(valid_events, key=lambda e: (e.get('start', ''), e.get('title', ''))))
+
     # Remove stale extraction/fetch warnings only when a subsequent run actually
     # extracted events from the exact same URL. A successful HTTP request alone
     # does not prove that the schedule parser is healthy.
@@ -488,7 +523,15 @@ def main():
     notices = sorted(merged.values(), key=lambda a: (a.get('priority') == 'important', a.get('detectedAt','')), reverse=True)[:200]
     write_json('change-alerts.json', notices)
     write_json('source-state.json', states)
-    write_json('collector-status.json', {'checkedAt': NOW, 'sources': len(targets), 'fetched': fetched,
+    source_summary = {}
+    for url, state in states.items():
+        name = state.get('venue') or urlparse(url).netloc
+        item = source_summary.setdefault(name, {'ok':0,'empty_unverified':0,'suspect_empty':0,'error':0,'extracted':0,'lastCheckedAt':NOW})
+        item[state['status']] = item.get(state['status'], 0) + 1
+        item['extracted'] += state.get('extracted', 0)
+    write_json('collector-status.json', {'schemaVersion': 2, 'health': 'warning' if suspect else 'ok',
+        'healthyTargets': healthy, 'attentionTargets': suspect, 'sourceSummary': source_summary,
+        'checkedAt': NOW, 'sources': len(targets), 'fetched': fetched,
         'structuredEventsExtractedThisRun': extracted, 'totalAutoEvents': len(events),
         'newAlerts': len(alerts), 'note': '万博記念公園とガンバ大阪ホームゲームも収集対象。来場者数は実測未確認。消失から中止を推定しません。'})
     print(json.dumps({'fetched': fetched, 'extracted': extracted, 'alerts': len(alerts),
