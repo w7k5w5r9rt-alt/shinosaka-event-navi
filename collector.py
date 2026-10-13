@@ -1,4 +1,4 @@
-"""Shinosaka Event Navi collector (v1.4): Kyocera, Osaka-Jo Hall, Intex Osaka.
+"""Shinosaka Event Navi collector (v7.2): Kyocera, Osaka-Jo Hall, Intex Osaka.
 Requires requests and beautifulsoup4. Run: python collector.py
 Intex supplementary listings are attributed to Cosmosquare Development Council.
 """
@@ -150,6 +150,28 @@ def johall(html, src, url):
     print('JOHALL', url, 'monthly rows', len(days), 'extracted', len(found),
           'titles', [e['title'] for e in found.values()][:25], flush=True)
     return list(found.values())
+
+def johall_official_empty(html, url):
+    """Confirm an explicit no-events message within the requested month's section.
+
+    Do not infer zero events from an empty parser result or a different month's
+    upcoming highlights. Missing/mismatched headings remain unverified.
+    """
+    ym = re.search(r'[?&]ym=(20\d{2})(0[1-9]|1[0-2])', url)
+    if not ym:
+        return False
+    year, month = map(int, ym.groups())
+    soup = BeautifulSoup(html, 'html.parser')
+    for tag in soup(['script', 'style', 'noscript', 'svg']):
+        tag.decompose()
+    text = normalize(soup.get_text(' ', strip=True))
+    heading = re.search(rf'{year}\s*年\s*0?{month}\s*月\s*の\s*イベント', text)
+    if not heading:
+        return False
+    section = text[heading.end():]
+    section = re.split(r'\s+(?:トップ|OSAKA-JO HALL|会社情報)\s+', section, maxsplit=1)[0]
+    return bool(re.search(r'イベント\s*は\s*ありません[。．.]?', section))
+
 
 def walk_event(obj, out):
     if isinstance(obj, list):
@@ -443,9 +465,12 @@ def main():
             # Its supplementary timetable is fetched separately and may supply events.
             if method == 'structured' and 'intex-osaka.com' in urlparse(url).netloc:
                 status_kind = 'monitor_only'
+            elif method == 'johall' and not parsed and johall_official_empty(html, url):
+                status_kind = 'empty_confirmed'
+                print('JOHALL official empty confirmed', url, flush=True)
             else:
                 status_kind = 'ok' if parsed else ('suspect_empty' if prev_count > 0 else 'empty_unverified')
-            if status_kind in ('ok', 'monitor_only'): healthy += 1
+            if status_kind in ('ok', 'monitor_only', 'empty_confirmed'): healthy += 1
             else: suspect += 1
             states[url] = {'hash': digest, 'checkedAt': NOW, 'status': status_kind,
                            'extracted': len(parsed), 'previousExtracted': prev_count,
@@ -502,7 +527,8 @@ def main():
     # extracted events from the exact same URL. A successful HTTP request alone
     # does not prove that the schedule parser is healthy.
     recovered_urls = {u for u, state in states.items()
-                      if state.get('status') == 'ok' and state.get('extracted', 0) > 0}
+                      if (state.get('status') == 'ok' and state.get('extracted', 0) > 0)
+                      or state.get('status') == 'empty_confirmed'}
     old_alerts = [a for a in old_alerts if not (
         isinstance(a, dict) and a.get('type') in ('zero_extracted', 'fetch_error')
         and a.get('url') in recovered_urls)]
@@ -531,7 +557,7 @@ def main():
     source_summary = {}
     for url, state in states.items():
         name = state.get('venue') or urlparse(url).netloc
-        item = source_summary.setdefault(name, {'ok':0,'monitor_only':0,'empty_unverified':0,'suspect_empty':0,'error':0,'extracted':0,'lastCheckedAt':NOW})
+        item = source_summary.setdefault(name, {'ok':0,'monitor_only':0,'empty_unverified':0,'empty_confirmed':0,'suspect_empty':0,'error':0,'extracted':0,'lastCheckedAt':NOW})
         item[state['status']] = item.get(state['status'], 0) + 1
         item['extracted'] += state.get('extracted', 0)
     write_json('collector-status.json', {'schemaVersion': 2, 'health': 'warning' if suspect else 'ok',
