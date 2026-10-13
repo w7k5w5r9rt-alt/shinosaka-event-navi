@@ -433,14 +433,19 @@ def main():
             elif method == 'expo_park': parsed = expo_park(html, src, url)
             elif method == 'gamba_games': parsed = gamba_games(html, src, url)
             else: parsed = structured(html, src, url)
-            if not parsed and method in ('johall', 'kyocera', 'structured', 'intex_supplement', 'expo_park', 'gamba_games'):
+            if not parsed and method in ('johall', 'kyocera', 'structured', 'intex_supplement', 'expo_park', 'gamba_games') and not (method == 'structured' and 'intex-osaka.com' in urlparse(url).netloc):
                 diagnose_page(html, src, url, method, response)
             fetched += 1
             extracted += len(parsed)
             # Empty future months can be legitimate. An unexpected drop from >0 is suspect.
             prev_count = int(prev.get('extracted', 0) or 0)
-            status_kind = 'ok' if parsed else ('suspect_empty' if prev_count > 0 else 'empty_unverified')
-            if status_kind == 'ok': healthy += 1
+            # The Intex landing page is a monitoring source, not an event feed.
+            # Its supplementary timetable is fetched separately and may supply events.
+            if method == 'structured' and 'intex-osaka.com' in urlparse(url).netloc:
+                status_kind = 'monitor_only'
+            else:
+                status_kind = 'ok' if parsed else ('suspect_empty' if prev_count > 0 else 'empty_unverified')
+            if status_kind in ('ok', 'monitor_only'): healthy += 1
             else: suspect += 1
             states[url] = {'hash': digest, 'checkedAt': NOW, 'status': status_kind,
                            'extracted': len(parsed), 'previousExtracted': prev_count,
@@ -526,7 +531,7 @@ def main():
     source_summary = {}
     for url, state in states.items():
         name = state.get('venue') or urlparse(url).netloc
-        item = source_summary.setdefault(name, {'ok':0,'empty_unverified':0,'suspect_empty':0,'error':0,'extracted':0,'lastCheckedAt':NOW})
+        item = source_summary.setdefault(name, {'ok':0,'monitor_only':0,'empty_unverified':0,'suspect_empty':0,'error':0,'extracted':0,'lastCheckedAt':NOW})
         item[state['status']] = item.get(state['status'], 0) + 1
         item['extracted'] += state.get('extracted', 0)
     write_json('collector-status.json', {'schemaVersion': 2, 'health': 'warning' if suspect else 'ok',
