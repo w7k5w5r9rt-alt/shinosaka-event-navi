@@ -460,6 +460,48 @@ def osaka_mice_calendar(html, src, url):
             event['scale'] = 1
             event['access'] = 1
             results.append(event)
+    # The official calendar may render entries outside HTML tables. Try
+    # semantic list/card blocks without inventing missing years or dates.
+    if not results:
+        for node in soup.select('article, li, .event, .calendar-item, .event-item, .schedule-item'):
+            if node.find('tr'):
+                continue
+            body = normalize(node.get_text(' ', strip=True))
+            if not (12 <= len(body) <= 600):
+                continue
+            match = re.search(r'(20\d{2})[年/.-]\s*(\d{1,2})[月/.-]\s*(\d{1,2})日?', body)
+            if not match:
+                continue
+            try:
+                start = date(*map(int, match.groups()))
+            except ValueError:
+                continue
+            if not TODAY <= start <= TODAY + timedelta(days=190):
+                continue
+            heading = node.find(['h2','h3','h4','h5'])
+            anchor = node.find('a', href=True)
+            title = normalize(heading.get_text(' ', strip=True)) if heading else (normalize(anchor.get_text(' ', strip=True)) if anchor else '')
+            if not (5 <= len(title) <= 180) or re.fullmatch(r'20\d{2}|詳細|もっと見る', title):
+                continue
+            detail_url = urljoin(url, anchor['href']) if anchor else url
+            event = make_event(src, title, start.isoformat(), detail_url, '学会・展示会',
+                notes='大阪観光局MICEカレンダー掲載。会場・参加人数は個別の公式情報で要確認。')
+            if event:
+                event['scale'] = 1
+                event['access'] = 1
+                results.append(event)
+    # Print safe structural diagnostics if no entries were extracted. Do not
+    # silently treat a successful HTTP request as successful event extraction.
+    if not results:
+        text = normalize(soup.get_text(' ', strip=True))
+        links = [(normalize(a.get_text(' ', strip=True))[:45], a.get('href','')[:110])
+                 for a in soup.find_all('a', href=True) if re.search(r'202[6-9]|calendar|event|学会|展示', str(a), re.I)]
+        scripts = [tag.get('src','')[:150] for tag in BeautifulSoup(html, 'html.parser').find_all('script', src=True)]
+        print('OSAKA MICE DIAGNOSTIC ' + json.dumps({
+            'htmlBytes':len(html), 'tables':len(soup.select('table')),
+            'rows':len(soup.select('tr')), 'articles':len(soup.select('article')),
+            'textSample':text[:900], 'calendarLinks':links[:15],
+            'scriptSources':scripts[:12]}, ensure_ascii=False), flush=True)
     print('OSAKA MICE calendar extracted ' + str(len(results)), flush=True)
     return list({e['id']: e for e in results}.values())
 
@@ -518,7 +560,7 @@ def main():
             elif method == 'gamba_games': parsed = gamba_games(html, src, url)
             elif method == 'osaka_mice_calendar': parsed = osaka_mice_calendar(html, src, url)
             else: parsed = structured(html, src, url)
-            if not parsed and method in ('johall', 'kyocera', 'structured', 'intex_supplement', 'expo_park', 'gamba_games') and not (method == 'structured' and 'intex-osaka.com' in urlparse(url).netloc):
+            if not parsed and method in ('johall', 'kyocera', 'structured', 'intex_supplement', 'expo_park', 'gamba_games', 'osaka_mice_calendar') and not (method == 'structured' and 'intex-osaka.com' in urlparse(url).netloc):
                 diagnose_page(html, src, url, method, response)
             fetched += 1
             extracted += len(parsed)
