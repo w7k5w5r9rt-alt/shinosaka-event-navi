@@ -509,6 +509,7 @@ def main():
     events = {e['id']: e for e in old_events if isinstance(e, dict) and e.get('id')}
     alerts, states = [], {}
     fetched = extracted = 0
+    mice_duplicates_removed = 0
     healthy = 0
     suspect = 0
     targets = []
@@ -583,7 +584,31 @@ def main():
                     'message': 'ページ取得は成功しましたが、イベントを読み取れませんでした。公式日程との照合が必要です。',
                     'source': src['name'], 'url': url, 'detectedAt': NOW, 'status': '要確認'})
             for ev in parsed:
+                # v7.10: MICE venue changes must update an existing event rather
+                # than leave the prior venue-based ID as a duplicate. Only
+                # reconcile confirmed records from the SAME MICE feed with
+                # matching title and start date; never touch manual entries or
+                # another venue's independently collected event.
+                previous_versions = []
+                if method == 'osaka_mice_calendar':
+                    for prior_id, prior in list(events.items()):
+                        if (prior_id != ev['id']
+                            and isinstance(prior, dict)
+                            and prior.get('autoCollected') is True
+                            and prior.get('source') == src['name']
+                            and normalize(prior.get('title', '')).casefold() == normalize(ev['title']).casefold()
+                            and prior.get('start') == ev['start']):
+                            previous_versions.append(prior)
+                            del events[prior_id]
+                            mice_duplicates_removed += 1
                 before = events.get(ev['id'])
+                # Retain an explicitly detected cancellation/postponement when
+                # the venue has changed and therefore the ID has changed.
+                status_history = ([before] if before else []) + previous_versions
+                if any(old.get('status') in ('cancelled', 'postponed') for old in status_history):
+                    if ev['status'] == 'scheduled':
+                        ev['status'] = next(old['status'] for old in status_history
+                                            if old.get('status') in ('cancelled', 'postponed'))
                 if before and before.get('status') in ('cancelled','postponed') and ev['status']=='scheduled':
                     # Do not reverse an explicit cancellation just because a page still lists the event.
                     ev['status']=before['status']
@@ -666,6 +691,7 @@ def main():
         'checkedAt': NOW, 'sources': len(targets), 'fetched': fetched,
         'structuredEventsExtractedThisRun': extracted, 'totalAutoEvents': len(events),
         'newAlerts': len(alerts), 'note': '万博記念公園・ガンバ大阪ホームゲーム・大阪観光局MICEカレンダーも収集対象。来場者数は実測未確認。消失から中止を推定しません。'})
+    print('OSAKA MICE stale duplicates removed ' + str(mice_duplicates_removed), flush=True)
     print(json.dumps({'fetched': fetched, 'extracted': extracted, 'alerts': len(alerts),
                       'intexSupplementEnabled': has_intex}, ensure_ascii=False))
 
