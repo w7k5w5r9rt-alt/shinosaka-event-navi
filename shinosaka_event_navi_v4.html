@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#173a35"><title>新大阪イベントナビ v7.13</title>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#173a35"><title>新大阪イベントナビ v7.14</title>
 <style>
 :root{--g:#173a35;--g2:#285b50;--bg:#f3f6f4;--ink:#1f2b28;--muted:#697771;--line:#dce5e0;--white:#fff;--orange:#a95e22;--obg:#fff0df;--blue:#eaf2f8}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45}button,input,select{font:inherit}button{cursor:pointer}header{background:var(--g);color:#fff;padding:20px 16px 17px;border-radius:0 0 20px 20px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-size:21px;font-weight:800}.sub{font-size:12px;color:#c8dad3;margin-top:3px}.pill{font-size:11px;border:1px solid #ffffff40;border-radius:99px;padding:7px 10px;white-space:nowrap}.wrap{max-width:1000px;margin:auto;padding:14px 12px 80px}.notice{background:#fff5e6;color:#75532c;border:1px solid #eedabd;border-radius:11px;padding:10px 12px;font-size:12px;margin-bottom:12px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:13px}.stat,.panel{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 4px 15px #173a3508}.stat{padding:12px}.stat small{display:block;color:var(--muted);font-size:11px}.stat strong{font-size:23px;display:block;margin:4px 0}.stat span{font-size:10px;color:var(--muted)}.tabs{display:flex;gap:4px;padding:4px;background:#e5ece8;border-radius:11px;margin-bottom:12px}.tab{border:0;background:transparent;flex:1;padding:10px 3px;border-radius:8px;color:#53625c;font-size:12px}.tab.active{background:white;color:var(--g);font-weight:800}.panel{padding:14px;margin-bottom:12px}.phead{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px}.phead h2{font-size:16px;margin:0}.muted{font-size:11px;color:var(--muted)}.btn{border:0;border-radius:9px;padding:9px 12px;font-weight:700;font-size:12px}.primary{background:var(--g);color:white}.secondary{background:#e7f2ed;color:var(--g)}.ghost{background:white;border:1px solid var(--line);color:var(--ink)}.filters{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:7px;margin-bottom:12px}input,select{width:100%;min-width:0;padding:10px;border:1px solid #d5dfda;border-radius:9px;background:#fff;color:var(--ink)}.list{display:grid;gap:8px}.event{display:grid;grid-template-columns:54px 1fr;gap:10px;padding:11px;border:1px solid var(--line);border-radius:12px}.date{background:#e7f2ed;border-radius:9px;text-align:center;padding:7px 2px;color:var(--g);align-self:start}.date small{font-size:10px;display:block}.date b{font-size:22px;line-height:1.15;display:block}.et{display:flex;justify-content:space-between;align-items:flex-start;gap:7px}.et strong{font-size:13px}.score{white-space:nowrap;border-radius:99px;background:#edf1ef;padding:4px 7px;font-size:10px;font-weight:800}.score.high{background:var(--obg);color:var(--orange)}.meta{font-size:11px;color:var(--muted);margin-top:4px}.actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.actions button,.actions a{font-size:10px;padding:6px 8px;text-decoration:none}.tag{font-size:10px;background:var(--blue);color:#315c77;border-radius:99px;padding:4px 7px}.empty{border:1px dashed var(--line);padding:22px;text-align:center;border-radius:11px;color:var(--muted);font-size:12px}.calhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.calgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}.weekday{text-align:center;font-size:10px;color:var(--muted);padding:4px}.cell{min-height:58px;text-align:left;background:#fff;border:1px solid #e1e9e4;border-radius:7px;padding:4px 3px;color:var(--ink)}.cell.out{opacity:.35}.cell.today{border:2px solid var(--g)}.cell b{font-size:11px}.cell small{display:block;color:var(--g);font-size:9px;margin-top:4px}.dayrow{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #edf1ef}.dayrow:last-child{border-bottom:0}.circle{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--obg);color:var(--orange);font-weight:800;flex-shrink:0}.dayrow strong{font-size:12px}.dayrow small{display:block;color:var(--muted);font-size:11px;margin-top:3px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.field{font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:5px}.field.full{grid-column:1/-1}.modalback{display:none;position:fixed;inset:0;background:#10221dcc;z-index:10;align-items:flex-end;justify-content:center}.modalback.show{display:flex}.modal{width:100%;max-width:650px;max-height:92vh;overflow:auto;background:#fff;border-radius:19px 19px 0 0;padding:18px 15px calc(20px + env(safe-area-inset-bottom))}.modal h2{font-size:18px;margin:0 0 13px}.modalactions{display:flex;gap:8px;margin-top:14px}.modalactions button{flex:1}.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.kpi{border:1px solid var(--line);border-radius:11px;padding:11px}.kpi label{display:block;font-size:11px;color:var(--muted);margin-bottom:6px}.kpi input{font-size:17px;font-weight:700}.kpi small{font-size:10px;color:var(--muted)}.result{background:#e7f2ed;border-radius:12px;padding:13px;margin-top:10px}.result strong{font-size:22px;color:var(--g)}.tablewrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:11px}th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;white-space:nowrap}th{color:var(--muted);font-weight:600}footer{text-align:center;color:var(--muted);font-size:10px;padding:12px}@media(min-width:700px){.wrap{padding-top:20px}.list.two{grid-template-columns:1fr 1fr}.cell{min-height:75px;padding:6px}.modalback{align-items:center;padding:15px}.modal{border-radius:18px}}@media(max-width:420px){.brand{font-size:18px}.filters{grid-template-columns:1fr 1fr}.filters input{grid-column:1/-1}.stat{padding:9px}.stat strong{font-size:20px}.pill{font-size:10px}.cell{min-height:48px}}
@@ -19,6 +19,11 @@
 <div class="panel"><div class="phead"><h2>宿泊実績を入力</h2><span class="tag">手動入力</span></div><p class="muted">イベント日とホテル実績を照らし合わせるための簡易計算です。入力値はこのブラウザ内に保存されます。</p>
 <div class="kpi-grid"><div class="kpi"><label>対象日</label><input type="date" id="kDate"></div><div class="kpi"><label>販売可能客室数</label><input type="number" id="kRooms" min="1" value="100"></div><div class="kpi"><label>販売客室数</label><input type="number" id="kSold" min="0" value="0"></div><div class="kpi"><label>客室売上（円）</label><input type="number" id="kRevenue" min="0" value="0"></div><div class="kpi"><label>競合平均料金（円・任意）</label><input type="number" id="kComp" min="0" placeholder="未入力可"></div><div class="kpi"><label>メモ</label><input id="kMemo" placeholder="例：料金見直し済み"></div></div>
 <button class="btn primary" id="saveKpi" style="width:100%;margin-top:10px">この日の実績を保存</button><div id="kpiResult" class="result"><span class="muted">稼働率・ADR・RevPARがここに表示されます。</span></div></div>
+<div class="panel" id="baselinePanel"><div class="phead"><h2>通常の宿泊需要（v7.14）</h2><span class="tag">曜日・祝日・連休</span></div>
+<p class="muted">イベントを除いた通常需要の<strong>確認優先度</strong>です。祝日・連休・曜日による仮の傾向を表示します。新大阪の実測稼働率・需要人数・販売価格の予測ではありません。保存した宿泊実績は参考表示のみで、判定点数にはまだ反映しません。</p>
+<div class="formgrid"><label class="field">確認する日付<input type="date" id="baseDate"></label><label class="field">表示期間<select id="baseSpan"><option value="14">14日間</option><option value="30" selected>30日間</option><option value="60">60日間</option></select></label></div>
+<div id="baseSummary" class="result" aria-live="polite"></div><div class="tablewrap"><table><thead><tr><th>日付</th><th>曜日・休日</th><th>確認優先度</th><th>自ホテル実績</th></tr></thead><tbody id="baseRows"></tbody></table></div>
+<p class="muted" style="margin-top:10px">※ 祝日は日本の祝日法の一般的な規則に基づき2026〜2027年分を計算しています。特例の法改正・地域イベントは未反映の可能性があります。過去の宿泊実績が少ない場合は統計的な需要予測を行いません。</p></div>
 <div class="panel"><div class="phead"><h2>宿泊需要の要確認日</h2><select id="dSort" style="width:auto;font-size:12px"><option value="score">需要順</option><option value="date">日付順</option></select></div><p class="muted">イベント規模と遠方来場率の仮定から、前泊と開催日泊へ需要を配分します。複数日開催の来場者数は期間全体の仮定として均等配分します。インテックス大阪は大型・中規模・人数不明に分け、人数不明の催事は合計に加えません。同会場・同日開催分は最大値のみ採用し、併催展の重複を抑えます。大阪観光局MICEカレンダーの人数未公表イベントは、種別と会期に基づく低信頼の仮定レンジの代表値で試算します。これは公式来場予測ではありません。いずれも実測値ではなく、延泊・客室単価の推定には使えません。</p><div id="demandList" class="list"></div></div>
 <div class="panel"><div class="phead"><h2>保存した日別実績</h2><button class="btn ghost" id="exportKpi">CSV出力</button></div><div class="tablewrap"><table><thead><tr><th>日付</th><th>稼働率</th><th>ADR</th><th>RevPAR</th><th></th></tr></thead><tbody id="kpiTable"></tbody></table></div></div>
 </section>
@@ -28,7 +33,7 @@
 <div class="panel"><div class="phead"><h2>イベントデータ</h2><div style="display:flex;gap:6px"><button class="btn secondary" id="export">JSON出力</button><button class="btn secondary" id="backupAll">全データ保存</button><button class="btn ghost" id="csv">CSV出力</button></div></div><p class="muted">端末変更やバックアップに使えます。JSONファイルを読み込むと、イベントデータを復元できます。</p><input type="file" id="importFile" accept=".json,application/json"><p class="muted">全データ保存には手動イベント・ホテル実績・確認済み通知が含まれます。iPhoneの「ファイル」に定期的に保存してください（自動バックアップではありません）。</p><input type="file" id="restoreAll" accept=".json,application/json"><div class="actions"><button class="btn ghost" id="resetDemo">サンプルイベントを再読み込み</button><button class="btn ghost" id="clearDemo">サンプルのみ削除</button></div><div class="muted" id="lastSaved" style="margin-top:10px"></div></div>
 <div class="panel"><h2 style="font-size:16px;margin:0 0 8px">重複・更新の扱い</h2><ul class="muted" style="padding-left:18px;line-height:1.8"><li>登録時に「イベント名＋会場＋開始日」が一致する候補を検知します。</li><li>編集時に変更前の内容と更新時刻を記録します。</li><li>公式サイト上で明示された中止・延期は収集時に検知します。ただし、別ページやSNSのみの発表は検知できない場合があります。</li></ul></div>
 </section>
-<footer>新大阪イベントナビ v7.11 · 来場者規模と根拠を表示 · 自動収集と初期データは共通・手動登録は端末別保存 · 実務利用前に公式情報を再確認</footer>
+<footer>新大阪イベントナビ v7.14 · 来場者規模と根拠を表示 · 自動収集と初期データは共通・手動登録は端末別保存 · 実務利用前に公式情報を再確認</footer>
 </main>
 <div class="modalback" id="back"><div class="modal"><h2 id="modalTitle">イベント登録</h2><form id="form"><input id="eid" type="hidden"><div class="formgrid">
 <label class="field full">イベント名<input id="title" required></label><label class="field">開始日<input id="start" type="date" required></label><label class="field">終了日<input id="end" type="date" required></label><label class="field">開始時刻<input id="time" type="time"></label><label class="field">ジャンル<select id="category"><option>ライブ・コンサート</option><option>展示会・見本市</option><option>スポーツ</option><option>学会・会議</option><option>その他</option></select></label><label class="field full">会場<input id="place" required></label><label class="field">規模<select id="scale"><option value="1">小規模・不明</option><option value="2">中規模</option><option value="3">大規模</option><option value="4">特大規模</option></select></label><label class="field">アクセス影響<select id="access"><option value="1">遠め・不明</option><option value="2">アクセス良好</option><option value="3">新大阪利用が見込まれる</option></select></label><label class="field">予想来場者数（任意）<input id="attendance" type="number" min="0" step="1" placeholder="例：30000"></label><label class="field">人数の根拠<select id="attendanceBasis"><option value="estimate">推定・手入力</option><option value="official">公式公表値</option><option value="unknown">不明</option></select></label><label class="field">遠方来場率（%・任意）<input id="farRate" type="number" min="0" max="100" step="1" placeholder="自動推定"></label><label class="field">遠方客の宿泊率（%・任意）<input id="stayRate" type="number" min="0" max="100" step="1" placeholder="自動推定"></label><label class="field">新大阪選択率（%・任意）<input id="areaRate" type="number" min="0" max="100" step="1" placeholder="自動推定"></label><label class="field full">公式URL<input id="url" type="url" placeholder="https://..."></label><label class="field full">メモ<input id="notes" placeholder="終演時間、規模の根拠など"></label></div><div class="modalactions"><button class="btn ghost" type="button" id="cancel">キャンセル</button><button class="btn primary" type="submit">保存</button></div><button class="btn ghost" type="button" id="del" style="display:none;width:100%;margin-top:8px">削除</button></form></div></div>
@@ -317,6 +322,60 @@ function renderSelected(rows=demandRows()){
  }
  $('#dayEvents').innerHTML=ev.length?ev.map(card).join(''):'<div class="empty">この日の開催イベントは未登録です。前泊需要だけがある日もあります。</div>';
 }
+// v7.14: Rule-based normal-demand check priority; NOT a measured occupancy forecast.
+// Keep it separate from event-demand and do not silently add arbitrary scores.
+const nthMonday=(y,m,n)=>{const d=new Date(y,m-1,1);return 1+(8-d.getDay())%7+7*(n-1)};
+const equinox=(y,autumn)=>Math.floor((autumn?23.2488:20.8431)+(y-1980)*(autumn?.242194:.242194)-Math.floor((y-1980)/4));
+function japaneseHolidays(y){
+ const h=new Map(),put=(m,d,label)=>h.set(iso(new Date(y,m-1,d)),label);
+ put(1,1,'元日');put(1,nthMonday(y,1,2),'成人の日');put(2,11,'建国記念の日');put(2,23,'天皇誕生日');
+ put(3,equinox(y,false),'春分の日');put(4,29,'昭和の日');put(5,3,'憲法記念日');put(5,4,'みどりの日');put(5,5,'こどもの日');
+ put(7,nthMonday(y,7,3),'海の日');put(8,11,'山の日');put(9,nthMonday(y,9,3),'敬老の日');
+ put(9,equinox(y,true),'秋分の日');put(10,nthMonday(y,10,2),'スポーツの日');put(11,3,'文化の日');put(11,23,'勤労感謝の日');
+ // A weekday between two national holidays becomes a citizen's holiday.
+ for(let d=new Date(y,0,2);d.getFullYear()===y;d=addDays(d,1)){
+  const k=iso(d);if(!h.has(k)&&h.has(iso(addDays(d,-1)))&&h.has(iso(addDays(d,1))))h.set(k,'国民の休日');
+ }
+ // A Sunday holiday creates a substitute holiday on the next free date.
+ for(const [k,label] of [...h].sort((a,b)=>a[0].localeCompare(b[0]))){
+  if(date(k).getDay()!==0)continue;
+  let d=addDays(date(k),1);while(h.has(iso(d)))d=addDays(d,1);
+  if(d.getFullYear()===y)h.set(iso(d),'振替休日');
+ }
+ return h;
+}
+const holidayCache=new Map();
+function holidayName(key){const y=Number(key.slice(0,4));if(!holidayCache.has(y))holidayCache.set(y,japaneseHolidays(y));return holidayCache.get(y).get(key)||''}
+function normalDemandInfo(key){
+ const d=date(key),dow=d.getDay(),holiday=holidayName(key),prev=iso(addDays(d,-1)),next=iso(addDays(d,1));
+ const prevHoliday=!!holidayName(prev),nextHoliday=!!holidayName(next);
+ const off=!!holiday||dow===0||dow===6;
+ const prevOff=prevHoliday||date(prev).getDay()===0||date(prev).getDay()===6;
+ const nextOff=nextHoliday||date(next).getDay()===0||date(next).getDay()===6;
+ let priority=40;const reasons=[];
+ if(dow===5){priority+=15;reasons.push('金曜')}else if(dow===6){priority+=18;reasons.push('土曜')}else if(dow===0){priority-=4;reasons.push('日曜')}else if(dow===1){priority-=4;reasons.push('月曜')}else if(dow===4){priority+=5;reasons.push('木曜')}
+ if(holiday){priority+=12;reasons.push(holiday)}
+ if(off&&prevOff&&nextOff){priority+=10;reasons.push('連休中日')}
+ else if(!off&&nextOff&&dow!==5){priority+=8;reasons.push('休日の前日')}
+ else if(off&&nextOff){priority+=5;reasons.push('連休の初日付近')}
+ if(off&&!nextOff&&dow===0){priority-=4;reasons.push('翌日平日')}
+ priority=Math.max(0,Math.min(100,priority));
+ const level=priority>=65?'高め':priority>=48?'中程度':'低め';
+ return {key,priority,level,holiday,reasons,off};
+}
+function renderBaseline(){
+ const input=$('#baseDate');if(!input)return;
+ let start=input.value||iso(today);if(start<iso(today))start=iso(today);if(start>iso(endRange))start=iso(endRange);
+ input.value=start;const span=Number($('#baseSpan').value)||30;
+ const rows=[];for(let i=0;i<span;i++){const key=iso(addDays(date(start),i));if(key>iso(endRange))break;rows.push(normalDemandInfo(key))}
+ const current=normalDemandInfo(start),k=kpis.find(x=>x.date===start&&x.rooms>0);
+ const obs=k?`保存済み実績：稼働率 ${(100*k.sold/k.rooms).toFixed(1)}%、ADR ${k.sold?Math.round(k.revenue/k.sold).toLocaleString('ja-JP'):'—'}円（この日の実績。予測には未使用）`:'この日のホテル実績：未登録';
+ $('#baseSummary').innerHTML=`<strong>${esc(fmt(start))}：${current.priority}点・${current.level}</strong><div class="muted">${esc(current.reasons.join('・')||'通常の平日')}／${esc(obs)}</div><div class="muted">この点数は曜日・休日ルールによる確認優先度で、稼働率や宿泊人数ではありません。</div>`;
+ $('#baseRows').innerHTML=rows.map(r=>{const saved=kpis.find(x=>x.date===r.key&&x.rooms>0);return `<tr><td>${esc(r.key)}</td><td>${esc('日月火水木金土'[date(r.key).getDay()])} ${esc(r.holiday)}</td><td>${r.priority}点・${r.level}</td><td>${saved?(100*saved.sold/saved.rooms).toFixed(1)+'%':'未登録'}</td></tr>`}).join('');
+}
+$('#baseDate').value=iso(today);$('#baseDate').min=iso(today);$('#baseDate').max=iso(endRange);
+$('#baseDate').onchange=renderBaseline;$('#baseSpan').onchange=renderBaseline;
+
 function renderKpis(){let rows=kpis.slice().sort((a,b)=>b.date.localeCompare(a.date));$('#kpiTable').innerHTML=rows.length?rows.map(k=>`<tr><td>${k.date}</td><td>${(k.sold/k.rooms*100).toFixed(1)}%</td><td>${k.sold?(k.revenue/k.sold).toLocaleString('ja-JP',{maximumFractionDigits:0}):'—'}</td><td>${(k.revenue/k.rooms).toLocaleString('ja-JP',{maximumFractionDigits:0})}</td><td><button class="btn ghost" data-kedit="${k.date}">読込</button></td></tr>`).join(''):'<tr><td colspan="5">実績はまだありません</td></tr>'}
 
 function demandRows(){
@@ -350,7 +409,7 @@ function renderDemand(){
 $('#modeDemand').onclick=()=>{calendarMode='demand';renderCal()};
 $('#modeEvents').onclick=()=>{calendarMode='events';renderCal()};
 $('#dSort').onchange=renderDemand;
-function render(){renderEvents();renderCal();renderKpis();renderDemand()}
+function render(){renderEvents();renderCal();renderKpis();renderDemand();renderBaseline()}
 function tab(t){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.view===t));['events','calendar','hotel','admin'].forEach(v=>$('#view-'+v).hidden=v!==t)}
 function openForm(e){$('#form').reset();$('#eid').value=e?.id||'';$('#modalTitle').textContent=e?.showtimes?.length>1?'イベント詳細（編集時は元データに注意）':e?'イベントを編集':'イベントを登録';$('#title').value=e?.title||'';$('#start').value=e?.start||iso(today);$('#end').value=e?.end||e?.start||iso(today);$('#time').value=e?.time||'';$('#category').value=e?.category||'ライブ・コンサート';$('#place').value=e?.venue||'';$('#scale').value=e?.scale||1;$('#access').value=e?.access||1;$('#url').value=e?.url||'';$('#attendance').value=e?.attendance??'';$('#attendanceBasis').value=e?.attendanceBasis||'estimate';$('#farRate').value=e?.farRate??'';$('#stayRate').value=e?.stayRate??'';$('#areaRate').value=e?.areaRate??'';$('#notes').value=(e?.notes||'')+(e?.showtimes?.length>1?'\n日別開演時刻：'+e.showtimes.map(x=>x.date+' '+x.time).join('、'):'');$('#del').style.display=e?'block':'none';$('#back').classList.add('show')}
 function close(){ $('#back').classList.remove('show') }
