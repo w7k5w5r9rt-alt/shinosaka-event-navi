@@ -2,7 +2,7 @@ name: Discover Osaka demand drivers
 on:
   workflow_dispatch:
   schedule:
-    - cron: '27 1 * * *'
+    - cron: '27 */4 * * *'
 permissions:
   contents: write
 jobs:
