@@ -7,7 +7,6 @@
 .dcal{min-height:64px;border-radius:9px;padding:5px 3px;text-align:left;border:1px solid #dce5e0;background:#f6f8f7;color:#22312d}.dcal b{display:block;font-size:12px}.dcal small{display:block;font-size:9px;margin-top:3px;line-height:1.2}.dcal.out{opacity:.3}.dcal.selected{outline:3px solid #173a35;outline-offset:-3px}.dcal.hi{background:#f8d8bd;border-color:#e9b98f}.dcal.mid{background:#fff0cb;border-color:#f0d99c}.dcal.low{background:#dceee5;border-color:#b9d8c7}.dlegend{display:flex;gap:10px;flex-wrap:wrap;font-size:10px;margin:12px 0;color:#53625c}.dlegend span:nth-child(1){color:#9a4d18}.dlegend span:nth-child(2){color:#9a781f}.dlegend span:nth-child(3){color:#276d50}.dDetail{border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:10px}.dDetail h3{font-size:14px;margin:0 0 8px}.dDetail .ditem{border-top:1px solid var(--line);padding:9px 0;font-size:12px}.dDetail .ditem small{display:block;color:var(--muted);margin-top:4px}.dDetail .muted{margin-top:7px}.dcal:focus-visible{outline:3px solid #173a35}.calmode{display:flex;gap:6px;margin:0 0 14px}.calmode button{flex:1}.dcal{width:100%;cursor:pointer}.dcal:disabled{cursor:default}.dcal.selected{outline:3px solid #173a35;outline-offset:-3px}
 .audit{margin-top:9px;border-top:1px solid var(--line);padding-top:8px;font-size:11px}.audit summary{cursor:pointer;color:var(--g);font-weight:700}.auditrow{padding:7px 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.auditrow a{color:var(--g)}
 .market-controls{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:10px}.market-note{font-size:11px;color:var(--muted);line-height:1.6}.market-form{display:grid;grid-template-columns:1fr 1fr;gap:9px}.market-form .wide{grid-column:1/-1}.market-form label{display:flex;flex-direction:column;gap:5px;font-size:11px;color:var(--muted)}.market-metric{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:10px 0}.market-metric>div{border:1px solid var(--line);border-radius:10px;padding:9px}.market-metric b{font-size:17px;display:block;overflow-wrap:anywhere}.market-metric small{font-size:10px;color:var(--muted)}.market-table{width:100%;font-size:11px}.market-table td,.market-table th{white-space:normal;min-width:65px;vertical-align:top}.market-table td:first-child{min-width:118px}.market-table button{font-size:10px;padding:4px 6px}.market-summary{margin-top:8px;font-size:11px}.market-link{color:var(--g);text-decoration:underline}.market-chip{background:#edf2ef;padding:2px 6px;border-radius:5px;font-size:10px}.market-chip.alert{background:#fff0df;color:#8d4e18}@media(max-width:420px){.market-form{grid-template-columns:1fr 1fr}.market-metric b{font-size:14px}}
-
 /* v7.18: イベント一覧のみ省スペース化。詳細データは開閉で保持 */
 .event-compact{padding:9px;gap:9px;grid-template-columns:46px minmax(0,1fr)}
 .event-compact .date{padding:5px 2px}
@@ -23,7 +22,7 @@
 .event-more[open]>summary{margin-bottom:6px}
 .event-more .meta{line-height:1.55;margin-top:6px}
 </style></head><body>
-<header><div class="top"><div><div class="brand">新大阪イベントナビ</div><div class="sub">イベント情報 × 宿泊需要チェック</div></div><div class="pill">対象：今後6か月</div></div></header>
+<header><div class="top"><div><div class="brand">新大阪イベントナビ</div><div class="sub">イベント情報 × 宿泊需要チェック <small>v7.19</small></div></div><div class="pill">対象：今後6か月</div></div></header>
 <main class="wrap">
 <div class="notice"><b>データの範囲：</b>京セラドーム大阪の一部イベントを初期登録しています。ほかの会場は自動収集データが取得できた範囲で表示します。公式日程は変更される場合があるため、予約判断前に出典を確認してください。<br><b>自動更新：</b>GitHub Actionsで公式情報を定期収集します。変更内容は公式サイトで確認してください。</div>
 <div class="stats"><div class="stat"><small>共有イベント</small><strong id="nEvents">0</strong><span>6か月内</span></div><div class="stat"><small>イベント開催日</small><strong id="nDays">0</strong><span>重複日を集約</span></div><div class="stat"><small>需要要確認日</small><strong id="nHigh">0</strong><span>試算スコア70点以上</span></div></div>
@@ -66,6 +65,14 @@
 <div class="panel"><div class="phead"><h2>保存した日別実績</h2><button class="btn ghost" id="exportKpi">CSV出力</button></div><div class="tablewrap"><table><thead><tr><th>日付</th><th>稼働率</th><th>ADR</th><th>RevPAR</th><th></th></tr></thead><tbody id="kpiTable"></tbody></table></div></div>
 </section>
 <section id="view-admin" hidden>
+<section class="panel" id="discoveryPanel" style="margin:12px 0;padding:16px">
+<div class="phead"><h2>大阪の大型需要要因を自動発見（v7.19）</h2><span class="tag">候補と公式確認を区別</span></div>
+<div id="discoveryStatus" class="muted">発見データを確認しています…</div>
+<div class="muted" style="margin:8px 0">公式確認済みの大型催事はカレンダーに表示。未確認のニュースは候補として表示し、需要点数には加算しません。公式確認は自動判定ではなく、確認済み登録情報に限ります。自動探索はGitHub Actionsの定期実行時に更新されます。</div>
+<div id="discoveryConfirmed" class="list"></div>
+<details style="margin-top:10px"><summary style="cursor:pointer;font-weight:bold">未確認の発見候補を表示</summary><div id="discoveryCandidates" class="list" style="margin-top:10px"></div></details>
+</section>
+
 <div class="panel"><div class="phead"><h2 style="font-size:16px;margin:0">自動収集・変更検知</h2><button class="btn secondary" id="refreshAuto">今すぐ更新</button></div><div id="autoStatus" class="muted">自動データの取得状態を確認しています…</div><div id="sourceHealth" class="muted" style="margin-top:10px"></div><div id="autoAlerts" class="list" style="margin-top:10px"></div><p class="muted" style="margin-top:10px">自動取得イベントと初期データは共通です。手動登録・インポートは端末ごとに保存され、一覧の件数が異なる場合があります。公式ページで明示された「中止」「延期」のみ状態を反映し、需要予測から除外します。掲載が消えただけでは中止と判断しません。重要な変更は公式URLで確認してください。</p></div>
 <div class="panel"><h2 style="font-size:16px;margin:0 0 8px">情報源と更新状況</h2><p class="muted">初期データは以下を参照し、自動収集データは各イベントの公式URLを参照してください。GitHub Actionsによる定期収集を利用しています。</p><p><a href="https://www.kyoceradome-osaka.jp/schedule/" target="_blank" rel="noopener">京セラドーム大阪 公式イベントスケジュール ↗</a></p><div class="notice" style="margin-top:10px">GitHub Actionsで定期収集しています。未対応会場や変更検知の精度は引き続き改善します。会場側の利用規約やアクセス制限を確認して構築します。</div></div>
 <div class="panel"><div class="phead"><h2>イベントデータ</h2><div style="display:flex;gap:6px"><button class="btn secondary" id="export">JSON出力</button><button class="btn secondary" id="backupAll">全データ保存</button><button class="btn ghost" id="csv">CSV出力</button></div></div><p class="muted">端末変更やバックアップに使えます。JSONファイルを読み込むと、イベントデータを復元できます。</p><input type="file" id="importFile" accept=".json,application/json"><p class="muted">全データ保存には手動イベント・ホテル実績・確認済み通知が含まれます。iPhoneの「ファイル」に定期的に保存してください（自動バックアップではありません）。</p><input type="file" id="restoreAll" accept=".json,application/json"><div class="actions"><button class="btn ghost" id="resetDemo">サンプルイベントを再読み込み</button><button class="btn ghost" id="clearDemo">サンプルのみ削除</button></div><div class="muted" id="lastSaved" style="margin-top:10px"></div></div>
@@ -354,13 +361,19 @@ function renderEvents(){let arr=visible().sort((a,b)=>$('#sort').value==='score'
 // v7.15: An explicit scenario-based combined CHECK PRIORITY, not a demand forecast.
 // Saturating event uplift avoids adding unrelated point scales or double counting
 // the weekday/holiday baseline. Event lodging figures are unverified assumptions.
+let discoveredConfirmed=[];
+function discoveryBoost(key){
+ const matched=discoveredConfirmed.filter(e=>e.start<=key&&key<=e.end&&e.discoveryConfidence==='official');
+ return {points:Math.min(15,matched.reduce((n,e)=>Math.max(n,Number(e.discoveryImpact)||0),0)),items:matched};
+}
 function combinedDemandInfo(key, rows){
  const base=normalDemandInfo(key),event=rows.get(key);
  const eventPoints=event?.points||0;
  const eventUplift=eventPoints>0?Math.round((100-base.priority)*.60*(eventPoints/100)):0;
- const priority=Math.min(100,base.priority+eventUplift);
+ const discovery=discoveryBoost(key);
+ const priority=Math.min(100,base.priority+eventUplift+discovery.points);
  const level=priority>=70?'高め':priority>=50?'中程度':'低め';
- return {base,event,eventPoints,eventUplift,priority,level,uncertain:!!event?.unknown};
+ return {base,event,eventPoints,eventUplift,discovery,priority,level,uncertain:!!event?.unknown};
 }
 function renderCal(){
  const rows=demandRows(),y=month.getFullYear(),m=month.getMonth(),first=new Date(y,m,1),start=addDays(first,-first.getDay());
@@ -376,13 +389,14 @@ function renderCal(){
   const d=addDays(start,i),key=iso(d),r=rows.get(key),count=all.filter(e=>e.start<=key&&e.end>=key).length;
   const inRange=key>=iso(today)&&key<=iso(endRange),c=combinedDemandInfo(key,rows);
   const level=calendarMode==='demand'&&inRange?(c.priority>=70?'hi':c.priority>=50?'mid':'low'):'';
-  const label=calendarMode==='demand'&&inRange?`${c.priority}点${r?.total>0?' / '+r.total.toLocaleString('ja-JP')+'人泊(仮)':''}${c.uncertain?' ※':''}`:(count?'● '+count+'件':'');
+  const label=calendarMode==='demand'&&inRange?`${c.priority}点${r?.total>0?' / '+r.total.toLocaleString('ja-JP')+'人泊(仮)':''}${c.uncertain?' ※':''}${c.discovery.items.length?' ◆':''}`:(count?'● '+count+'件':'');
   h+=`<button type="button" class="dcal ${d.getMonth()!==m?'out':''} ${level} ${key===selected?'selected':''}" data-date="${key}" ${!inRange?'disabled':''} aria-label="${fmt(key)}、${calendarMode==='demand'?'総合確認優先度'+c.priority+'点':count+'件'}"><b>${d.getDate()}</b>${label?`<small>${label}</small>`:''}</button>`;
  }
  $('#cal').innerHTML=h;renderSelected(rows);
 }
 function renderSelected(rows=demandRows()){
  $('#dayTitle').textContent=fmt(selected)+' の総合需要チェック';
+ // ◆ means an independently verified large event; the lodging-person figure excludes this qualitative signal.
  const r=rows.get(selected),c=combinedDemandInfo(selected,rows),ev=displayEvents().filter(e=>within(e)&&e.start<=selected&&e.end>=selected);
  const pre=r?.chosen.filter(x=>x.pre).reduce((a,x)=>a+x.persons,0)||0;
  const total=r?.total||0;
@@ -395,10 +409,11 @@ function renderSelected(rows=demandRows()){
  <div class="kpi"><label>① 通常需要</label><strong style="font-size:20px">${c.base.priority}点</strong><small style="display:block">${esc(c.base.reasons.join('・')||'通常の平日')}</small></div>
  <div class="kpi"><label>② イベント需要</label><strong style="font-size:20px">${c.eventPoints?c.eventPoints+'点':'未算出'}</strong><small style="display:block">仮定の宿泊波及 ${total.toLocaleString('ja-JP')}人泊相当${c.uncertain?'／人数不明イベントあり':''}</small></div>
  </div>
- <div class="muted" style="margin-top:9px">③ 総合評価：通常${c.base.priority}点 ＋ イベント影響による補正${c.eventUplift}点 ＝ <b>${c.priority}点</b>。単純加算ではなく、通常需要の残余にイベント強度の最大60%を掛ける暫定ルールです。</div>
+ <div class="muted" style="margin-top:9px">③ 総合評価：通常${c.base.priority}点 ＋ イベント人数による補正${c.eventUplift}点 ＋ 公式確認済み大型催事の定性補正${c.discovery.points}点 ＝ <b>${c.priority}点</b>。定性補正は暫定的な確認優先度で、宿泊人数・稼働率を推定するものではありません。</div>
  <div class="muted" style="margin-top:7px">${esc(observed)}。関連イベント ${r?.items.length||0}件／前泊由来 約${Math.round(pre).toLocaleString('ja-JP')}人泊相当。${c.uncertain?'人数不明イベントは総合点に十分反映できない可能性があります。':''}</div>
  <div class="muted" style="margin-top:7px"><b>データ品質：${q.confidence}</b> ／ 公式人数 ${q.official}件・仮定人数 ${q.estimated}件・人数不明 ${q.unknown}件・同会場重複除外 ${q.otherExcluded}件。イベント未登録は需要ゼロを意味しません。</div>
  <div class="muted" style="margin-top:7px"><b>注意：</b>人数・遠方率・宿泊率は未検証の仮定です。競合価格の手動記録は別表示で、総合点には未反映です。総合点は稼働率・客室数・料金を予測しません。</div>
+ ${c.discovery.items.length?`<div class="result" style="margin-top:9px"><b>◆ 公式確認済みの大型催事（別枠）</b>${c.discovery.items.map(e=>`<div class="muted" style="margin-top:5px">${esc(e.title)} ／ 定性補正${Math.min(15,Math.max(0,Number(e.discoveryImpact)||0))}点（暫定） ／ <a href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">公式出典 ↗</a></div>`).join('')}</div>`:''}
  ${renderMarketSnippet(selected)}
  ${r?.items.length?r.items.map(x=>`<div class="ditem"><strong>${esc(x.e.title)}</strong><small>${esc(x.e.venue)} ・ ${x.pre?'前泊由来':'開催日由来'} ・ ${x.persons===null?'人数不明':Math.round(x.persons).toLocaleString('ja-JP')+'人泊相当'}${r.chosen.includes(x)?'':' ・ 同会場集計から除外'}</small></div>`).join(''):'<div class="muted" style="margin-top:8px">イベント由来の宿泊需要は未登録です（需要がないことを意味しません）。</div>'}`;
  $('#dayEvents').innerHTML=ev.length?ev.map(card).join(''):'<div class="empty">この日の開催イベントは未登録です。前泊需要だけがある日もあります。</div>';
@@ -712,10 +727,28 @@ async function refreshAuto(){
   render();
  }catch(err){$('#sourceHealth').textContent='⚠ 自動データの確認に失敗しました。前回表示中のデータは最新とは限りません。';status.textContent='自動更新を確認できませんでした：'+err.message;box.innerHTML='<div class="empty">GitHub Actionsの初回実行後に再度「今すぐ更新」を押してください。</div>';}
 }
-$('#refreshAuto').onclick=refreshAuto;
+async function refreshDiscovery(){
+ const st=$('#discoveryStatus'), confirmedBox=$('#discoveryConfirmed'), candidateBox=$('#discoveryCandidates');
+ try{
+  const base=new URL('.',location.href).href;
+  const response=await fetch(base+'data/discovered-events.json?ts='+Date.now(),{cache:'no-store'});
+  if(!response.ok)throw new Error('発見データがまだありません。ActionsのDiscover Osaka demand driversを実行してください。');
+  const data=await response.json();
+  if(!Array.isArray(data.confirmed)||!Array.isArray(data.candidates))throw new Error('データ形式が不正です');
+  discoveredConfirmed=data.confirmed.filter(e=>e&&e.id&&/^\d{4}-\d{2}-\d{2}$/.test(e.start)&&/^\d{4}-\d{2}-\d{2}$/.test(e.end)&&e.start<=e.end&&e.title&&/^https:\/\//.test(e.url||'')&&e.discoveryConfidence==='official');
+  const link=e=>/^https:\/\//.test(e.url||'')?`<a class="btn ghost" target="_blank" rel="noopener noreferrer" href="${esc(e.url)}">出典を確認 ↗</a>`:'';
+  confirmedBox.innerHTML=discoveredConfirmed.length?discoveredConfirmed.map(e=>`<div class="event"><div><div class="et"><strong>${esc(e.title)}</strong><span class="tag">公式開催確認済</span></div><div class="meta">${esc(e.start)} ・ ${esc(e.venue)} ・ 人数不明 ／ 定性補正最大${Number(e.discoveryImpact)||0}点（仮）</div><div class="actions">${link(e)}</div></div></div>`).join(''):'<div class="empty">対象期間内の公式確認済み追加イベントはありません。</div>';
+  const cs=data.candidates.slice(0,60);
+  candidateBox.innerHTML=cs.length?cs.map(e=>`<div class="event"><div><div class="et"><strong>${esc(e.title)}</strong><span class="tag">未確認・点数反映なし</span></div><div class="meta">${esc(e.dateHint||'開催日未確認')} ・ ${esc(e.source||'ニュースRSS')} ・ 公式情報との照合が必要</div><div class="actions">${link(e)}</div></div></div>`).join(''):'<div class="empty">候補がありません。RSS取得が失敗した場合もあります。</div>';
+  st.textContent=`最終探索：${data.checkedAt||'不明'} ／ 公式確認 ${discoveredConfirmed.length}件 ／ 未確認候補 ${data.candidates.length}件 ／ RSS取得成功 ${data.successfulQueries||0}/${data.queries||0}`+(data.errors?.length?' ／ ⚠一部取得失敗':'')+(data.checkedAt&&Date.now()-Date.parse(data.checkedAt)>48*3600000?' ／ ⚠48時間以上未更新':'');
+  render();
+ }catch(err){discoveredConfirmed=[];st.textContent='⚠ '+err.message;confirmedBox.innerHTML='';candidateBox.innerHTML='';render()}
+}
+$('#refreshAuto').onclick=()=>{refreshAuto();refreshDiscovery()};
 $('#kDate').value=iso(today);$('#range').textContent=`${iso(today)} 〜 ${iso(endRange)}`;render();calcKpi();
  // Fetch the same published dataset automatically in Safari and Home Screen.
  refreshAuto();
+ refreshDiscovery();
 
 })();
 </script></body></html>
