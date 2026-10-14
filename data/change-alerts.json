@@ -1,34 +1,45 @@
 [
   {
-    "id": "change-cdac06ed47358a48",
+    "id": "change-ac8bb39ab1d3a0ea",
     "type": "page_changed",
     "title": "京セラドーム大阪 公式スケジュール のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "京セラドーム大阪 公式スケジュール",
     "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=3&yearId=2027",
-    "detectedAt": "2026-10-14T13:02:29.846812+00:00",
+    "detectedAt": "2026-10-14T19:00:23.809113+00:00",
     "status": "要確認",
     "priority": "info"
   },
   {
-    "id": "change-174b1973057aa578",
+    "id": "change-989a9e453612548c",
     "type": "page_changed",
     "title": "万博記念公園 公式イベント一覧 のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "万博記念公園 公式イベント一覧",
     "url": "https://www.expo70-park.jp/events/during-events/",
-    "detectedAt": "2026-10-14T13:02:29.846812+00:00",
+    "detectedAt": "2026-10-14T19:00:23.809113+00:00",
     "status": "要確認",
     "priority": "info"
   },
   {
-    "id": "change-86df372e0a52de0b",
+    "id": "change-ae853834bb29846e",
     "type": "page_changed",
     "title": "ガンバ大阪 公式試合日程 のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "ガンバ大阪 公式試合日程",
     "url": "https://www.gamba-osaka.net/game/",
-    "detectedAt": "2026-10-14T13:02:29.846812+00:00",
+    "detectedAt": "2026-10-14T19:00:23.809113+00:00",
+    "status": "要確認",
+    "priority": "info"
+  },
+  {
+    "id": "change-647e1ae16742f148",
+    "type": "page_changed",
+    "title": "大阪城ホール 公式スケジュール のページ変更を検知",
+    "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
+    "source": "大阪城ホール 公式スケジュール",
+    "url": "https://www.osaka-johall.com/event/?ym=202703",
+    "detectedAt": "2026-10-14T19:00:23.809113+00:00",
     "status": "要確認",
     "priority": "info"
   },
@@ -51,17 +62,6 @@
     "source": "大阪観光局 MICEカレンダー",
     "url": "https://mice.osaka-info.jp/businesses/calendar/",
     "detectedAt": "2026-10-13T21:30:35.464621+00:00",
-    "status": "要確認",
-    "priority": "info"
-  },
-  {
-    "id": "change-a1eb5e9401fc0607",
-    "type": "page_changed",
-    "title": "大阪城ホール 公式スケジュール のページ変更を検知",
-    "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
-    "source": "大阪城ホール 公式スケジュール",
-    "url": "https://www.osaka-johall.com/event/?ym=202703",
-    "detectedAt": "2026-10-13T18:47:19.233053+00:00",
     "status": "要確認",
     "priority": "info"
   },
