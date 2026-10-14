@@ -21,8 +21,21 @@
 .event-more[open]>summary::before{content:'▾'}
 .event-more[open]>summary{margin-bottom:6px}
 .event-more .meta{line-height:1.55;margin-top:6px}
+
+/* v7.20: mobile-first discovery cards, no inherited two-column .event grid */
+.discovery-card{display:block;min-width:0;padding:10px 11px;border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden}
+.discovery-card + .discovery-card{margin-top:7px}
+.discovery-top{display:flex;gap:8px;align-items:flex-start;justify-content:space-between;min-width:0}
+.discovery-title{font-size:12px;line-height:1.45;font-weight:700;min-width:0;flex:1;overflow-wrap:anywhere;word-break:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.discovery-tag{font-size:10px;white-space:nowrap;flex-shrink:0;padding:3px 6px;border-radius:6px;background:#edf2ef;color:#34564b}
+.discovery-tag.pending{background:#fff2e3;color:#895b22}
+.discovery-sub{font-size:11px;color:var(--muted);margin-top:5px;overflow-wrap:anywhere}
+.discovery-card details{margin-top:6px}
+.discovery-card summary{font-size:11px;color:var(--g);font-weight:700;cursor:pointer}
+.discovery-card .actions{margin-top:7px}
+.discovery-card a{overflow-wrap:anywhere}
 </style></head><body>
-<header><div class="top"><div><div class="brand">新大阪イベントナビ</div><div class="sub">イベント情報 × 宿泊需要チェック <small>v7.19</small></div></div><div class="pill">対象：今後6か月</div></div></header>
+<header><div class="top"><div><div class="brand">新大阪イベントナビ</div><div class="sub">イベント情報 × 宿泊需要チェック <small>v7.20</small></div></div><div class="pill">対象：今後6か月</div></div></header>
 <main class="wrap">
 <div class="notice"><b>データの範囲：</b>京セラドーム大阪の一部イベントを初期登録しています。ほかの会場は自動収集データが取得できた範囲で表示します。公式日程は変更される場合があるため、予約判断前に出典を確認してください。<br><b>自動更新：</b>GitHub Actionsで公式情報を定期収集します。変更内容は公式サイトで確認してください。</div>
 <div class="stats"><div class="stat"><small>共有イベント</small><strong id="nEvents">0</strong><span>6か月内</span></div><div class="stat"><small>イベント開催日</small><strong id="nDays">0</strong><span>重複日を集約</span></div><div class="stat"><small>需要要確認日</small><strong id="nHigh">0</strong><span>試算スコア70点以上</span></div></div>
@@ -66,7 +79,7 @@
 </section>
 <section id="view-admin" hidden>
 <section class="panel" id="discoveryPanel" style="margin:12px 0;padding:16px">
-<div class="phead"><h2>大阪の大型需要要因を自動発見（v7.19）</h2><span class="tag">候補と公式確認を区別</span></div>
+<div class="phead"><h2>大阪の大型需要要因を自動発見（v7.20）</h2><span class="tag">候補を自動選別・公式確認と区別</span></div>
 <div id="discoveryStatus" class="muted">発見データを確認しています…</div>
 <div class="muted" style="margin:8px 0">公式確認済みの大型催事はカレンダーに表示。未確認のニュースは候補として表示し、需要点数には加算しません。公式確認は自動判定ではなく、確認済み登録情報に限ります。自動探索はGitHub Actionsの定期実行時に更新されます。</div>
 <div id="discoveryConfirmed" class="list"></div>
@@ -78,7 +91,7 @@
 <div class="panel"><div class="phead"><h2>イベントデータ</h2><div style="display:flex;gap:6px"><button class="btn secondary" id="export">JSON出力</button><button class="btn secondary" id="backupAll">全データ保存</button><button class="btn ghost" id="csv">CSV出力</button></div></div><p class="muted">端末変更やバックアップに使えます。JSONファイルを読み込むと、イベントデータを復元できます。</p><input type="file" id="importFile" accept=".json,application/json"><p class="muted">全データ保存には手動イベント・ホテル実績・確認済み通知が含まれます。iPhoneの「ファイル」に定期的に保存してください（自動バックアップではありません）。</p><input type="file" id="restoreAll" accept=".json,application/json"><div class="actions"><button class="btn ghost" id="resetDemo">サンプルイベントを再読み込み</button><button class="btn ghost" id="clearDemo">サンプルのみ削除</button></div><div class="muted" id="lastSaved" style="margin-top:10px"></div></div>
 <div class="panel"><h2 style="font-size:16px;margin:0 0 8px">重複・更新の扱い</h2><ul class="muted" style="padding-left:18px;line-height:1.8"><li>登録時に「イベント名＋会場＋開始日」が一致する候補を検知します。</li><li>編集時に変更前の内容と更新時刻を記録します。</li><li>公式サイト上で明示された中止・延期は収集時に検知します。ただし、別ページやSNSのみの発表は検知できない場合があります。</li></ul></div>
 </section>
-<footer>新大阪イベントナビ v7.18 · 来場者規模と根拠を表示 · 自動収集と初期データは共通・手動登録は端末別保存 · 実務利用前に公式情報を再確認</footer>
+<footer>新大阪イベントナビ v7.20 · 来場者規模と根拠を表示 · 自動収集と初期データは共通・手動登録は端末別保存 · 実務利用前に公式情報を再確認</footer>
 </main>
 <div class="modalback" id="back"><div class="modal"><h2 id="modalTitle">イベント登録</h2><form id="form"><input id="eid" type="hidden"><div class="formgrid">
 <label class="field full">イベント名<input id="title" required></label><label class="field">開始日<input id="start" type="date" required></label><label class="field">終了日<input id="end" type="date" required></label><label class="field">開始時刻<input id="time" type="time"></label><label class="field">ジャンル<select id="category"><option>ライブ・コンサート</option><option>展示会・見本市</option><option>スポーツ</option><option>学会・会議</option><option>その他</option></select></label><label class="field full">会場<input id="place" required></label><label class="field">規模<select id="scale"><option value="1">小規模・不明</option><option value="2">中規模</option><option value="3">大規模</option><option value="4">特大規模</option></select></label><label class="field">アクセス影響<select id="access"><option value="1">遠め・不明</option><option value="2">アクセス良好</option><option value="3">新大阪利用が見込まれる</option></select></label><label class="field">予想来場者数（任意）<input id="attendance" type="number" min="0" step="1" placeholder="例：30000"></label><label class="field">人数の根拠<select id="attendanceBasis"><option value="estimate">推定・手入力</option><option value="official">公式公表値</option><option value="unknown">不明</option></select></label><label class="field">遠方来場率（%・任意）<input id="farRate" type="number" min="0" max="100" step="1" placeholder="自動推定"></label><label class="field">遠方客の宿泊率（%・任意）<input id="stayRate" type="number" min="0" max="100" step="1" placeholder="自動推定"></label><label class="field">新大阪選択率（%・任意）<input id="areaRate" type="number" min="0" max="100" step="1" placeholder="自動推定"></label><label class="field full">公式URL<input id="url" type="url" placeholder="https://..."></label><label class="field full">メモ<input id="notes" placeholder="終演時間、規模の根拠など"></label></div><div class="modalactions"><button class="btn ghost" type="button" id="cancel">キャンセル</button><button class="btn primary" type="submit">保存</button></div><button class="btn ghost" type="button" id="del" style="display:none;width:100%;margin-top:8px">削除</button></form></div></div>
@@ -737,9 +750,10 @@ async function refreshDiscovery(){
   if(!Array.isArray(data.confirmed)||!Array.isArray(data.candidates))throw new Error('データ形式が不正です');
   discoveredConfirmed=data.confirmed.filter(e=>e&&e.id&&/^\d{4}-\d{2}-\d{2}$/.test(e.start)&&/^\d{4}-\d{2}-\d{2}$/.test(e.end)&&e.start<=e.end&&e.title&&/^https:\/\//.test(e.url||'')&&e.discoveryConfidence==='official');
   const link=e=>/^https:\/\//.test(e.url||'')?`<a class="btn ghost" target="_blank" rel="noopener noreferrer" href="${esc(e.url)}">出典を確認 ↗</a>`:'';
-  confirmedBox.innerHTML=discoveredConfirmed.length?discoveredConfirmed.map(e=>`<div class="event"><div><div class="et"><strong>${esc(e.title)}</strong><span class="tag">公式開催確認済</span></div><div class="meta">${esc(e.start)} ・ ${esc(e.venue)} ・ 人数不明 ／ 定性補正最大${Number(e.discoveryImpact)||0}点（仮）</div><div class="actions">${link(e)}</div></div></div>`).join(''):'<div class="empty">対象期間内の公式確認済み追加イベントはありません。</div>';
-  const cs=data.candidates.slice(0,60);
-  candidateBox.innerHTML=cs.length?cs.map(e=>`<div class="event"><div><div class="et"><strong>${esc(e.title)}</strong><span class="tag">未確認・点数反映なし</span></div><div class="meta">${esc(e.dateHint||'開催日未確認')} ・ ${esc(e.source||'ニュースRSS')} ・ 公式情報との照合が必要</div><div class="actions">${link(e)}</div></div></div>`).join(''):'<div class="empty">候補がありません。RSS取得が失敗した場合もあります。</div>';
+  const discoveryCard=(e,official)=>`<article class="discovery-card"><div class="discovery-top"><strong class="discovery-title">${esc(e.title)}</strong><span class="discovery-tag ${official?'':'pending'}">${official?'公式確認済':'未確認'}</span></div><div class="discovery-sub">${esc(official?e.start:(e.dateHint||'開催日未確認'))} ${official?'・ '+esc(e.venue||'会場未確認'):'・ 確認優先度 '+esc(String(e.relevance??'未算定'))+'（参考）'}</div><details><summary>詳細・出典を表示</summary><div class="discovery-sub">${official?'人数不明 ／ 定性補正最大'+esc(String(Number(e.discoveryImpact)||0))+'点（仮）':esc(e.reason||'公式情報との照合が必要')+' ／ 点数反映なし'}</div><div class="actions">${link(e)}</div></details></article>`;
+  confirmedBox.innerHTML=discoveredConfirmed.length?discoveredConfirmed.map(e=>discoveryCard(e,true)).join(''):'<div class="empty">対象期間内の公式確認済み追加イベントはありません。</div>';
+  const cs=data.candidates.slice(0,30);
+  candidateBox.innerHTML=cs.length?cs.map(e=>discoveryCard(e,false)).join(''):'<div class="empty">条件に合う候補がありません。RSSの取得状況も確認してください。</div>';
   st.textContent=`最終探索：${data.checkedAt||'不明'} ／ 公式確認 ${discoveredConfirmed.length}件 ／ 未確認候補 ${data.candidates.length}件 ／ RSS取得成功 ${data.successfulQueries||0}/${data.queries||0}`+(data.errors?.length?' ／ ⚠一部取得失敗':'')+(data.checkedAt&&Date.now()-Date.parse(data.checkedAt)>48*3600000?' ／ ⚠48時間以上未更新':'');
   render();
  }catch(err){discoveredConfirmed=[];st.textContent='⚠ '+err.message;confirmedBox.innerHTML='';candidateBox.innerHTML='';render()}

@@ -4,6 +4,8 @@ Confirmed items are a small explicit registry of organizer/municipal verified ev
 Standard library only. Output consumed by v7.18 HTML.
 """
 import datetime as dt
+import email.utils
+import unicodedata
 import hashlib
 import json
 import os
@@ -25,6 +27,10 @@ QUERIES = [
 ]
 KEYWORDS = re.compile(r'花火|祭り|まつり|フェス|全国大会|国際会議|学会|万博|マラソン|パレード|大型イベント|交通規制|ライブ|コンサート|博覧会|展示会')
 OSAKA = re.compile(r'大阪|淀川|十三|梅田|吹田|豊中|堺市|枚方|高槻|東大阪|万博記念公園|京セラドーム|インテックス')
+# Exclude article formats that are not future event announcements.
+EXCLUDE = re.compile(r'まとめ|一覧|ランキング|選|振り返り|レポート|開催レポ|大盛況|御礼|終了|閉幕|昨年|去年|過去|写真\s*[|｜]|画像\s*[|｜]|とは[？?]|結果発表|開催された|来場者数.*集結|交通規制のみ|リニューアル工事|工事のお知らせ|東京で開催|開催地未定')
+EVENT_WORDS = re.compile(r'開催|開幕|決定|発表|日程|実施|予定|開演|打ち上げ|募集|チケット|出展')
+# Headline dates are clues, not official verification.
 DATE = re.compile(r'(?:(20\d{2})\s*[年/.-]\s*)?(1[0-2]|0?[1-9])\s*[月/.-]\s*(3[01]|[12]\d|0?[1-9])\s*日?')
 
 # Confirmed against the organizer's official announcement and Osaka City designated-event list.
@@ -44,39 +50,91 @@ CONFIRMED = [
     },
 ]
 
+def normalized_title(title):
+    title = unicodedata.normalize('NFKC', title).lower()
+    # Publisher suffixes and formatting differences must not generate duplicate cards.
+    title = re.sub(r'\s+[-–—|｜]\s+[^-–—|｜]{2,50}$', '', title)
+    return re.sub(r'[^0-9a-z一-龥ぁ-んァ-ン]', '', title)
+
+
+def published_date(value):
+    try:
+        return email.utils.parsedate_to_datetime(value).date()
+    except (TypeError, ValueError, IndexError):
+        return None
+
+
+def headline_date(title, today):
+    m = DATE.search(title)
+    if not m:
+        return None
+    year = int(m.group(1)) if m.group(1) else today.year
+    try:
+        day = dt.date(year, int(m.group(2)), int(m.group(3)))
+        # Yearless dates can refer to the next year only if plausibly upcoming.
+        if not m.group(1) and day < today:
+            day = dt.date(year + 1, day.month, day.day)
+        return day
+    except ValueError:
+        return None
+
+
+def assess_headline(title, desc, pub, today):
+    """Return conservative ranking and date hint; never imply official confirmation."""
+    title = unicodedata.normalize('NFKC', title).strip()
+    if not KEYWORDS.search(title) or not OSAKA.search(title + ' ' + desc):
+        return None
+    if EXCLUDE.search(title):
+        return None
+    if not EVENT_WORDS.search(title):
+        return None
+    pdate = published_date(pub)
+    if pdate and (pdate > today + dt.timedelta(days=1) or pdate < today - dt.timedelta(days=90)):
+        return None
+    day = headline_date(title, today)
+    limit = today + dt.timedelta(days=184)
+    if day and not (today <= day <= limit):
+        return None
+    # Undated news is useful only as a secondary lead, not an actionable event.
+    score = 0
+    if day: score += 45
+    if re.search(r'淀川|十三|梅田|新大阪|大阪市|吹田|豊中|インテックス|京セラドーム', title): score += 18
+    elif re.search(r'大阪|枚方|高槻|堺市|万博記念公園', title): score += 12
+    if re.search(r'全国大会|国際会議|学会|マラソン|花火大会|博覧会|展示会|コンサート|ライブ|大規模', title): score += 20
+    elif re.search(r'花火|祭り|まつり|フェス|パレード', title): score += 12
+    if re.search(r'開催決定|開催日|開催予定|日程発表|チケット発売|出展募集', title): score += 12
+    if not day: score = min(score, 35)
+    if score < 20:
+        return None
+    reason = '開催日候補あり・公式照合が必要' if day else '開催日不明・記事から公式情報を確認'
+    return score, day.isoformat() if day else None, reason
+
+
 def fetch_rss(query):
     url = 'https://news.google.com/rss/search?' + urllib.parse.urlencode({
-        'q': query + ' when:180d', 'hl': 'ja', 'gl': 'JP', 'ceid': 'JP:ja'})
-    req = urllib.request.Request(url, headers={'User-Agent': 'ShinOsakaEventNavi/7.19 (+public RSS research; once per day)'})
+        'q': query + ' when:90d', 'hl': 'ja', 'gl': 'JP', 'ceid': 'JP:ja'})
+    req = urllib.request.Request(url, headers={'User-Agent': 'ShinOsakaEventNavi/7.20 (public RSS; daily)'})
     with urllib.request.urlopen(req, timeout=15) as res:
         payload = res.read(1_500_000)
     root = ET.fromstring(payload)
     out = []
-    for item in root.findall('.//channel/item')[:35]:
+    today = dt.date.today()
+    for item in root.findall('.//channel/item')[:50]:
         title = (item.findtext('title') or '').strip()
         desc = re.sub(r'<[^>]*>', ' ', item.findtext('description') or '')
         link = (item.findtext('link') or '').strip()
         pub = (item.findtext('pubDate') or '').strip()
-        if not link.startswith('https://') or not KEYWORDS.search(title) or not OSAKA.search(title + ' ' + desc):
+        if not link.startswith('https://'):
             continue
-        # No inferred dates from publication date; only explicit dates in the headline.
-        found = DATE.search(title)
-        candidate_date = None
-        if found:
-            today = dt.date.today()
-            year = int(found.group(1) or today.year)
-            try:
-                event_day = dt.date(year, int(found.group(2)), int(found.group(3)))
-                # When a headline omits the year, allow the next calendar year.
-                if not found.group(1) and event_day < today - dt.timedelta(days=14):
-                    event_day = dt.date(year + 1, event_day.month, event_day.day)
-                candidate_date = event_day.isoformat()
-            except ValueError:
-                pass
-        uid = hashlib.sha256((title + '|' + link).encode()).hexdigest()[:16]
+        assessment = assess_headline(title, desc, pub, today)
+        if not assessment:
+            continue
+        score, candidate_date, reason = assessment
+        key = normalized_title(title)
+        uid = hashlib.sha256(key.encode()).hexdigest()[:16]
         out.append({'id': 'candidate-' + uid, 'title': title[:180], 'dateHint': candidate_date,
                     'url': link, 'source': 'GoogleニュースRSS（未確認）', 'published': pub,
-                    'confidence': 'candidate', 'reason': '大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。'})
+                    'confidence': 'candidate', 'relevance': score, 'reason': reason})
     return out
 
 def run():
@@ -85,8 +143,10 @@ def run():
         try:
             for e in fetch_rss(q):
                 # Same title across searches is one discovery, not many demand drivers.
-                key = re.sub(r'\s+', '', e['title']).casefold()
-                candidates.setdefault(key, e)
+                key = normalized_title(e['title'])
+                old = candidates.get(key)
+                if old is None or e['relevance'] > old['relevance']:
+                    candidates[key] = e
         except Exception as ex:
             errors.append(f'{q}: {type(ex).__name__}: {str(ex)[:100]}')
     today = dt.date.today()
@@ -97,10 +157,14 @@ def run():
     confirmed = [x for x in CONFIRMED if today <= dt.date.fromisoformat(x['start']) <= limit]
     # A dated candidate must fall inside six months; undated items are still shown for review.
     selected = [x for x in candidates.values() if not x['dateHint'] or today <= dt.date.fromisoformat(x['dateHint']) <= limit]
-    selected.sort(key=lambda x: (x['dateHint'] is None, x['dateHint'] or '', x['title']))
-    payload = {'version': '7.19', 'checkedAt': dt.datetime.now(dt.timezone.utc).isoformat(),
-               'confirmed': confirmed, 'candidates': selected[:100], 'queries': len(QUERIES),
-               'successfulQueries': len(QUERIES) - len(errors), 'errors': errors,
+    # Keep dated, higher-confidence leads first. Avoid flooding the iPhone with vague news.
+    selected.sort(key=lambda x: (x['dateHint'] is None, -x['relevance'], x['dateHint'] or '', x['title']))
+    dated = [x for x in selected if x['dateHint']][:25]
+    undated = [x for x in selected if not x['dateHint']][:5]
+    selected = dated + undated
+    payload = {'version': '7.20', 'checkedAt': dt.datetime.now(dt.timezone.utc).isoformat(),
+               'confirmed': confirmed, 'candidates': selected, 'queries': len(QUERIES),
+               'successfulQueries': len(QUERIES) - len(errors), 'errors': errors, 'selectionPolicy': '過去・まとめ記事を除外。開催日候補ありを優先し、日付不明は最大5件。未確認はスコア加算なし。',
                'note': '未確認候補は総合需要に反映しません。公式確認済みでも定性的加点は実績に基づく予測ではありません。'}
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
