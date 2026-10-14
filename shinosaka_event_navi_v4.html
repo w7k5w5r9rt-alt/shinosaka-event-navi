@@ -1,11 +1,13 @@
 <!doctype html>
-<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#173a35"><title>新大阪イベントナビ v7.15</title>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#173a35"><title>新大阪イベントナビ v7.17</title>
 <style>
 :root{--g:#173a35;--g2:#285b50;--bg:#f3f6f4;--ink:#1f2b28;--muted:#697771;--line:#dce5e0;--white:#fff;--orange:#a95e22;--obg:#fff0df;--blue:#eaf2f8}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.45}button,input,select{font:inherit}button{cursor:pointer}header{background:var(--g);color:#fff;padding:20px 16px 17px;border-radius:0 0 20px 20px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-size:21px;font-weight:800}.sub{font-size:12px;color:#c8dad3;margin-top:3px}.pill{font-size:11px;border:1px solid #ffffff40;border-radius:99px;padding:7px 10px;white-space:nowrap}.wrap{max-width:1000px;margin:auto;padding:14px 12px 80px}.notice{background:#fff5e6;color:#75532c;border:1px solid #eedabd;border-radius:11px;padding:10px 12px;font-size:12px;margin-bottom:12px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:13px}.stat,.panel{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 4px 15px #173a3508}.stat{padding:12px}.stat small{display:block;color:var(--muted);font-size:11px}.stat strong{font-size:23px;display:block;margin:4px 0}.stat span{font-size:10px;color:var(--muted)}.tabs{display:flex;gap:4px;padding:4px;background:#e5ece8;border-radius:11px;margin-bottom:12px}.tab{border:0;background:transparent;flex:1;padding:10px 3px;border-radius:8px;color:#53625c;font-size:12px}.tab.active{background:white;color:var(--g);font-weight:800}.panel{padding:14px;margin-bottom:12px}.phead{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px}.phead h2{font-size:16px;margin:0}.muted{font-size:11px;color:var(--muted)}.btn{border:0;border-radius:9px;padding:9px 12px;font-weight:700;font-size:12px}.primary{background:var(--g);color:white}.secondary{background:#e7f2ed;color:var(--g)}.ghost{background:white;border:1px solid var(--line);color:var(--ink)}.filters{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:7px;margin-bottom:12px}input,select{width:100%;min-width:0;padding:10px;border:1px solid #d5dfda;border-radius:9px;background:#fff;color:var(--ink)}.list{display:grid;gap:8px}.event{display:grid;grid-template-columns:54px 1fr;gap:10px;padding:11px;border:1px solid var(--line);border-radius:12px}.date{background:#e7f2ed;border-radius:9px;text-align:center;padding:7px 2px;color:var(--g);align-self:start}.date small{font-size:10px;display:block}.date b{font-size:22px;line-height:1.15;display:block}.et{display:flex;justify-content:space-between;align-items:flex-start;gap:7px}.et strong{font-size:13px}.score{white-space:nowrap;border-radius:99px;background:#edf1ef;padding:4px 7px;font-size:10px;font-weight:800}.score.high{background:var(--obg);color:var(--orange)}.meta{font-size:11px;color:var(--muted);margin-top:4px}.actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.actions button,.actions a{font-size:10px;padding:6px 8px;text-decoration:none}.tag{font-size:10px;background:var(--blue);color:#315c77;border-radius:99px;padding:4px 7px}.empty{border:1px dashed var(--line);padding:22px;text-align:center;border-radius:11px;color:var(--muted);font-size:12px}.calhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.calgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px}.weekday{text-align:center;font-size:10px;color:var(--muted);padding:4px}.cell{min-height:58px;text-align:left;background:#fff;border:1px solid #e1e9e4;border-radius:7px;padding:4px 3px;color:var(--ink)}.cell.out{opacity:.35}.cell.today{border:2px solid var(--g)}.cell b{font-size:11px}.cell small{display:block;color:var(--g);font-size:9px;margin-top:4px}.dayrow{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #edf1ef}.dayrow:last-child{border-bottom:0}.circle{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--obg);color:var(--orange);font-weight:800;flex-shrink:0}.dayrow strong{font-size:12px}.dayrow small{display:block;color:var(--muted);font-size:11px;margin-top:3px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.field{font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:5px}.field.full{grid-column:1/-1}.modalback{display:none;position:fixed;inset:0;background:#10221dcc;z-index:10;align-items:flex-end;justify-content:center}.modalback.show{display:flex}.modal{width:100%;max-width:650px;max-height:92vh;overflow:auto;background:#fff;border-radius:19px 19px 0 0;padding:18px 15px calc(20px + env(safe-area-inset-bottom))}.modal h2{font-size:18px;margin:0 0 13px}.modalactions{display:flex;gap:8px;margin-top:14px}.modalactions button{flex:1}.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.kpi{border:1px solid var(--line);border-radius:11px;padding:11px}.kpi label{display:block;font-size:11px;color:var(--muted);margin-bottom:6px}.kpi input{font-size:17px;font-weight:700}.kpi small{font-size:10px;color:var(--muted)}.result{background:#e7f2ed;border-radius:12px;padding:13px;margin-top:10px}.result strong{font-size:22px;color:var(--g)}.tablewrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:11px}th,td{border-bottom:1px solid var(--line);padding:8px;text-align:left;white-space:nowrap}th{color:var(--muted);font-weight:600}footer{text-align:center;color:var(--muted);font-size:10px;padding:12px}@media(min-width:700px){.wrap{padding-top:20px}.list.two{grid-template-columns:1fr 1fr}.cell{min-height:75px;padding:6px}.modalback{align-items:center;padding:15px}.modal{border-radius:18px}}@media(max-width:420px){.brand{font-size:18px}.filters{grid-template-columns:1fr 1fr}.filters input{grid-column:1/-1}.stat{padding:9px}.stat strong{font-size:20px}.pill{font-size:10px}.cell{min-height:48px}}
 
 .dcal{min-height:64px;border-radius:9px;padding:5px 3px;text-align:left;border:1px solid #dce5e0;background:#f6f8f7;color:#22312d}.dcal b{display:block;font-size:12px}.dcal small{display:block;font-size:9px;margin-top:3px;line-height:1.2}.dcal.out{opacity:.3}.dcal.selected{outline:3px solid #173a35;outline-offset:-3px}.dcal.hi{background:#f8d8bd;border-color:#e9b98f}.dcal.mid{background:#fff0cb;border-color:#f0d99c}.dcal.low{background:#dceee5;border-color:#b9d8c7}.dlegend{display:flex;gap:10px;flex-wrap:wrap;font-size:10px;margin:12px 0;color:#53625c}.dlegend span:nth-child(1){color:#9a4d18}.dlegend span:nth-child(2){color:#9a781f}.dlegend span:nth-child(3){color:#276d50}.dDetail{border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:10px}.dDetail h3{font-size:14px;margin:0 0 8px}.dDetail .ditem{border-top:1px solid var(--line);padding:9px 0;font-size:12px}.dDetail .ditem small{display:block;color:var(--muted);margin-top:4px}.dDetail .muted{margin-top:7px}.dcal:focus-visible{outline:3px solid #173a35}.calmode{display:flex;gap:6px;margin:0 0 14px}.calmode button{flex:1}.dcal{width:100%;cursor:pointer}.dcal:disabled{cursor:default}.dcal.selected{outline:3px solid #173a35;outline-offset:-3px}
-.audit{margin-top:9px;border-top:1px solid var(--line);padding-top:8px;font-size:11px}.audit summary{cursor:pointer;color:var(--g);font-weight:700}.auditrow{padding:7px 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.auditrow a{color:var(--g)}</style></head><body>
+.audit{margin-top:9px;border-top:1px solid var(--line);padding-top:8px;font-size:11px}.audit summary{cursor:pointer;color:var(--g);font-weight:700}.auditrow{padding:7px 0;border-bottom:1px solid var(--line);overflow-wrap:anywhere}.auditrow a{color:var(--g)}
+.market-controls{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:10px}.market-note{font-size:11px;color:var(--muted);line-height:1.6}.market-form{display:grid;grid-template-columns:1fr 1fr;gap:9px}.market-form .wide{grid-column:1/-1}.market-form label{display:flex;flex-direction:column;gap:5px;font-size:11px;color:var(--muted)}.market-metric{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:10px 0}.market-metric>div{border:1px solid var(--line);border-radius:10px;padding:9px}.market-metric b{font-size:17px;display:block;overflow-wrap:anywhere}.market-metric small{font-size:10px;color:var(--muted)}.market-table{width:100%;font-size:11px}.market-table td,.market-table th{white-space:normal;min-width:65px;vertical-align:top}.market-table td:first-child{min-width:118px}.market-table button{font-size:10px;padding:4px 6px}.market-summary{margin-top:8px;font-size:11px}.market-link{color:var(--g);text-decoration:underline}.market-chip{background:#edf2ef;padding:2px 6px;border-radius:5px;font-size:10px}.market-chip.alert{background:#fff0df;color:#8d4e18}@media(max-width:420px){.market-form{grid-template-columns:1fr 1fr}.market-metric b{font-size:14px}}
+</style></head><body>
 <header><div class="top"><div><div class="brand">新大阪イベントナビ</div><div class="sub">イベント情報 × 宿泊需要チェック</div></div><div class="pill">対象：今後6か月</div></div></header>
 <main class="wrap">
 <div class="notice"><b>データの範囲：</b>京セラドーム大阪の一部イベントを初期登録しています。ほかの会場は自動収集データが取得できた範囲で表示します。公式日程は変更される場合があるため、予約判断前に出典を確認してください。<br><b>自動更新：</b>GitHub Actionsで公式情報を定期収集します。変更内容は公式サイトで確認してください。</div>
@@ -14,11 +16,32 @@
 <section id="view-events">
 <div class="panel"><div class="phead"><h2>イベントを探す</h2><button class="btn primary" id="add">＋ 登録</button></div><div class="filters"><input id="q" placeholder="イベント名・会場を検索"><select id="cat"><option value="">全ジャンル</option><option>ライブ・コンサート</option><option>展示会・見本市</option><option>スポーツ</option><option>学会・会議</option><option>その他</option></select><select id="venue"><option value="">全会場</option></select></div><div class="phead"><span class="muted" id="range"></span><select id="sort" style="width:auto;padding:7px;font-size:11px"><option value="date">日付順</option><option value="score">スコア順</option></select></div><div id="events" class="list"></div></div>
 </section>
-<section id="view-calendar" hidden><div class="panel"><div class="phead"><h2>新大阪 総合需要カレンダー</h2><span class="tag">確認優先度・仮推定</span></div><div class="calmode" role="group" aria-label="カレンダー表示"><button type="button" class="btn primary" id="modeDemand" aria-pressed="true">総合需要</button><button type="button" class="btn ghost" id="modeEvents" aria-pressed="false">イベント件数</button></div><div class="calhead"><button class="btn ghost" id="prev">‹ 前月</button><b id="month"></b><button class="btn ghost" id="next">翌月 ›</button></div><div class="calgrid" id="cal"></div><div id="unifiedLegend" class="dlegend"><span>■ 高め</span><span>■ 中程度</span><span>■ 低め</span><span>□ 対象外</span></div><p class="muted">日付をタップすると「通常需要」「イベント需要」「総合評価」を同時に確認できます。総合点は確認優先度であり、稼働率・宿泊人数・販売推奨価格ではありません。</p></div><div class="panel"><div class="phead"><h2 id="dayTitle">選択日の詳細</h2></div><div id="unifiedDemandDetail" class="dDetail"></div><h3 style="font-size:14px;margin:16px 0 9px">開催イベント</h3><div id="dayEvents" class="list"></div></div></section>
+<section id="view-calendar" hidden><div class="panel"><div class="phead"><h2>新大阪 総合需要カレンダー</h2><span class="tag">確認優先度・仮推定</span></div><div class="calmode" role="group" aria-label="カレンダー表示"><button type="button" class="btn primary" id="modeDemand" aria-pressed="true">総合需要</button><button type="button" class="btn ghost" id="modeEvents" aria-pressed="false">イベント件数</button></div><div class="calhead"><button class="btn ghost" id="prev">‹ 前月</button><b id="month"></b><button class="btn ghost" id="next">翌月 ›</button></div><div class="calgrid" id="cal"></div><div id="unifiedLegend" class="dlegend"><span>■ 高め</span><span>■ 中程度</span><span>■ 低め</span><span>□ 対象外</span></div><p class="muted">日付をタップすると「通常需要」「イベント需要」「総合評価」を同時に確認できます。総合点は確認優先度であり、稼働率・宿泊人数・販売推奨価格ではありません。</p></div><div class="panel"><div class="phead"><h2 id="dayTitle">選択日の詳細</h2></div><div id="unifiedDemandDetail" class="dDetail"></div><button type="button" class="btn secondary" id="qualityJump" style="margin-top:10px">予測の検証・データ品質を見る</button><h3 style="font-size:14px;margin:16px 0 9px">開催イベント</h3><div id="dayEvents" class="list"></div></div></section>
 <section id="view-hotel" hidden>
 <div class="panel"><div class="phead"><h2>宿泊実績を入力</h2><span class="tag">手動入力</span></div><p class="muted">イベント日とホテル実績を照らし合わせるための簡易計算です。入力値はこのブラウザ内に保存されます。</p>
 <div class="kpi-grid"><div class="kpi"><label>対象日</label><input type="date" id="kDate"></div><div class="kpi"><label>販売可能客室数</label><input type="number" id="kRooms" min="1" value="100"></div><div class="kpi"><label>販売客室数</label><input type="number" id="kSold" min="0" value="0"></div><div class="kpi"><label>客室売上（円）</label><input type="number" id="kRevenue" min="0" value="0"></div><div class="kpi"><label>競合平均料金（円・任意）</label><input type="number" id="kComp" min="0" placeholder="未入力可"></div><div class="kpi"><label>メモ</label><input id="kMemo" placeholder="例：料金見直し済み"></div></div>
 <button class="btn primary" id="saveKpi" style="width:100%;margin-top:10px">この日の実績を保存</button><div id="kpiResult" class="result"><span class="muted">稼働率・ADR・RevPARがここに表示されます。</span></div></div>
+
+<div class="panel" id="marketPanel">
+ <div class="phead"><h2>競合ホテル料金・販売状況（v7.16）</h2><span class="tag">手動記録・同条件比較</span></div>
+ <p class="market-note">予約サイト等で<strong>同じ宿泊日・1室1名・1泊・税込</strong>の価格を確認して記録します。料金の自動取得やリアルタイム空室照会ではありません。表示価格はその時点の検索条件に限られます。<strong>「検索結果なし」は満室確定を意味しません。</strong></p>
+ <div class="market-controls"><label class="field">宿泊日<input id="marketDate" type="date"></label><label class="field">食事条件<select id="marketMeal"><option value="room">素泊まり</option><option value="breakfast">朝食付き</option></select></label><label class="field">キャンセル条件<select id="marketCancel"><option value="flex">キャンセル可（条件要確認）</option><option value="nonref">返金不可</option></select></label><label class="field">自ホテルの販売価格（任意・円）<input id="marketOwn" type="number" min="1" step="1" placeholder="例：9500"></label></div>
+ <div id="marketSummary" class="result" aria-live="polite"></div>
+ <div class="tablewrap"><table class="market-table"><thead><tr><th>競合ホテル</th><th>販売状況</th><th>税込価格</th><th>確認日時・出典</th><th>操作</th></tr></thead><tbody id="marketRows"></tbody></table></div>
+ <details style="margin-top:12px" id="marketEntry"><summary class="btn secondary" style="display:inline-block">＋ 競合情報を記録・更新</summary>
+ <div class="market-form" style="margin-top:12px"><label class="wide">ホテル<select id="marketHotel"></select></label><label class="wide">その他のホテル名（「その他」を選択した場合）<input id="marketCustom" placeholder="ホテル名を入力"></label><label>検索での表示<select id="marketStatus"><option value="available">販売あり</option><option value="noresults">検索結果なし</option><option value="soldout">満室と明記</option><option value="unknown">未確認</option></select></label><label>税込1室料金（円）<input id="marketPrice" type="number" min="1" step="1" placeholder="販売ありの場合"></label><label class="wide">確認したページのURL（任意）<input id="marketUrl" type="url" placeholder="https://..."></label><label class="wide">メモ（部屋タイプ・条件差など）<input id="marketMemo" placeholder="例：禁煙シングル、通常キャンセル可"></label><label class="wide"><span>同条件で比較可能</span><select id="marketComparable"><option value="yes">はい：1名1室・1泊・税込・上の食事／キャンセル条件に一致</option><option value="no">いいえ：条件違い／不明（平均価格から除外）</option></select></label></div>
+ <div class="actions"><button type="button" class="btn primary" id="marketSave">この条件で記録</button><button type="button" class="btn ghost" id="marketExport">競合記録をCSV出力</button></div>
+ </details>
+ <p class="market-note" style="margin-top:10px">参考：<a href="https://www.jalan.net/biz/station/spt_010000000011418.html" target="_blank" rel="noopener" class="market-link">新大阪駅周辺のホテル一覧（じゃらん） ↗</a>。個別の宿泊日・条件を指定して確認してください。記録はこの端末のブラウザに保存されます。競合の料金や販売状況は総合需要スコアにまだ加算しません。</p>
+</div>
+<div class="panel" id="qualityPanel">
+ <div class="phead"><h2>需要予測の検証・データ品質（v7.17）</h2><span class="tag">無料・実績照合</span></div>
+ <p class="muted">確認優先度の点数は、実際の稼働率を予測するものではありません。過去に登録した自ホテル実績と<strong>曜日・休日の仮スコア</strong>を比較し、仮説が妥当か点検します。未来のイベントを過去に遡って評価しません。</p>
+ <div id="qualitySummary" class="result" aria-live="polite"></div>
+ <div id="qualityGroups" class="tablewrap"></div>
+ <div id="qualityCoverage" class="dDetail"></div>
+ <p class="muted" style="margin-top:9px">注意：稼働率は料金・在庫・販売施策にも左右されます。少数の実績や特定期間だけの比較では、スコアの正しさを証明できません。履歴はこの端末に保存されたものだけを使用します。</p>
+</div>
 <div class="panel" id="baselinePanel"><div class="phead"><h2>通常の宿泊需要（v7.15）</h2><span class="tag">曜日・祝日・連休</span></div>
 <p class="muted">イベントを除いた通常需要の<strong>確認優先度</strong>です。祝日・連休・曜日による仮の傾向を表示します。新大阪の実測稼働率・需要人数・販売価格の予測ではありません。保存した宿泊実績は参考表示のみで、判定点数にはまだ反映しません。</p>
 <div class="formgrid"><label class="field">確認する日付<input type="date" id="baseDate"></label><label class="field">表示期間<select id="baseSpan"><option value="14">14日間</option><option value="30" selected>30日間</option><option value="60">60日間</option></select></label></div>
@@ -33,7 +56,7 @@
 <div class="panel"><div class="phead"><h2>イベントデータ</h2><div style="display:flex;gap:6px"><button class="btn secondary" id="export">JSON出力</button><button class="btn secondary" id="backupAll">全データ保存</button><button class="btn ghost" id="csv">CSV出力</button></div></div><p class="muted">端末変更やバックアップに使えます。JSONファイルを読み込むと、イベントデータを復元できます。</p><input type="file" id="importFile" accept=".json,application/json"><p class="muted">全データ保存には手動イベント・ホテル実績・確認済み通知が含まれます。iPhoneの「ファイル」に定期的に保存してください（自動バックアップではありません）。</p><input type="file" id="restoreAll" accept=".json,application/json"><div class="actions"><button class="btn ghost" id="resetDemo">サンプルイベントを再読み込み</button><button class="btn ghost" id="clearDemo">サンプルのみ削除</button></div><div class="muted" id="lastSaved" style="margin-top:10px"></div></div>
 <div class="panel"><h2 style="font-size:16px;margin:0 0 8px">重複・更新の扱い</h2><ul class="muted" style="padding-left:18px;line-height:1.8"><li>登録時に「イベント名＋会場＋開始日」が一致する候補を検知します。</li><li>編集時に変更前の内容と更新時刻を記録します。</li><li>公式サイト上で明示された中止・延期は収集時に検知します。ただし、別ページやSNSのみの発表は検知できない場合があります。</li></ul></div>
 </section>
-<footer>新大阪イベントナビ v7.15 · 来場者規模と根拠を表示 · 自動収集と初期データは共通・手動登録は端末別保存 · 実務利用前に公式情報を再確認</footer>
+<footer>新大阪イベントナビ v7.17 · 来場者規模と根拠を表示 · 自動収集と初期データは共通・手動登録は端末別保存 · 実務利用前に公式情報を再確認</footer>
 </main>
 <div class="modalback" id="back"><div class="modal"><h2 id="modalTitle">イベント登録</h2><form id="form"><input id="eid" type="hidden"><div class="formgrid">
 <label class="field full">イベント名<input id="title" required></label><label class="field">開始日<input id="start" type="date" required></label><label class="field">終了日<input id="end" type="date" required></label><label class="field">開始時刻<input id="time" type="time"></label><label class="field">ジャンル<select id="category"><option>ライブ・コンサート</option><option>展示会・見本市</option><option>スポーツ</option><option>学会・会議</option><option>その他</option></select></label><label class="field full">会場<input id="place" required></label><label class="field">規模<select id="scale"><option value="1">小規模・不明</option><option value="2">中規模</option><option value="3">大規模</option><option value="4">特大規模</option></select></label><label class="field">アクセス影響<select id="access"><option value="1">遠め・不明</option><option value="2">アクセス良好</option><option value="3">新大阪利用が見込まれる</option></select></label><label class="field">予想来場者数（任意）<input id="attendance" type="number" min="0" step="1" placeholder="例：30000"></label><label class="field">人数の根拠<select id="attendanceBasis"><option value="estimate">推定・手入力</option><option value="official">公式公表値</option><option value="unknown">不明</option></select></label><label class="field">遠方来場率（%・任意）<input id="farRate" type="number" min="0" max="100" step="1" placeholder="自動推定"></label><label class="field">遠方客の宿泊率（%・任意）<input id="stayRate" type="number" min="0" max="100" step="1" placeholder="自動推定"></label><label class="field">新大阪選択率（%・任意）<input id="areaRate" type="number" min="0" max="100" step="1" placeholder="自動推定"></label><label class="field full">公式URL<input id="url" type="url" placeholder="https://..."></label><label class="field full">メモ<input id="notes" placeholder="終演時間、規模の根拠など"></label></div><div class="modalactions"><button class="btn ghost" type="button" id="cancel">キャンセル</button><button class="btn primary" type="submit">保存</button></div><button class="btn ghost" type="button" id="del" style="display:none;width:100%;margin-top:8px">削除</button></form></div></div>
@@ -68,13 +91,16 @@ const seed=raw.map((r,i)=>({id:'official-'+i,title:r[0],start:r[1],end:r[2],time
 // v6.0: Shared published records must never depend on each browser's legacy local cache.
 // Preserve old local data untouched as a safety backup; migrate only explicit user entries.
 const isUserRecord=e=>e&&typeof e==='object'&&(e.source==='manual'||e.source==='import'||String(e.id||'').startsWith('user-')||String(e.id||'').startsWith('import-'));
-let events=[],kpis=[];
+let events=[],kpis=[],marketSnapshots=[],marketOwnRates=[];
 try{
  const legacy=JSON.parse(localStorage.getItem('shn-v2-events')||'[]');
  const stored=JSON.parse(localStorage.getItem('shn-v6-user-events')||'null');
  const users=Array.isArray(stored)?stored:(Array.isArray(legacy)?legacy.filter(isUserRecord):[]);
  events=[...seed,...users];
  kpis=JSON.parse(localStorage.getItem('shn-v2-kpis')||'[]');
+  marketSnapshots=JSON.parse(localStorage.getItem('shn-v7-16-market')||'[]');
+  marketOwnRates=JSON.parse(localStorage.getItem('shn-v7-16-ownrates')||'[]');
+  if(!Array.isArray(marketSnapshots))marketSnapshots=[];if(!Array.isArray(marketOwnRates))marketOwnRates=[];
 }catch(e){events=[...seed];kpis=[]}
 
 let month=new Date(today.getFullYear(),today.getMonth(),1),selected=iso(today),calendarMode="demand";
@@ -202,7 +228,7 @@ function score(e){
  const crowd=info.count===null?(+e.scale||1)*8:Math.min(48,Math.max(4,Math.round(12*Math.log10(1+info.count/100))));
  return Math.min(100,Math.round(crowd+(+e.access||1)*10+(e.time&&e.time>='18:00'?14:6)+(e.end>e.start?8:0)));
 }
-function persist(){localStorage.setItem('shn-v6-user-events',JSON.stringify(events.filter(isUserRecord)));localStorage.setItem('shn-v2-kpis',JSON.stringify(kpis));$('#lastSaved').textContent='この端末で保存中：'+new Date().toLocaleString('ja-JP');render()}
+function persist(){localStorage.setItem('shn-v6-user-events',JSON.stringify(events.filter(isUserRecord)));localStorage.setItem('shn-v2-kpis',JSON.stringify(kpis));localStorage.setItem('shn-v7-16-market',JSON.stringify(marketSnapshots));localStorage.setItem('shn-v7-16-ownrates',JSON.stringify(marketOwnRates));$('#lastSaved').textContent='この端末で保存中：'+new Date().toLocaleString('ja-JP');render()}
 
  // v5.8: Display-only deduplication and in-memory audit trail. Original records remain in localStorage and exports.
  const titleKey=t=>String(t||'').normalize('NFKC').toLowerCase()
@@ -317,8 +343,8 @@ function renderCal(){
  for(let i=0;i<42;i++){
   const d=addDays(start,i),key=iso(d),r=rows.get(key),count=all.filter(e=>e.start<=key&&e.end>=key).length;
   const inRange=key>=iso(today)&&key<=iso(endRange),c=combinedDemandInfo(key,rows);
-  const level=calendarMode==='demand'?(c.priority>=70?'hi':c.priority>=50?'mid':'low'):'';
-  const label=calendarMode==='demand'?`${c.priority}点${r?.total>0?' / '+r.total.toLocaleString('ja-JP')+'人泊(仮)':''}${c.uncertain?' ※':''}`:(count?'● '+count+'件':'');
+  const level=calendarMode==='demand'&&inRange?(c.priority>=70?'hi':c.priority>=50?'mid':'low'):'';
+  const label=calendarMode==='demand'&&inRange?`${c.priority}点${r?.total>0?' / '+r.total.toLocaleString('ja-JP')+'人泊(仮)':''}${c.uncertain?' ※':''}`:(count?'● '+count+'件':'');
   h+=`<button type="button" class="dcal ${d.getMonth()!==m?'out':''} ${level} ${key===selected?'selected':''}" data-date="${key}" ${!inRange?'disabled':''} aria-label="${fmt(key)}、${calendarMode==='demand'?'総合確認優先度'+c.priority+'点':count+'件'}"><b>${d.getDate()}</b>${label?`<small>${label}</small>`:''}</button>`;
  }
  $('#cal').innerHTML=h;renderSelected(rows);
@@ -330,6 +356,7 @@ function renderSelected(rows=demandRows()){
  const total=r?.total||0;
  const saved=kpis.find(x=>x.date===selected&&x.rooms>0);
  const observed=saved?`登録済み実績：稼働率 ${(100*saved.sold/saved.rooms).toFixed(1)}%（スコア計算には未使用）`:'自ホテル実績：未登録';
+ const q=dayDataQuality(selected,rows);
  $('#unifiedDemandDetail').innerHTML=`
  <div class="result" style="margin-top:0"><strong>総合 ${c.priority}点・${c.level}</strong><div class="muted">新大阪の宿泊需要を確認する優先度（仮の指標）</div></div>
  <div class="kpi-grid" style="margin-top:10px">
@@ -338,7 +365,9 @@ function renderSelected(rows=demandRows()){
  </div>
  <div class="muted" style="margin-top:9px">③ 総合評価：通常${c.base.priority}点 ＋ イベント影響による補正${c.eventUplift}点 ＝ <b>${c.priority}点</b>。単純加算ではなく、通常需要の残余にイベント強度の最大60%を掛ける暫定ルールです。</div>
  <div class="muted" style="margin-top:7px">${esc(observed)}。関連イベント ${r?.items.length||0}件／前泊由来 約${Math.round(pre).toLocaleString('ja-JP')}人泊相当。${c.uncertain?'人数不明イベントは総合点に十分反映できない可能性があります。':''}</div>
- <div class="muted" style="margin-top:7px"><b>注意：</b>人数・遠方率・宿泊率は未検証の仮定です。競合価格や実際の予約状況は未反映です。総合点は稼働率・客室数・料金を予測しません。</div>
+ <div class="muted" style="margin-top:7px"><b>データ品質：${q.confidence}</b> ／ 公式人数 ${q.official}件・仮定人数 ${q.estimated}件・人数不明 ${q.unknown}件・同会場重複除外 ${q.otherExcluded}件。イベント未登録は需要ゼロを意味しません。</div>
+ <div class="muted" style="margin-top:7px"><b>注意：</b>人数・遠方率・宿泊率は未検証の仮定です。競合価格の手動記録は別表示で、総合点には未反映です。総合点は稼働率・客室数・料金を予測しません。</div>
+ ${renderMarketSnippet(selected)}
  ${r?.items.length?r.items.map(x=>`<div class="ditem"><strong>${esc(x.e.title)}</strong><small>${esc(x.e.venue)} ・ ${x.pre?'前泊由来':'開催日由来'} ・ ${x.persons===null?'人数不明':Math.round(x.persons).toLocaleString('ja-JP')+'人泊相当'}${r.chosen.includes(x)?'':' ・ 同会場集計から除外'}</small></div>`).join(''):'<div class="muted" style="margin-top:8px">イベント由来の宿泊需要は未登録です（需要がないことを意味しません）。</div>'}`;
  $('#dayEvents').innerHTML=ev.length?ev.map(card).join(''):'<div class="empty">この日の開催イベントは未登録です。前泊需要だけがある日もあります。</div>';
 }
@@ -384,6 +413,48 @@ function normalDemandInfo(key){
  const level=priority>=65?'高め':priority>=48?'中程度':'低め';
  return {key,priority,level,holiday,reasons,off};
 }
+// v7.17: Transparent, descriptive diagnostics only. No invented calibration.
+// Past KPIs are never treated as future event forecasts; no automatic score fitting.
+function qualityStats(){
+ const cutoff=iso(today),seen=new Set();
+ const past=kpis.filter(k=>{
+  if(!k||typeof k.date!=='string'||k.date>=cutoff||seen.has(k.date))return false;
+  const rooms=Number(k.rooms),sold=Number(k.sold),revenue=Number(k.revenue);
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(k.date)||!Number.isFinite(rooms)||rooms<=0||!Number.isFinite(sold)||sold<0||sold>rooms||!Number.isFinite(revenue)||revenue<0)return false;
+  seen.add(k.date);return true;
+ }).map(k=>({key:k.date,occ:Number(k.sold)/Number(k.rooms)*100,priority:normalDemandInfo(k.date).priority}));
+ const groups=[{name:'低め',min:0,max:48},{name:'中程度',min:48,max:65},{name:'高め',min:65,max:101}].map(g=>{
+  const list=past.filter(x=>x.priority>=g.min&&x.priority<g.max);
+  return {...g,n:list.length,avg:list.length?list.reduce((a,x)=>a+x.occ,0)/list.length:null};
+ });
+ return {past,groups};
+}
+function dayDataQuality(key,rows){
+ const r=rows.get(key),items=r?.items||[];
+ const chosen=r?.chosen||[];
+ const official=chosen.filter(x=>x.e.attendanceBasis==='official'&&Number(x.e.attendance)>0).length;
+ const estimated=chosen.filter(x=>x.e.attendanceBasis!=='official'||!(Number(x.e.attendance)>0)).length;
+ const unknown=items.filter(x=>x.persons===null).length;
+ const otherExcluded=items.filter(x=>x.persons!==null&&!chosen.includes(x)).length;
+ const confidence=unknown?'要注意':estimated?'低':official?'限定的':'未判定';
+ return {official,estimated,unknown,otherExcluded,confidence,related:items.length};
+}
+function renderQuality(){
+ const summary=$('#qualitySummary'),groups=$('#qualityGroups'),coverage=$('#qualityCoverage');
+ if(!summary||!groups||!coverage)return;
+ const stats=qualityStats(),n=stats.past.length;
+ const av=n?stats.past.reduce((a,x)=>a+x.occ,0)/n:null;
+ summary.innerHTML=`<strong>過去の実績：${n}日分</strong><div class="muted">${n?`平均稼働率 ${av.toFixed(1)}% ／ 過去の通常需要スコアと比較`:'まだ比較できる過去実績がありません。ホテル分析から宿泊済みの日の稼働率を登録してください。'}</div><div class="muted">${n<14?'判定保留：まずは異なる曜日を含む14日以上の実績が目安です。':n<28?'参考段階：14日以上ですが、偏りがある可能性があります。':'参考比較が可能：ただし季節・イベント・料金の影響は未調整です。'}</div>`;
+ groups.innerHTML=`<table><thead><tr><th>通常需要の仮分類</th><th>実績日数</th><th>平均稼働率</th></tr></thead><tbody>${stats.groups.map(g=>`<tr><td>${g.name}</td><td>${g.n}日</td><td>${g.avg===null?'比較不可':g.avg.toFixed(1)+'%'}</td></tr>`).join('')}</tbody></table>`;
+ const rows=demandRows();let counted=0,unknownDays=0,assumedDays=0,confirmedDays=0;
+ for(let d=new Date(today);d<=endRange;d=addDays(d,1)){
+  const q=dayDataQuality(iso(d),rows);counted++;
+  if(q.unknown)unknownDays++;
+  if(q.estimated)assumedDays++;
+  if(q.official)confirmedDays++;
+ }
+ coverage.innerHTML=`<h3>今後6か月のイベント情報の品質</h3><div class="muted">対象 ${counted}泊日 ／ 人数不明の催事を含む日 ${unknownDays}日 ／ 仮定人数の催事を含む日 ${assumedDays}日 ／ 公式人数が登録された催事を含む日 ${confirmedDays}日</div><div class="muted">各日数は重複します。掲載イベントがない日を「需要なし」と判定していません。公式人数があっても新大阪への宿泊波及率は仮定です。</div>`;
+}
 function renderBaseline(){
  const input=$('#baseDate');if(!input)return;
  let start=input.value||iso(today);if(start<iso(today))start=iso(today);if(start>iso(endRange))start=iso(endRange);
@@ -396,6 +467,74 @@ function renderBaseline(){
 }
 $('#baseDate').value=iso(today);$('#baseDate').min=iso(today);$('#baseDate').max=iso(endRange);
 $('#baseDate').onchange=renderBaseline;$('#baseSpan').onchange=renderBaseline;
+
+
+// v7.16: Manually verified, date- and condition-specific competitor observations.
+// Never interpret search absence as verified sellout or automatically scrape booking sites.
+const marketHotels=['ホテル新大阪','名鉄イン新大阪駅東口','ヴィアイン新大阪','アパホテル〈新大阪駅前〉','大阪コロナホテル','ステップイン新大阪東口','東横INN新大阪駅東口'];
+const yen=n=>'¥'+Math.round(n).toLocaleString('ja-JP');
+const marketKey=(day,meal,cancel,hotel)=>[day,meal,cancel,hotel].join('|');
+function marketSlice(day,meal,cancel){return marketSnapshots.filter(x=>x.day===day&&x.meal===meal&&x.cancel===cancel)}
+function marketSignal(day,meal,cancel){
+ const rows=marketSlice(day,meal,cancel);
+ const comparable=rows.filter(x=>x.comparable&&x.status==='available'&&Number.isFinite(x.price)&&x.price>0);
+ const prices=comparable.map(x=>x.price).sort((a,b)=>a-b);
+ const median=prices.length?(prices.length%2?prices[(prices.length-1)/2]:(prices[prices.length/2-1]+prices[prices.length/2])/2):null;
+ return {rows,comparable,median,noresults:rows.filter(x=>x.status==='noresults').length,soldout:rows.filter(x=>x.status==='soldout').length};
+}
+function marketStatusText(s){return ({available:'販売あり',noresults:'検索結果なし',soldout:'満室と明記',unknown:'未確認'})[s]||'未確認'}
+function renderMarket(){
+ const day=$('#marketDate').value||iso(today),meal=$('#marketMeal').value,cancel=$('#marketCancel').value;
+ const signal=marketSignal(day,meal,cancel);
+ const own=marketOwnRates.find(x=>x.day===day&&x.meal===meal&&x.cancel===cancel);
+ if(document.activeElement!==$('#marketOwn'))$('#marketOwn').value=own?.price||'';
+ const ownDiff=own?.price>0&&signal.median!==null?`自ホテル${yen(own.price)}／競合中央値との差 ${own.price>=signal.median?'+':''}${yen(own.price-signal.median).replace('¥-','-¥')}（単純価格差）`:'自ホテル価格未入力、または比較可能な競合価格なし';
+ $('#marketSummary').innerHTML=`<div class="muted">${esc(day)} ・ 1名1室1泊・税込・${meal==='room'?'素泊まり':'朝食付き'}・${cancel==='flex'?'キャンセル可':'返金不可'}</div><div class="market-metric"><div><small>比較可能な販売価格</small><b>${signal.comparable.length}件</b></div><div><small>競合価格の中央値</small><b>${signal.median===null?'未算出':yen(signal.median)}</b></div><div><small>満室と明記 / 検索結果なし</small><b>${signal.soldout} / ${signal.noresults}件</b></div></div><div class="market-summary">${esc(ownDiff)}</div><div class="muted">${signal.rows.length}ホテルを記録済み。未登録ホテルは未確認です。標本が少ない場合や確認日時が異なる場合、中央値は市場価格を代表しません。</div>`;
+ const names=[...new Set([...marketHotels,...signal.rows.map(x=>x.hotel)])];
+ $('#marketRows').innerHTML=names.map(h=>{
+  const x=signal.rows.find(x=>x.hotel===h);
+  return `<tr><td><b>${esc(h)}</b>${x&&!x.comparable?'<br><span class="market-chip alert">比較対象外</span>':''}</td><td>${x?esc(marketStatusText(x.status)):'未登録'}</td><td>${x?.status==='available'&&x.price?yen(x.price):'—'}</td><td>${x?`${esc(new Date(x.capturedAt).toLocaleString('ja-JP'))}${x.url?`<br><a class="market-link" href="${esc(x.url)}" target="_blank" rel="noopener">確認ページ ↗</a>`:''}${x.memo?`<br>${esc(x.memo)}`:''}`:'—'}</td><td>${x?`<button type="button" class="btn ghost" data-market-edit="${esc(h)}">編集</button><button type="button" class="btn ghost" data-market-del="${esc(h)}">削除</button>`:`<button type="button" class="btn ghost" data-market-edit="${esc(h)}">入力</button>`}</td></tr>`;
+ }).join('');
+}
+function renderMarketSnippet(day){
+ const meal='room',cancel='flex',s=marketSignal(day,meal,cancel);
+ const status=s.rows.length?`記録${s.rows.length}件／比較可能${s.comparable.length}件／中央値${s.median===null?'未算出':yen(s.median)}／満室明記${s.soldout}件・検索結果なし${s.noresults}件`:'競合記録なし';
+ return `<div class="ditem"><strong>③ 競合ホテルの販売状況（手動記録）</strong><small>${esc(status)}。素泊まり・キャンセル可・1名1室・税込。総合点には未反映。</small><button type="button" class="btn secondary" id="marketJump" style="margin-top:7px">この宿泊日の競合比較を開く</button></div>`;
+}
+$('#marketHotel').innerHTML=marketHotels.map(h=>`<option value="${esc(h)}">${esc(h)}</option>`).join('')+'<option value="__other">その他（ホテル名を入力）</option>';
+$('#marketDate').value=iso(today);$('#marketDate').min=iso(today);$('#marketDate').max=iso(endRange);
+['marketDate','marketMeal','marketCancel'].forEach(id=>$('#'+id).addEventListener('change',renderMarket));
+$('#marketOwn').addEventListener('change',()=>{
+ const day=$('#marketDate').value,meal=$('#marketMeal').value,cancel=$('#marketCancel').value,v=$('#marketOwn').value;
+ if(v!==''&&(!Number.isFinite(+v)||+v<=0||+v>1000000)){alert('自ホテル価格は1〜1,000,000円で入力してください');return}
+ marketOwnRates=marketOwnRates.filter(x=>!(x.day===day&&x.meal===meal&&x.cancel===cancel));
+ if(v!=='')marketOwnRates.push({day,meal,cancel,price:+v,capturedAt:new Date().toISOString()});
+ persist();renderMarket();
+});
+$('#marketSave').onclick=()=>{
+ const day=$('#marketDate').value,meal=$('#marketMeal').value,cancel=$('#marketCancel').value;
+ const hotel=$('#marketHotel').value==='__other'?$('#marketCustom').value.trim():$('#marketHotel').value;
+ const status=$('#marketStatus').value,raw=$('#marketPrice').value,price=raw===''?null:Number(raw),url=$('#marketUrl').value.trim(),memo=$('#marketMemo').value.trim();
+ if(!day||day<iso(today)||day>iso(endRange)||!hotel||hotel.length>100)return alert('宿泊日とホテル名を確認してください');
+ if(status==='available'&&(!Number.isFinite(price)||price<1||price>1000000))return alert('販売ありの場合は税込料金を入力してください');
+ if(url&&!/^https?:\/\//i.test(url))return alert('出典URLはhttpまたはhttpsで入力してください');
+ const record={day,meal,cancel,hotel,status,price:status==='available'?price:null,comparable:$('#marketComparable').value==='yes',url,memo,capturedAt:new Date().toISOString()};
+ marketSnapshots=marketSnapshots.filter(x=>marketKey(x.day,x.meal,x.cancel,x.hotel)!==marketKey(day,meal,cancel,hotel));marketSnapshots.push(record);
+ persist();renderMarket();$('#marketEntry').open=false;alert('競合情報をこの端末に保存しました');
+};
+document.addEventListener('click',ev=>{
+ const edit=ev.target.closest('[data-market-edit]'),del=ev.target.closest('[data-market-del]');
+ if(edit){const hotel=edit.dataset.marketEdit,day=$('#marketDate').value,meal=$('#marketMeal').value,cancel=$('#marketCancel').value;
+  const x=marketSlice(day,meal,cancel).find(x=>x.hotel===hotel);
+  $('#marketHotel').value=marketHotels.includes(hotel)?hotel:'__other';$('#marketCustom').value=marketHotels.includes(hotel)?'':hotel;
+  $('#marketStatus').value=x?.status||'available';$('#marketPrice').value=x?.price||'';$('#marketUrl').value=x?.url||'';$('#marketMemo').value=x?.memo||'';$('#marketComparable').value=x?.comparable===false?'no':'yes';
+  $('#marketEntry').open=true;$('#marketEntry').scrollIntoView({behavior:'smooth',block:'start'});
+ }
+ if(del){const hotel=del.dataset.marketDel,day=$('#marketDate').value,meal=$('#marketMeal').value,cancel=$('#marketCancel').value;
+  if(confirm(`${hotel} の ${day} の記録を削除しますか？`)){marketSnapshots=marketSnapshots.filter(x=>marketKey(x.day,x.meal,x.cancel,x.hotel)!==marketKey(day,meal,cancel,hotel));persist();renderMarket()}
+ }
+ if(ev.target.closest('#marketJump')){tab('hotel');$('#marketDate').value=selected;$('#marketMeal').value='room';$('#marketCancel').value='flex';renderMarket();$('#marketPanel').scrollIntoView({behavior:'smooth',block:'start'})}
+});
 
 function renderKpis(){let rows=kpis.slice().sort((a,b)=>b.date.localeCompare(a.date));$('#kpiTable').innerHTML=rows.length?rows.map(k=>`<tr><td>${k.date}</td><td>${(k.sold/k.rooms*100).toFixed(1)}%</td><td>${k.sold?(k.revenue/k.sold).toLocaleString('ja-JP',{maximumFractionDigits:0}):'—'}</td><td>${(k.revenue/k.rooms).toLocaleString('ja-JP',{maximumFractionDigits:0})}</td><td><button class="btn ghost" data-kedit="${k.date}">読込</button></td></tr>`).join(''):'<tr><td colspan="5">実績はまだありません</td></tr>'}
 
@@ -427,10 +566,11 @@ function renderDemand(){
  target.innerHTML=arr.length?arr.map(x=>`<div class="dayrow"><div class="circle">${x.points}</div><div><strong>${fmt(x.day)} 宿泊分 ・ ${x.items.length}件関連</strong><small>${esc([...new Set(x.items.map(v=>v.e.venue))].join('、'))}</small><small>推定宿泊需要：${x.total.toLocaleString('ja-JP')}人泊相当（前泊を含む日別配分）</small><small>同会場・同日の需要は最大値のみ採用（独立催事の需要を過小評価する可能性あり）。仮定値であり実績・販売推奨価格ではありません。</small></div></div>`).join(''):'<div class="empty">該当日がありません。</div>';
  // Unified calendar is rendered by renderCal().
 }
+$('#qualityJump').onclick=()=>{tab('hotel');$('#qualityPanel').scrollIntoView({behavior:'smooth',block:'start'})};
 $('#modeDemand').onclick=()=>{calendarMode='demand';renderCal()};
 $('#modeEvents').onclick=()=>{calendarMode='events';renderCal()};
 $('#dSort').onchange=renderDemand;
-function render(){renderEvents();renderCal();renderKpis();renderDemand();renderBaseline()}
+function render(){renderEvents();renderCal();renderKpis();renderDemand();renderBaseline();renderMarket();renderQuality()}
 function tab(t){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.view===t));['events','calendar','hotel','admin'].forEach(v=>$('#view-'+v).hidden=v!==t)}
 function openForm(e){$('#form').reset();$('#eid').value=e?.id||'';$('#modalTitle').textContent=e?.showtimes?.length>1?'イベント詳細（編集時は元データに注意）':e?'イベントを編集':'イベントを登録';$('#title').value=e?.title||'';$('#start').value=e?.start||iso(today);$('#end').value=e?.end||e?.start||iso(today);$('#time').value=e?.time||'';$('#category').value=e?.category||'ライブ・コンサート';$('#place').value=e?.venue||'';$('#scale').value=e?.scale||1;$('#access').value=e?.access||1;$('#url').value=e?.url||'';$('#attendance').value=e?.attendance??'';$('#attendanceBasis').value=e?.attendanceBasis||'estimate';$('#farRate').value=e?.farRate??'';$('#stayRate').value=e?.stayRate??'';$('#areaRate').value=e?.areaRate??'';$('#notes').value=(e?.notes||'')+(e?.showtimes?.length>1?'\n日別開演時刻：'+e.showtimes.map(x=>x.date+' '+x.time).join('、'):'');$('#del').style.display=e?'block':'none';$('#back').classList.add('show')}
 function close(){ $('#back').classList.remove('show') }
@@ -447,7 +587,7 @@ function download(name,content,type){let blob=new Blob([content],{type}),a=docum
 $('#export').onclick=()=>download('shinosaka-events.json',JSON.stringify(events,null,2),'application/json');
 $('#backupAll').onclick=()=>{
  const payload={format:'shinosaka-navi-backup',version:1,exportedAt:new Date().toISOString(),
-  manualEvents:events.filter(isUserRecord),kpis,
+  manualEvents:events.filter(isUserRecord),kpis,marketSnapshots,marketOwnRates,
   seenAlerts:JSON.parse(localStorage.getItem('shn-v5-2-seen-alerts')||'{}')};
  download('shinosaka-backup-'+iso(today)+'.json',JSON.stringify(payload,null,2),'application/json');
 };
@@ -462,6 +602,8 @@ $('#restoreAll').onchange=async ev=>{
   if(!confirm('手動登録とホテル実績をバックアップ内容で置き換えます。続けますか？'))return;
   events=[...events.filter(x=>!isUserRecord(x)),...data.manualEvents.map(x=>({...x,source:'import'}))];
   kpis=data.kpis;
+  marketSnapshots=Array.isArray(data.marketSnapshots)?data.marketSnapshots:marketSnapshots;
+  marketOwnRates=Array.isArray(data.marketOwnRates)?data.marketOwnRates:marketOwnRates;
   localStorage.setItem('shn-v5-2-seen-alerts',JSON.stringify(data.seenAlerts||{}));
   persist();render();alert('復元しました');
  }catch(e){alert('復元できません：'+e.message)}
@@ -470,6 +612,7 @@ $('#restoreAll').onchange=async ev=>{
 
 function csv(rows){return rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n')}
 $('#csv').onclick=()=>download('shinosaka-events.csv','\ufeff'+csv([['イベント名','開始日','終了日','開始時刻','ジャンル','会場','公式URL','予想来場者数','人数根拠','更新日時'],...events.map(e=>[e.title,e.start,e.end,e.time,e.category,e.venue,e.url,e.attendance??'',e.attendanceBasis||'',e.updatedAt||''])]),'text/csv;charset=utf-8');
+$('#marketExport').onclick=()=>download('shinosaka-competitor-rates.csv','\ufeff'+csv([['宿泊日','ホテル','食事条件','キャンセル条件','検索状況','税込1室料金','比較可能','確認日時','出典URL','メモ'],...marketSnapshots.map(x=>[x.day,x.hotel,x.meal,x.cancel,marketStatusText(x.status),x.price??'',x.comparable?'はい':'いいえ',x.capturedAt,x.url,x.memo])]),'text/csv;charset=utf-8');
 $('#exportKpi').onclick=()=>download('hotel-kpi.csv','\ufeff'+csv([['日付','販売可能客室数','販売客室数','客室売上','稼働率','ADR','RevPAR','競合平均料金','メモ'],...kpis.map(k=>[k.date,k.rooms,k.sold,k.revenue,(k.sold/k.rooms*100).toFixed(1),k.sold?k.revenue/k.sold:0,k.revenue/k.rooms,k.comp,k.memo])]),'text/csv;charset=utf-8');
 document.addEventListener('click',ev=>{const b=ev.target.closest('[data-alert-seen]');if(!b)return;let seen={};try{seen=JSON.parse(localStorage.getItem('shn-v5-2-seen-alerts')||'{}')}catch(e){};seen[b.dataset.alertSeen]=b.dataset.alertDate;localStorage.setItem('shn-v5-2-seen-alerts',JSON.stringify(seen));b.closest('.event')?.remove();});
 $('#importFile').onchange=e=>{let f=e.target.files&&e.target.files[0];if(!f)return;let reader=new FileReader();reader.onload=()=>{try{let a=JSON.parse(String(reader.result||''));if(!Array.isArray(a))throw Error('JSONの最上位は配列である必要があります');a=a.map((x,i)=>{if(!x||typeof x!=='object'||!x.title||!x.start||!x.end)throw Error('イベント'+(i+1)+'の必須項目がありません');return {id:String(x.id||('import-'+Date.now()+'-'+i)),title:String(x.title),start:String(x.start),end:String(x.end),time:String(x.time||''),category:String(x.category||'その他'),venue:String(x.venue||'未設定'),scale:Number(x.scale||1),access:Number(x.access||1),attendance:x.attendance??null,attendanceBasis:x.attendanceBasis||'estimate',farRate:x.farRate??null,stayRate:x.stayRate??null,areaRate:x.areaRate??null,url:String(x.url||''),notes:String(x.notes||''),attendance:x.attendance==null?null:Number(x.attendance),attendanceBasis:String(x.attendanceBasis||'estimate'),source:String(x.source||'import'),demo:!!x.demo,verified:!!x.verified,history:Array.isArray(x.history)?x.history:[]}});if(confirm('イベント'+a.length+'件を読み込みます。現在のイベントデータを置き換えますか？（先にJSON出力でバックアップしてください）')){events=[...seed,...a.map(x=>({...x,source:'import',autoCollected:false}))];persist();refreshAuto();alert('読み込みました（'+a.length+'件）。この端末だけに保存されます。')}}catch(err){alert('JSONを読み込めませんでした：'+(err&&err.message?err.message:'ファイル形式を確認してください'))}e.target.value=''};reader.onerror=()=>{alert('ファイルを読み取れませんでした。ファイルアプリからJSONを選び直してください。');e.target.value=''};reader.readAsText(f,'UTF-8')};
