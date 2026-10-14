@@ -1,6 +1,6 @@
 {
-  "version": "7.19",
-  "checkedAt": "2026-10-14T12:45:53.635829+00:00",
+  "version": "7.20",
+  "checkedAt": "2026-10-14T12:58:42.851332+00:00",
   "confirmed": [
     {
       "id": "discovery-confirmed-yodogawa-2026",
@@ -23,298 +23,75 @@
   ],
   "candidates": [
     {
-      "id": "candidate-31c70ef62fe4fb69",
-      "title": "全国社会科教育学会第75回 （2026年度）全国研究大会のご案内（10月24日・25日） - 大阪教育大学",
-      "dateHint": "2026-10-24",
-      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9qR3NURmo1b3doRzZxSUpsTjJhN3pKYWM1QnJEczZPUWJscTZualRSTzB0Snp3UkNvZmdUc2Y2QkNIazNoOFo3T0xhc1Q4a251Xy1NYmhIR3FDbE4wNGtzbG4waC1GazFhWmdyZFl6OEM5SlRacnlz?oc=5",
+      "id": "candidate-e2ce4abf8d86b5a1",
+      "title": "１１月２３日阪神優勝パレード／大阪市イベントと同時開催 - 四国新聞",
+      "dateHint": "2026-11-23",
+      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE0ybjg1V0JqX1ZWb2h0dHV2dGNkdHJYRXBJdTc0LWY3MUQxdUlPZ29kYmtCWUZSQnI2aWpZenU5ZVVieXE1ZDJSV28tMkFodE00cHowV1FmeUtjdWNUUVVnV2hveXZiVFlPM05MNk1ISGVLaTNU?oc=5",
       "source": "GoogleニュースRSS（未確認）",
-      "published": "Thu, 08 Oct 2026 06:03:06 GMT",
+      "published": "Mon, 05 Oct 2026 06:08:00 GMT",
       "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
+      "relevance": 75,
+      "reason": "開催日候補あり・公式照合が必要"
     },
     {
-      "id": "candidate-fcf5b9fefd85dffc",
-      "title": "ガーデニング愛の祭典～花友フェスタ【12/19・インテックス大阪】｜花友フェスタ実行委員会 - www.event-marketing.co.jp",
-      "dateHint": "2026-12-19",
-      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE8tSjN5T09GYWxDc1l5M043dG04M2MybTFPbHdRSktCbG5HQThUSElIcUQ3bE9YYmJMX2VLTUdwcmRZTnhWX0xCQ1FwWlAxNDJfYkhsQ0pOdktJRGVuRy0wZi1qTjA2Nlp2aVpyUWFsRmg1UUJYd0o4?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Wed, 07 Oct 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-cef3eb918f43fd5e",
-      "title": "E2A中国自動車道（吹田JCT～神戸JCT）のリニューアル工事 令和8年8月からの交通規制の日程をお知らせします - NEXCO 西日本 企業情報",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTFBLVXdEVlZBdkxnM1JUeF9zM0tmc3FjdFR1MmpZV0NVSm52WFAtU2xydjZlVThjZjZfTzNlaG1uaEgtakpRV2FIZ3V3QkNpNTY2SWpCVmt5V0cyekpEdGE4aklzWXV4X0U2Y1VOS3lR?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Mon, 27 Jul 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-a06781fd54895a9d",
-      "title": "GREEN×EXPO 2027と大阪・関西万博はどちらも日本型のウェルビーイングの発信 JCMA第11期社員総会「再設計」と「人材」 - 観光経済新聞",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE94M3cyRTVkZVFYVVhlX1lvU2tqS2NIbktkZjd1NnpNb3dvWFdLd1JWZWwzallYdVplRFdIS09faVE0bVdiOGxFcnM4TmV3Qng0TmZqMw?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Thu, 25 Jun 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-16331d6611afddca",
-      "title": "【2026】 大阪府羽曳野市「羽曳野市立中央スポーツ公園」で本日、花火が打ち上げられます - 夜景FAN",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQYjFTS2t2ekNZVGNfTlJFeThybDBxSDVXb2tZeWxMLVhha3E2ZldZa09yemdlaThFMFdfamN3eXNNYXZWbFdKTUk4UHpERi1kQVp3bXpUOVRSS0hpdDNYZkdfR2VSYmdtUnRiU05yeV9KRzdnWk5TVThkNmJhZGdWd1RJWkQ?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Sat, 16 May 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-3778f3cf9e72ea7e",
-      "title": "【2026】「SBI 舞花火 in 大阪・泉南」が本日開催！ドローンショーも - 夜景FAN",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPaUtDMy1ydEt5ZUF0cjlzRFpKLVV5OUVkcnRNVVdNcDFwdGJJOWxiWFdNcDA3ZnQxR1UxMHlpUFo5Nk5aV2JwRGsxZkozVEg1N2thbWRPNnF2YTV4YXJldUMzOXVjTmZHZFVaWEt4OFlCcGN6YmdYUHlXNFE5cHQzcA?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Sat, 22 Aug 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-7f1482f2fef9ac03",
-      "title": "【2026】「天神祭奉納花火」本日打ち上げ！大阪を賑わす日本三大祭り - 夜景FAN",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1lVWtZS0tVNDhpOUFVLXpUOWZXYmlGczkzbE9xNVhvc1NIWG4xb291VnJTZlhSNDlxdEJxY2pEVjNZLWtFWUI0d1kxeGtLRjduUEp1YTQ4dXVNZF91a1BoOWVqa2ZYd01wcWVTbXljWk1BbXp1UVRMVA?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Sat, 25 Jul 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-289966fecabc9496",
-      "title": "【2026】大阪・舞洲で花火1万発×延べ2,000機ドローンショー「OSAKA BAY SKYLUMINA」明日開催、万博公式キャラ「ミャクミャク」が夜空に登場 - 夜景FAN",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxPaWhiel9oYktTQU5RTnJGMTIyYlZ6ZFhzZ25faDBzS1dhTF9hUG9rU2dhYWlpbmdZdW9mQW1ITHMyZm9LN2pWdnFPZmFQTGpLQ2xaZUZsZkl3Vm1TSVQ4YWpRNmJXYWlERlNUdnZGRTcwRUtpQXl4TVc1aXc2NV8yT01UTlZuTEduNm5JNGlIZnN1N0d4X1E?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Fri, 05 Jun 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-f386b1fc6072e535",
-      "title": "【2026年最新】大阪・関西の花火大会日程一覧｜なにわ淀川・淡路島まつりなど人気大会まとめ - Funliday",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTFBFTlNvcjUwbncxdk9PM1J1Z05NQlV1bXRwT0d1QTd5NmMwcndNUUJ1ajh5Wm45RDVqMzJqVG10dzNlWm00Yjl1Y0FHZm4tT3ptRE92ek84SWIzTDA?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Fri, 18 Sep 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-2b548495ec7cb94d",
-      "title": "【2026年版】大阪の花火大会8選｜デートにもおすすめ♡開催日・打ち上げ数まとめ - Dressy(ドレシー)",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE9qdExzTmMtZWVOajBpSFptQVo4UnN5QVdKcG40WXRLelFoaWx5aGVtWk5TbGRjcXZELVJXb0ctWm53bEk1djNnb0oxOFRGZlJVSkFkRlVndGRUYUNrdHpFVXRn?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Tue, 16 Jun 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-ca06e9afed4c3bc0",
-      "title": "【2026最新】今日大阪で花火？打ち上げ場所と音の真相・日程まとめ - elhuyar.eus",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE5BbjBmaE50RVYyaHVLSTFzSTNNUHNjcHRid1hrZlotQzd1RS05UHdsS0tfQlZwWlA0M0VfS3VCZGtSOXhhZV8tT2Rta1BaNWtLS1hYQjFxcnh0UThONU16eXZEUEU1X3FVYVRGZk92aHppZw?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Sat, 19 Sep 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-f6297d7c7cd8cc07",
-      "title": "【あす開催】大阪で「花火×音楽×ドローン4000機」一夜限りのショー！ 10周年の夏祭り、過去最大規模に (Lmaga.jp) - Yahoo!ニュース",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxOWjhxSTlFNXk5UFlmVXhWWlNPUEM0OEF0MVluMDc5VEpxbTk4S1VxRHRWWjZyWkY0VnpnWXpwZXdJVjJLYl9PWklpZlhXVFNWMERFZXhQRkptcnJjQlVkZm9LRmNwZWVRTmZwNTliREt6VmhWOWlEV3E2SXZnUk4tbDMzcVZDNGpNcnRZZ0hR?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Fri, 21 Aug 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-22201faed1d7834d",
-      "title": "【大盛況御礼】来場者数4500名！ 関西初開催に二輪2500台が集結した「ウェビックフェスティバル 2026 in 大阪」イベントレポート - Yahoo!ニュース",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFBDUkpqSFhiYUU4dnpPSmtfcWpkallBbVJMZWFLRjhvRG5VRkx3WXNscVJpV294WlJSZVJQZGFqSU5qQXZacW1vdk8yQzZvSm9Qam56S3c5X2NuRThVbGt4VzItQi1hYUdILUYyTkpBWEdBV3ZBS0YxbVBWRE9CdnM?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Thu, 01 Oct 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-f8bbf9c7e5cae59a",
-      "title": "【大阪府・泉南市】SBI舞花火 in 大阪・泉南一般販売開始のお知らせ - PR TIMES",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1CX2RYbFFxVFg1WUZWdGNMVjlLQzVTdU16VjE5WGMxbDNkbG1MODJEQVFxdUZEX1g3NWpKbF9MdmRaTGR3ektFZUdLUXVzNVVJY2N0aWdkdEVUOTN3dk1SMlNJcDFNRHQtcGc?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Thu, 25 Jun 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-f6adbf70bd1368c5",
-      "title": "【大阪府・泉南市】花火同時開催音楽フェス「SBI MUSIC CIRCUS OSAKA」開催のお知らせ - PR TIMES",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9wWnp0R0RIeUlSWGRQRE9CNnBkUGV5U3ItT3RJWFRTelk2MFVyd2tWeDNKVlk2TmdNeVBPRmN4Y05DVi1FWkJROHJIZVFYZVZPMTV3dzZSZHhORnM1MnJTb3p2eGJyNy1pYXc?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Wed, 03 Jun 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-a929bde026d409c0",
-      "title": "【大阪府・泉南市】開催10周年を迎える泉州最大級の夏祭り大阪泉州夏祭り2026年開催についてのお知らせ - PR TIMES",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5uaUZ6Z1d6X0VEUC1xc2NLdGNaVW5ucHdNY051cHVOOVh6QWxqNjdnaWlhX2huYWxOck1jdVFXNVduZUpYbDE2bnhoYUVKd3lSb2pIRUstR1dYZnEtZTlHVFM1cU1GZ3dsOUE?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Wed, 17 Jun 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-95a18111b10a95b0",
-      "title": "【本日開催】大阪・舞洲で花火1万発×延べ2,000機ドローンショー「OSAKA BAY SKYLUMINA」今夜19時スタート - 夜景FAN",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPMmwzX3M5UTB1TGFyaUxKZnRsS1hORU16bXd0TDdXTnBHZmVWUHcyc0RhNi1fVVFNYVRVRmk0VFVuN0V3Rk9zLXkzeE9JR1RpYklESS1Jak5hTHJMV2NEdTRDOE9WMWxWeEdYNUJMWTU0dGU0MktDWlNvQXU3eXFqa1IxOG03SkZPQlNNR3NkZXM3X0szaC1tc1NySV8?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Sat, 06 Jun 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-7782cc49d8fc57c7",
-      "title": "イベントロゴ付き、限定商品を会場内で販売！ウイスキーの大規模試飲イベント「ウイスキーフェスティバル2026 in 大阪」 - PR TIMES",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE9jeUVibU80aXprMy1ZQzBoTkJkTFZaRUNURG5rY0MzRFlKdldwbjlxa29uaWg4VnRvVlBicVhRVzQ1Q3RVUUEzN2hLdHBPaExQZlg3LUdGUGFLbHdYajlVeTVmSnlUN0JaU1E?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Fri, 19 Jun 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-8f4e32ee2b1d48d4",
+      "id": "candidate-fa720220397dfa50",
       "title": "世界初となる「UNDERTALE」の大規模展示会「UNDERTALE MUSEUM」が2027年に東京と大阪で開催決定 - 4Gamer.net",
       "dateHint": null,
       "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE50c1RZRVc5NHRoOHJmZ2V3aU1mTjhRY2ljMlNkc2JCWnlTMVRzblFxSUh4ZFA4MlJiQUhsdVduVmd4QjU5UGszaGIwWkt3U0tpTnhkQzhHQ2ZxS0I3WThTNWdfRQ?oc=5",
       "source": "GoogleニュースRSS（未確認）",
       "published": "Thu, 30 Jul 2026 07:00:00 GMT",
       "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
+      "relevance": 35,
+      "reason": "開催日不明・記事から公式情報を確認"
     },
     {
-      "id": "candidate-1065acf622e7cf86",
-      "title": "南大阪で「花火×音楽×ドローン4000機」一夜限りのショー！ 10周年の夏祭り、過去最大規模に - Lmaga.jp",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE50YUtiQzRxWC1LS0pfdGhKcWhiMG1Hci0yV3QtRDYwS3JSMTR2YXBlOVlTakFjSjVJTmlNNjEzU29uU0QwTWhRTGxVSmdjSFYwUkZReQ?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Fri, 21 Aug 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-e8a8602adb81271e",
-      "title": "大阪・舞洲で野外フェス『ジャイガ』開幕、初日から大盛況にーー4日間で120組以上の豪華アーティストが集結 - エンタメ特化型情報メディア スパイス",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE5fSmJ1QXhyYTItTE5ZVkdSVy0zaGlRMWN5SDJPU0hBa1dPcmh0emhfWE1BdS1yTXVtbzlzamtJR09Fc0M0R0hMYlhNY25famfSAVRBVV95cUxOSi04ampKa0Ezcm0yb0puclk2cEtULUlrdHZvOGpIRHgyU1MxMEhWMjE5STFvWDVhZ2FBRW9ZXzJEd3Bob0dPVnRMN3VRNEhZa185Zlc?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Sat, 25 Jul 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-aa1647ddb3744ea5",
-      "title": "大阪芸術花火2026 りんくう公園マーブルビーチで音楽と花火が夜空を彩る - 夜景FAN",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxQdzU3aUlQWnpaSmh1OEw2X2JlMDZvRGlYdmtoUVl5T1JCQTk5dm5taURwWVdidU1XbE1FeV8xYXB1LTdjZHhTQUFxc2oyRUJoNUtyMkNoaW1FbElxNW9NOHd3NUNjQzIzUV9KeTZGNzJyZ3h1VEh6WS1aUDNnTTJ6WnJLWnd1a19mS3pJcQ?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Thu, 02 Jul 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-189197803a249591",
-      "title": "大阪風物詩『御堂筋ランウェイ2026』開催日程など発表 交通規制に変更【概要】 - オリコンニュース",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE90WEM0YUNBaHhlSHdVZXZYUWJvMzNzdzlGY3lsSnowMHJ1cmZmbW4tX0E0X3VzR0FIQ1BBY2RLdm1zRUFfVmVUTjQwWW1JVy1tMWhMdVZB?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Mon, 28 Sep 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-bbed74c8251df21c",
-      "title": "大阪駅で楽しむ“文化の秋”…週末は無料フェスや本イベントなど開催『Autumn Fest 2026』 - Lmaga.jp",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTE1fb04yYV9RMWFSYVZzUldKWFljMDNPLWdtTEp6bG5wYTZMb0lmbHZYVTMtNTB3U3RTaE9BRmhmTi1CblcxUTllckR2NkxUTmdzZmVVcA?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Fri, 09 Oct 2026 23:00:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-b3ca5f070d51954d",
+      "id": "candidate-a43577c8b4e940d2",
       "title": "天神祭当日の24、25日は大阪市中心部で大規模交通規制を実施 - 産経ニュース",
       "dateHint": null,
       "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBjU2VSNndBcTBqWGhXdm5vclJveUNsVHJrZ0JRNkVrYmxnWENmWlAyLWQtUVpyRzh5YnpzdXotdDRVNVY0eWF2MEY3NjBXYzVxdGl5ak5MNEg5Y1pJNGt6ai0xZHVValpEMGNfc3NSY1dpNVMxSkE?oc=5",
       "source": "GoogleニュースRSS（未確認）",
       "published": "Thu, 23 Jul 2026 07:00:00 GMT",
       "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
+      "relevance": 35,
+      "reason": "開催日不明・記事から公式情報を確認"
     },
     {
-      "id": "candidate-6fd7884affd56b9c",
-      "title": "水都くらわんか花火大会2026｜交通規制と有料席｜川ばたひろこ（大阪市都島区） - 選挙ドットコム",
+      "id": "candidate-db02b265cf8ae851",
+      "title": "大阪・泉南で『SBI舞花火』まもなく開催、尺玉10連発や4000機のドローンショー、ベリーグッドマン、MINMIによるライブも - エンタメ特化型情報メディア スパイス",
       "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE5pNTVoMEJuSzVFUTlJZjl1WVlMZnRnNWRsc0RTOTA0R2ZPcWxYbFU2cGVNSmRJYXhZeFFkazZDd2J0V1NjclhmdXpQbTFraUNJdkpwWmJhQkhidWgyYkZr?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBVUGZtTHdZbXBkTUxmT2hybVhnUElUR0xlZ2tKeFExOEFCWjBqajg4cGFLbkZPazhaVUZHeE83dzFRYVJZZDJ3WERubEtLQVHSAVRBVV95cUxOcjB2TTA3dXJfR1VYcEd0T1NZSG5TaWF4NHhvQVFjenQ5S0hGZEQ2MzNKRlpIMmJzcTJsV19RS1RrY0xMclFmUnBoT0FEOXFidVJyWFk?oc=5",
       "source": "GoogleニュースRSS（未確認）",
-      "published": "Thu, 10 Sep 2026 07:00:00 GMT",
+      "published": "Fri, 14 Aug 2026 07:00:00 GMT",
       "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
+      "relevance": 32,
+      "reason": "開催日不明・記事から公式情報を確認"
     },
     {
-      "id": "candidate-21fa6cc94689df72",
-      "title": "画像・写真 | 大阪風物詩『御堂筋ランウェイ2026』開催日程など発表 交通規制に変更【概要】 1枚目 - オリコンニュース",
+      "id": "candidate-8a8da031cd39ccab",
+      "title": "【2026】「SBI 舞花火 in 大阪・泉南」が本日開催！ドローンショーも - 夜景FAN",
       "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1nbE85dklEMDdCX1BjZHpzOU54TEtpU2RFMUhHR3FGUUJRSndLMXluSTRnMkdhRUhUSnd3ZFd1X3g4RWhjaF9LQjZvdzhPbmdyNDZVV1BpeUQxdw?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPaUtDMy1ydEt5ZUF0cjlzRFpKLVV5OUVkcnRNVVdNcDFwdGJJOWxiWFdNcDA3ZnQxR1UxMHlpUFo5Nk5aV2JwRGsxZkozVEg1N2thbWRPNnF2YTV4YXJldUMzOXVjTmZHZFVaWEt4OFlCcGN6YmdYUHlXNFE5cHQzcA?oc=5",
       "source": "GoogleニュースRSS（未確認）",
-      "published": "Mon, 28 Sep 2026 07:00:00 GMT",
+      "published": "Sat, 22 Aug 2026 07:00:00 GMT",
       "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
+      "relevance": 24,
+      "reason": "開催日不明・記事から公式情報を確認"
     },
     {
-      "id": "candidate-b688d08a7267de6b",
-      "title": "関西・大阪の「花火大会2026」、7月・8月・9月・10月開催まとめ - Lmaga.jp",
+      "id": "candidate-96eb3278e7abe8b4",
+      "title": "【2026】「天神祭奉納花火」本日打ち上げ！大阪を賑わす日本三大祭り - 夜景FAN",
       "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMiVEFVX3lxTFA2ZTdoWW53WVlPcFdkM3BHRklBUHB0ZlZlZ2RUREJ0dGlqUlAzZmUwVG5meXVfeVdXOE5kQ19HZGJJMG45ZEdNckRPeXVNT1N6endCVQ?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1lVWtZS0tVNDhpOUFVLXpUOWZXYmlGczkzbE9xNVhvc1NIWG4xb291VnJTZlhSNDlxdEJxY2pEVjNZLWtFWUI0d1kxeGtLRjduUEp1YTQ4dXVNZF91a1BoOWVqa2ZYd01wcWVTbXljWk1BbXp1UVRMVA?oc=5",
       "source": "GoogleニュースRSS（未確認）",
-      "published": "Wed, 15 Jul 2026 07:00:00 GMT",
+      "published": "Sat, 25 Jul 2026 07:00:00 GMT",
       "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
-    },
-    {
-      "id": "candidate-bb06486868546528",
-      "title": "１１月２３日阪神優勝パレード／大阪市イベントと同時開催 - 四国新聞",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE0ybjg1V0JqX1ZWb2h0dHV2dGNkdHJYRXBJdTc0LWY3MUQxdUlPZ29kYmtCWUZSQnI2aWpZenU5ZVVieXE1ZDJSV28tMkFodE00cHowV1FmeUtjdWNUUVVnV2hveXZiVFlPM05MNk1ISGVLaTNU?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Mon, 05 Oct 2026 06:08:00 GMT",
-      "confidence": "candidate",
-      "reason": "大阪関連・大型集客キーワードに該当。開催日・規模は要公式確認。"
+      "relevance": 24,
+      "reason": "開催日不明・記事から公式情報を確認"
     }
   ],
   "queries": 5,
   "successfulQueries": 5,
   "errors": [],
+  "selectionPolicy": "過去・まとめ記事を除外。開催日候補ありを優先し、日付不明は最大5件。未確認はスコア加算なし。",
   "note": "未確認候補は総合需要に反映しません。公式確認済みでも定性的加点は実績に基づく予測ではありません。"
 }
