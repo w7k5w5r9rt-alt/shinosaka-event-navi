@@ -1,6 +1,6 @@
 {
-  "version": "7.20-future-only",
-  "checkedAt": "2026-10-15T01:07:19.659565+00:00",
+  "version": "7.21-article-dates-dynamic-years",
+  "checkedAt": "2026-10-15T01:20:35.684946+00:00",
   "confirmed": [
     {
       "id": "discovery-confirmed-yodogawa-2026",
@@ -37,6 +37,6 @@
   "queries": 5,
   "successfulQueries": 5,
   "errors": [],
-  "selectionPolicy": "未来の開催日が読み取れる候補のみ表示。過去・日付不明・開催年が曖昧な記事を除外。未確認はスコア加算なし。",
+  "selectionPolicy": "未来184日以内の開催日を見出し・記事本文・イベント構造化データから確認できた候補のみ表示。検索年は自動更新。未確認はスコア加算なし。",
   "note": "未確認候補は総合需要に反映しません。公式確認済みでも定性的加点は実績に基づく予測ではありません。"
 }
