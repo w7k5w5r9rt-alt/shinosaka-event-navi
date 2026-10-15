@@ -1,45 +1,23 @@
 [
   {
-    "id": "change-9c39b60e450e2628",
+    "id": "change-1a4da80750a0b735",
     "type": "page_changed",
     "title": "京セラドーム大阪 公式スケジュール のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "京セラドーム大阪 公式スケジュール",
     "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=3&yearId=2027",
-    "detectedAt": "2026-10-15T01:00:24.562636+00:00",
+    "detectedAt": "2026-10-15T07:07:02.868313+00:00",
     "status": "要確認",
     "priority": "info"
   },
   {
-    "id": "change-85c620ceee4902f4",
+    "id": "change-d2812288b2980f4a",
     "type": "page_changed",
     "title": "ガンバ大阪 公式試合日程 のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "ガンバ大阪 公式試合日程",
     "url": "https://www.gamba-osaka.net/game/",
-    "detectedAt": "2026-10-15T01:00:24.562636+00:00",
-    "status": "要確認",
-    "priority": "info"
-  },
-  {
-    "id": "fetch-error-234f3d5f964b33c3",
-    "type": "fetch_error",
-    "title": "万博記念公園 公式イベント一覧 の取得に失敗",
-    "message": "サイト取得失敗。中止とは判断しないでください。",
-    "source": "万博記念公園 公式イベント一覧",
-    "url": "https://www.expo70-park.jp/events/during-events/",
-    "detectedAt": "2026-10-15T01:00:24.562636+00:00",
-    "status": "要確認",
-    "priority": "info"
-  },
-  {
-    "id": "fetch-error-485a9ecb4f900620",
-    "type": "fetch_error",
-    "title": "コスモスクエア開発協議会（インテックス大阪予定表） の取得に失敗",
-    "message": "サイト取得失敗。中止とは判断しないでください。",
-    "source": "コスモスクエア開発協議会（インテックス大阪予定表）",
-    "url": "https://www.cosmosquare-djc.jp/eventinfo/",
-    "detectedAt": "2026-10-15T01:00:24.562636+00:00",
+    "detectedAt": "2026-10-15T07:07:02.868313+00:00",
     "status": "要確認",
     "priority": "info"
   },
