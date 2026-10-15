@@ -4,6 +4,7 @@ Confirmed items are a small explicit registry of organizer/municipal verified ev
 Standard library only. Output consumed by v7.18 HTML.
 """
 import datetime as dt
+from zoneinfo import ZoneInfo
 import email.utils
 import unicodedata
 import hashlib
@@ -31,7 +32,9 @@ OSAKA = re.compile(r'大阪|淀川|十三|梅田|吹田|豊中|堺市|枚方|高
 EXCLUDE = re.compile(r'まとめ|一覧|ランキング|選|振り返り|レポート|開催レポ|大盛況|御礼|終了|閉幕|昨年|去年|過去|写真\s*[|｜]|画像\s*[|｜]|とは[？?]|結果発表|開催された|来場者数.*集結|交通規制のみ|リニューアル工事|工事のお知らせ|東京で開催|開催地未定')
 EVENT_WORDS = re.compile(r'開催|開幕|決定|発表|日程|実施|予定|開演|打ち上げ|募集|チケット|出展')
 # Headline dates are clues, not official verification.
-DATE = re.compile(r'(?:(20\d{2})\s*[年/.-]\s*)?(1[0-2]|0?[1-9])\s*[月/.-]\s*(3[01]|[12]\d|0?[1-9])\s*日?')
+DATE = re.compile(r'(?<!\d)(?:(20\d{2})\s*[年/.-]\s*)?(1[0-2]|0?[1-9])\s*[月/.-]\s*(3[01]|[12]\d|0?[1-9])\s*日?(?!\d)')
+PAST_CONTEXT = re.compile(r'本日開催|本日打ち上げ|昨日|先日|開催した|開催されました|開催され|開催終了|閉幕|終演|振り返|開催レポ|実施した|行われた|盛況|終了しました')
+JST = ZoneInfo('Asia/Tokyo')
 
 # Confirmed against the organizer's official announcement and Osaka City designated-event list.
 # An explicit registry is deliberately NOT called automated verification.
@@ -64,19 +67,36 @@ def published_date(value):
         return None
 
 
-def headline_date(title, today):
+def headline_date(title, today, published=None):
+    """Return a future date only when year is explicit or publication context is safe.
+
+    Never roll an already-passed yearless date into the next year.  If the
+    headline mentions a year elsewhere, use it only when unambiguous.
+    """
     m = DATE.search(title)
     if not m:
         return None
-    year = int(m.group(1)) if m.group(1) else today.year
+    explicit_year = int(m.group(1)) if m.group(1) else None
+    years = {int(y) for y in re.findall(r'(?<!\d)(20\d{2})\s*年?(?!\d)', title)}
+    if explicit_year:
+        year = explicit_year
+    elif len(years) == 1:
+        year = next(iter(years))
+    elif years:
+        return None
+    else:
+        # Yearless headlines can be treated as current-year announcements only
+        # if recently published. No automatic next-year rollover.
+        if published is None or not (today - dt.timedelta(days=30) <= published <= today + dt.timedelta(days=1)):
+            return None
+        year = today.year
     try:
         day = dt.date(year, int(m.group(2)), int(m.group(3)))
-        # Yearless dates can refer to the next year only if plausibly upcoming.
-        if not m.group(1) and day < today:
-            day = dt.date(year + 1, day.month, day.day)
-        return day
     except ValueError:
         return None
+    if not (today <= day <= today + dt.timedelta(days=184)):
+        return None
+    return day
 
 
 def assess_headline(title, desc, pub, today):
@@ -84,16 +104,16 @@ def assess_headline(title, desc, pub, today):
     title = unicodedata.normalize('NFKC', title).strip()
     if not KEYWORDS.search(title) or not OSAKA.search(title + ' ' + desc):
         return None
-    if EXCLUDE.search(title):
+    if EXCLUDE.search(title) or PAST_CONTEXT.search(title):
         return None
     if not EVENT_WORDS.search(title):
         return None
     pdate = published_date(pub)
     if pdate and (pdate > today + dt.timedelta(days=1) or pdate < today - dt.timedelta(days=90)):
         return None
-    day = headline_date(title, today)
-    limit = today + dt.timedelta(days=184)
-    if day and not (today <= day <= limit):
+    day = headline_date(title, today, pdate)
+    # Strict future-only mode: do not publish undated news as event candidates.
+    if day is None:
         return None
     # Undated news is useful only as a secondary lead, not an actionable event.
     score = 0
@@ -103,22 +123,21 @@ def assess_headline(title, desc, pub, today):
     if re.search(r'全国大会|国際会議|学会|マラソン|花火大会|博覧会|展示会|コンサート|ライブ|大規模', title): score += 20
     elif re.search(r'花火|祭り|まつり|フェス|パレード', title): score += 12
     if re.search(r'開催決定|開催日|開催予定|日程発表|チケット発売|出展募集', title): score += 12
-    if not day: score = min(score, 35)
     if score < 20:
         return None
-    reason = '開催日候補あり・公式照合が必要' if day else '開催日不明・記事から公式情報を確認'
+    reason = '未来の開催日候補あり・公式照合が必要'
     return score, day.isoformat() if day else None, reason
 
 
 def fetch_rss(query):
     url = 'https://news.google.com/rss/search?' + urllib.parse.urlencode({
         'q': query + ' when:90d', 'hl': 'ja', 'gl': 'JP', 'ceid': 'JP:ja'})
-    req = urllib.request.Request(url, headers={'User-Agent': 'ShinOsakaEventNavi/7.20 (public RSS; daily)'})
+    req = urllib.request.Request(url, headers={'User-Agent': 'ShinOsakaEventNavi/7.20 (public RSS; scheduled)'})
     with urllib.request.urlopen(req, timeout=15) as res:
         payload = res.read(1_500_000)
     root = ET.fromstring(payload)
     out = []
-    today = dt.date.today()
+    today = dt.datetime.now(JST).date()
     for item in root.findall('.//channel/item')[:50]:
         title = (item.findtext('title') or '').strip()
         desc = re.sub(r'<[^>]*>', ' ', item.findtext('description') or '')
@@ -149,22 +168,20 @@ def run():
                     candidates[key] = e
         except Exception as ex:
             errors.append(f'{q}: {type(ex).__name__}: {str(ex)[:100]}')
-    today = dt.date.today()
+    today = dt.datetime.now(JST).date()
     limit = today + dt.timedelta(days=184)
     if len(errors) == len(QUERIES):
         # Avoid overwriting a previously good discovery dataset with empty results.
         raise RuntimeError('All news RSS searches failed: ' + '; '.join(errors))
     confirmed = [x for x in CONFIRMED if today <= dt.date.fromisoformat(x['start']) <= limit]
-    # A dated candidate must fall inside six months; undated items are still shown for review.
-    selected = [x for x in candidates.values() if not x['dateHint'] or today <= dt.date.fromisoformat(x['dateHint']) <= limit]
+    # Every candidate must have a future date within the rolling window.
+    selected = [x for x in candidates.values() if x['dateHint'] and today <= dt.date.fromisoformat(x['dateHint']) <= limit]
     # Keep dated, higher-confidence leads first. Avoid flooding the iPhone with vague news.
     selected.sort(key=lambda x: (x['dateHint'] is None, -x['relevance'], x['dateHint'] or '', x['title']))
-    dated = [x for x in selected if x['dateHint']][:25]
-    undated = [x for x in selected if not x['dateHint']][:5]
-    selected = dated + undated
-    payload = {'version': '7.20', 'checkedAt': dt.datetime.now(dt.timezone.utc).isoformat(),
+    selected = selected[:25]
+    payload = {'version': '7.20-future-only', 'checkedAt': dt.datetime.now(dt.timezone.utc).isoformat(),
                'confirmed': confirmed, 'candidates': selected, 'queries': len(QUERIES),
-               'successfulQueries': len(QUERIES) - len(errors), 'errors': errors, 'selectionPolicy': '過去・まとめ記事を除外。開催日候補ありを優先し、日付不明は最大5件。未確認はスコア加算なし。',
+               'successfulQueries': len(QUERIES) - len(errors), 'errors': errors, 'selectionPolicy': '未来の開催日が読み取れる候補のみ表示。過去・日付不明・開催年が曖昧な記事を除外。未確認はスコア加算なし。',
                'note': '未確認候補は総合需要に反映しません。公式確認済みでも定性的加点は実績に基づく予測ではありません。'}
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
