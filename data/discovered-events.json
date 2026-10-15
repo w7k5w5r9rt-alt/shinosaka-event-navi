@@ -1,6 +1,6 @@
 {
-  "version": "7.20",
-  "checkedAt": "2026-10-15T01:02:05.867076+00:00",
+  "version": "7.20-future-only",
+  "checkedAt": "2026-10-15T01:07:19.659565+00:00",
   "confirmed": [
     {
       "id": "discovery-confirmed-yodogawa-2026",
@@ -31,67 +31,12 @@
       "published": "Mon, 05 Oct 2026 06:08:00 GMT",
       "confidence": "candidate",
       "relevance": 75,
-      "reason": "開催日候補あり・公式照合が必要"
-    },
-    {
-      "id": "candidate-fa720220397dfa50",
-      "title": "世界初となる「UNDERTALE」の大規模展示会「UNDERTALE MUSEUM」が2027年に東京と大阪で開催決定 - 4Gamer.net",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE50c1RZRVc5NHRoOHJmZ2V3aU1mTjhRY2ljMlNkc2JCWnlTMVRzblFxSUh4ZFA4MlJiQUhsdVduVmd4QjU5UGszaGIwWkt3U0tpTnhkQzhHQ2ZxS0I3WThTNWdfRQ?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Thu, 30 Jul 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "relevance": 35,
-      "reason": "開催日不明・記事から公式情報を確認"
-    },
-    {
-      "id": "candidate-a43577c8b4e940d2",
-      "title": "天神祭当日の24、25日は大阪市中心部で大規模交通規制を実施 - 産経ニュース",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFBjU2VSNndBcTBqWGhXdm5vclJveUNsVHJrZ0JRNkVrYmxnWENmWlAyLWQtUVpyRzh5YnpzdXotdDRVNVY0eWF2MEY3NjBXYzVxdGl5ak5MNEg5Y1pJNGt6ai0xZHVValpEMGNfc3NSY1dpNVMxSkE?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Thu, 23 Jul 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "relevance": 35,
-      "reason": "開催日不明・記事から公式情報を確認"
-    },
-    {
-      "id": "candidate-db02b265cf8ae851",
-      "title": "大阪・泉南で『SBI舞花火』まもなく開催、尺玉10連発や4000機のドローンショー、ベリーグッドマン、MINMIによるライブも - エンタメ特化型情報メディア スパイス",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMiT0FVX3lxTFBVUGZtTHdZbXBkTUxmT2hybVhnUElUR0xlZ2tKeFExOEFCWjBqajg4cGFLbkZPazhaVUZHeE83dzFRYVJZZDJ3WERubEtLQVHSAVRBVV95cUxOcjB2TTA3dXJfR1VYcEd0T1NZSG5TaWF4NHhvQVFjenQ5S0hGZEQ2MzNKRlpIMmJzcTJsV19RS1RrY0xMclFmUnBoT0FEOXFidVJyWFk?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Fri, 14 Aug 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "relevance": 32,
-      "reason": "開催日不明・記事から公式情報を確認"
-    },
-    {
-      "id": "candidate-8a8da031cd39ccab",
-      "title": "【2026】「SBI 舞花火 in 大阪・泉南」が本日開催！ドローンショーも - 夜景FAN",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPaUtDMy1ydEt5ZUF0cjlzRFpKLVV5OUVkcnRNVVdNcDFwdGJJOWxiWFdNcDA3ZnQxR1UxMHlpUFo5Nk5aV2JwRGsxZkozVEg1N2thbWRPNnF2YTV4YXJldUMzOXVjTmZHZFVaWEt4OFlCcGN6YmdYUHlXNFE5cHQzcA?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Sat, 22 Aug 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "relevance": 24,
-      "reason": "開催日不明・記事から公式情報を確認"
-    },
-    {
-      "id": "candidate-96eb3278e7abe8b4",
-      "title": "【2026】「天神祭奉納花火」本日打ち上げ！大阪を賑わす日本三大祭り - 夜景FAN",
-      "dateHint": null,
-      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1lVWtZS0tVNDhpOUFVLXpUOWZXYmlGczkzbE9xNVhvc1NIWG4xb291VnJTZlhSNDlxdEJxY2pEVjNZLWtFWUI0d1kxeGtLRjduUEp1YTQ4dXVNZF91a1BoOWVqa2ZYd01wcWVTbXljWk1BbXp1UVRMVA?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Sat, 25 Jul 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "relevance": 24,
-      "reason": "開催日不明・記事から公式情報を確認"
+      "reason": "未来の開催日候補あり・公式照合が必要"
     }
   ],
   "queries": 5,
   "successfulQueries": 5,
   "errors": [],
-  "selectionPolicy": "過去・まとめ記事を除外。開催日候補ありを優先し、日付不明は最大5件。未確認はスコア加算なし。",
+  "selectionPolicy": "未来の開催日が読み取れる候補のみ表示。過去・日付不明・開催年が曖昧な記事を除外。未確認はスコア加算なし。",
   "note": "未確認候補は総合需要に反映しません。公式確認済みでも定性的加点は実績に基づく予測ではありません。"
 }
