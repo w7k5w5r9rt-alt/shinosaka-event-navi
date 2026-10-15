@@ -6,6 +6,8 @@ Standard library only. Output consumed by v7.18 HTML.
 import datetime as dt
 from zoneinfo import ZoneInfo
 import email.utils
+import html
+from html.parser import HTMLParser
 import unicodedata
 import hashlib
 import json
@@ -19,9 +21,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 OUTPUT = ROOT / 'data' / 'discovered-events.json'
-QUERIES = [
+QUERY_TEMPLATES = [
     '大阪 花火大会 祭り 開催',
-    '大阪 大規模 イベント 開催 2026 2027',
+    '大阪 大規模 イベント 開催 {years}',
     '大阪 全国大会 学会 国際会議 開催',
     '大阪 スポーツ 大会 観客 開催',
     '大阪 交通規制 大規模 催し',
@@ -35,6 +37,130 @@ EVENT_WORDS = re.compile(r'開催|開幕|決定|発表|日程|実施|予定|開�
 DATE = re.compile(r'(?<!\d)(?:(20\d{2})\s*[年/.-]\s*)?(1[0-2]|0?[1-9])\s*[月/.-]\s*(3[01]|[12]\d|0?[1-9])\s*日?(?!\d)')
 PAST_CONTEXT = re.compile(r'本日開催|本日打ち上げ|昨日|先日|開催した|開催されました|開催され|開催終了|閉幕|終演|振り返|開催レポ|実施した|行われた|盛況|終了しました')
 JST = ZoneInfo('Asia/Tokyo')
+
+
+def build_queries(today):
+    """Use years actually overlapping the rolling six-month window."""
+    end = today + dt.timedelta(days=184)
+    years = ' '.join(str(y) for y in range(today.year, end.year + 1))
+    return [template.replace('{years}', years) for template in QUERY_TEMPLATES]
+
+
+class ArticleParser(HTMLParser):
+    """Read visible article text and event-specific structured dates."""
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.parts, self.event_dates = [], []
+        self.ignore = 0
+        self.jsonld = False
+        self.json_parts = []
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag in ('script', 'style', 'nav', 'footer', 'header'):
+            if tag == 'script' and 'ld+json' in attrs.get('type', '').lower():
+                self.jsonld = True
+            else:
+                self.ignore += 1
+        if tag == 'time' and attrs.get('datetime') and re.search(r'event|start|schedule|date', str(attrs), re.I):
+            self.event_dates.append(attrs['datetime'])
+        if tag == 'meta':
+            key = (attrs.get('property') or attrs.get('name') or '').lower()
+            if key in ('event:start_time', 'event:start_date', 'event:startdate'):
+                self.event_dates.append(attrs.get('content', ''))
+
+    def handle_endtag(self, tag):
+        if tag == 'script' and self.jsonld:
+            self.jsonld = False
+        elif tag in ('script', 'style', 'nav', 'footer', 'header') and self.ignore:
+            self.ignore -= 1
+
+    def handle_data(self, data):
+        if self.jsonld:
+            self.json_parts.append(data)
+        elif not self.ignore:
+            data = ' '.join(data.split())
+            if data:
+                self.parts.append(data)
+
+
+def json_event_dates(obj):
+    if isinstance(obj, list):
+        for v in obj:
+            yield from json_event_dates(v)
+    elif isinstance(obj, dict):
+        types = obj.get('@type', [])
+        types = [types] if isinstance(types, str) else types
+        if any(str(t).lower().endswith('event') for t in types):
+            start = obj.get('startDate')
+            if isinstance(start, str):
+                yield start
+        for v in obj.values():
+            if isinstance(v, (dict, list)):
+                yield from json_event_dates(v)
+
+
+def event_date_from_article(page, today):
+    parser = ArticleParser()
+    parser.feed(page)
+    for raw in parser.json_parts:
+        try:
+            parser.event_dates.extend(json_event_dates(json.loads(raw)))
+        except (ValueError, TypeError):
+            pass
+    for raw in parser.event_dates:
+        match = re.search(r'(20\d{2})-(\d{1,2})-(\d{1,2})', raw)
+        if match:
+            try:
+                day = dt.date(*map(int, match.groups()))
+                if today <= day <= today + dt.timedelta(days=184):
+                    return day
+            except ValueError:
+                pass
+    # Only inspect date phrases near event language; don't treat article publication dates as event dates.
+    body = ' '.join(parser.parts)[:90000]
+    for match in DATE.finditer(body):
+        vicinity = body[max(0, match.start()-65):min(len(body), match.end()+65)]
+        if not re.search(r'開催|開幕|公演|実施|会期|イベント|日程|日時|打ち上げ|予定', vicinity):
+            continue
+        # Require explicit year in body; do not guess the year from the publication date.
+        if not match.group(1):
+            continue
+        try:
+            day = dt.date(int(match.group(1)), int(match.group(2)), int(match.group(3)))
+            if today <= day <= today + dt.timedelta(days=184):
+                return day
+        except ValueError:
+            pass
+    return None
+
+
+def article_link(description):
+    """Extract publisher link from RSS description, never fetch arbitrary hosts."""
+    for raw in re.findall(r'href=[\"\']([^\"\']+)', description, re.I):
+        link = html.unescape(raw)
+        parsed = urllib.parse.urlsplit(link)
+        host = (parsed.hostname or '').lower()
+        if parsed.scheme == 'https' and host and not host.endswith('.google.com') and host != 'google.com' and not host.endswith('.google.co.jp'):
+            if not (host == 'localhost' or host.endswith('.local') or host.endswith('.internal')):
+                return link
+    return None
+
+
+def fetch_article_date(link, today):
+    """Best-effort public page fetch; failure never creates a guessed event."""
+    if not link:
+        return None
+    try:
+        req = urllib.request.Request(link, headers={'User-Agent': 'Mozilla/5.0 (compatible; ShinOsakaEventNavi/7.21; public event discovery)'})
+        with urllib.request.urlopen(req, timeout=6) as res:
+            if 'text/html' not in res.headers.get('Content-Type', '').lower():
+                return None
+            page = res.read(350_000).decode('utf-8', errors='replace')
+        return event_date_from_article(page, today)
+    except (OSError, ValueError, UnicodeError):
+        return None
+
 
 # Confirmed against the organizer's official announcement and Osaka City designated-event list.
 # An explicit registry is deliberately NOT called automated verification.
@@ -99,19 +225,19 @@ def headline_date(title, today, published=None):
     return day
 
 
-def assess_headline(title, desc, pub, today):
+def assess_headline(title, desc, pub, today, article_date=None):
     """Return conservative ranking and date hint; never imply official confirmation."""
     title = unicodedata.normalize('NFKC', title).strip()
     if not KEYWORDS.search(title) or not OSAKA.search(title + ' ' + desc):
         return None
     if EXCLUDE.search(title) or PAST_CONTEXT.search(title):
         return None
-    if not EVENT_WORDS.search(title):
+    if not EVENT_WORDS.search(title + ' ' + desc):
         return None
     pdate = published_date(pub)
     if pdate and (pdate > today + dt.timedelta(days=1) or pdate < today - dt.timedelta(days=90)):
         return None
-    day = headline_date(title, today, pdate)
+    day = headline_date(title, today, pdate) or article_date
     # Strict future-only mode: do not publish undated news as event candidates.
     if day is None:
         return None
@@ -129,7 +255,7 @@ def assess_headline(title, desc, pub, today):
     return score, day.isoformat() if day else None, reason
 
 
-def fetch_rss(query):
+def fetch_rss(query, budget):
     url = 'https://news.google.com/rss/search?' + urllib.parse.urlencode({
         'q': query + ' when:90d', 'hl': 'ja', 'gl': 'JP', 'ceid': 'JP:ja'})
     req = urllib.request.Request(url, headers={'User-Agent': 'ShinOsakaEventNavi/7.20 (public RSS; scheduled)'})
@@ -140,12 +266,23 @@ def fetch_rss(query):
     today = dt.datetime.now(JST).date()
     for item in root.findall('.//channel/item')[:50]:
         title = (item.findtext('title') or '').strip()
-        desc = re.sub(r'<[^>]*>', ' ', item.findtext('description') or '')
+        raw_desc = item.findtext('description') or ''
+        desc = re.sub(r'<[^>]*>', ' ', raw_desc)
         link = (item.findtext('link') or '').strip()
         pub = (item.findtext('pubDate') or '').strip()
         if not link.startswith('https://'):
             continue
         assessment = assess_headline(title, desc, pub, today)
+        if assessment is None and KEYWORDS.search(title) and OSAKA.search(title + ' ' + desc) and not EXCLUDE.search(title) and not PAST_CONTEXT.search(title):
+            # Fetch the publisher's article only when the headline has no usable date.
+            # Limit page reads to keep scheduled GitHub Actions runs lightweight.
+            if budget[0] > 0:
+                target = article_link(raw_desc) or article_link('<a href="' + link + '">')
+                if target:
+                    budget[0] -= 1
+                day = fetch_article_date(target, today)
+                if day:
+                    assessment = assess_headline(title, desc, pub, today, day)
         if not assessment:
             continue
         score, candidate_date, reason = assessment
@@ -158,9 +295,11 @@ def fetch_rss(query):
 
 def run():
     candidates, errors = {}, []
-    for q in QUERIES:
+    queries = build_queries(dt.datetime.now(JST).date())
+    article_budget = [12]  # maximum article fetches across all five RSS queries
+    for q in queries:
         try:
-            for e in fetch_rss(q):
+            for e in fetch_rss(q, article_budget):
                 # Same title across searches is one discovery, not many demand drivers.
                 key = normalized_title(e['title'])
                 old = candidates.get(key)
@@ -170,7 +309,7 @@ def run():
             errors.append(f'{q}: {type(ex).__name__}: {str(ex)[:100]}')
     today = dt.datetime.now(JST).date()
     limit = today + dt.timedelta(days=184)
-    if len(errors) == len(QUERIES):
+    if len(errors) == len(queries):
         # Avoid overwriting a previously good discovery dataset with empty results.
         raise RuntimeError('All news RSS searches failed: ' + '; '.join(errors))
     confirmed = [x for x in CONFIRMED if today <= dt.date.fromisoformat(x['start']) <= limit]
@@ -179,9 +318,9 @@ def run():
     # Keep dated, higher-confidence leads first. Avoid flooding the iPhone with vague news.
     selected.sort(key=lambda x: (x['dateHint'] is None, -x['relevance'], x['dateHint'] or '', x['title']))
     selected = selected[:25]
-    payload = {'version': '7.20-future-only', 'checkedAt': dt.datetime.now(dt.timezone.utc).isoformat(),
-               'confirmed': confirmed, 'candidates': selected, 'queries': len(QUERIES),
-               'successfulQueries': len(QUERIES) - len(errors), 'errors': errors, 'selectionPolicy': '未来の開催日が読み取れる候補のみ表示。過去・日付不明・開催年が曖昧な記事を除外。未確認はスコア加算なし。',
+    payload = {'version': '7.21-article-dates-dynamic-years', 'checkedAt': dt.datetime.now(dt.timezone.utc).isoformat(),
+               'confirmed': confirmed, 'candidates': selected, 'queries': len(queries),
+               'successfulQueries': len(queries) - len(errors), 'errors': errors, 'selectionPolicy': '未来184日以内の開催日を見出し・記事本文・イベント構造化データから確認できた候補のみ表示。検索年は自動更新。未確認はスコア加算なし。',
                'note': '未確認候補は総合需要に反映しません。公式確認済みでも定性的加点は実績に基づく予測ではありません。'}
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
