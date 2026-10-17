@@ -1,39 +1,8 @@
 {
   "version": "7.21-article-dates-dynamic-years",
-  "checkedAt": "2026-10-17T12:56:50.314638+00:00",
-  "confirmed": [
-    {
-      "id": "discovery-confirmed-yodogawa-2026",
-      "title": "第38回 なにわ淀川花火大会",
-      "start": "2026-10-17",
-      "end": "2026-10-17",
-      "time": "19:00",
-      "category": "その他",
-      "venue": "淀川河川敷（十三会場）",
-      "url": "https://www.yodohanabi.com/3118.html",
-      "source": "なにわ淀川花火大会 主催者公式発表",
-      "notes": "公式開催日確認済み。来場者数・新大阪宿泊率は未確認。定性的な確認優先度のみ加点。",
-      "attendance": null,
-      "attendanceBasis": "unknown",
-      "discoveryImpact": 12,
-      "discoveryConfidence": "official",
-      "verified": true,
-      "autoCollected": true
-    }
-  ],
-  "candidates": [
-    {
-      "id": "candidate-68b488090563debf",
-      "title": "【薬局学会】10月17日・18日に学術総会を開催／大阪で - ドラビズ on-line",
-      "dateHint": "2026-10-17",
-      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE0zZ0xpaWpHQlRmTDh6Nml1NzNDSkJVTGc4UVBNY0tJTERwQmdlUGpEU3poRTVGS09BVENJTFhJbmY3dXQ2UlVMQkxqMThqN1lseHA4?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Thu, 24 Sep 2026 07:00:00 GMT",
-      "confidence": "candidate",
-      "relevance": 77,
-      "reason": "未来の開催日候補あり・公式照合が必要"
-    }
-  ],
+  "checkedAt": "2026-10-17T16:48:45.230935+00:00",
+  "confirmed": [],
+  "candidates": [],
   "queries": 5,
   "successfulQueries": 5,
   "errors": [],
