@@ -1,6 +1,6 @@
 {
   "version": "7.21-article-dates-dynamic-years",
-  "checkedAt": "2026-10-16T20:52:26.017589+00:00",
+  "checkedAt": "2026-10-17T01:03:28.007964+00:00",
   "confirmed": [
     {
       "id": "discovery-confirmed-yodogawa-2026",
@@ -34,14 +34,14 @@
       "reason": "未来の開催日候補あり・公式照合が必要"
     },
     {
-      "id": "candidate-e2ce4abf8d86b5a1",
-      "title": "１１月２３日阪神優勝パレード／大阪市イベントと同時開催 - 四国新聞",
-      "dateHint": "2026-11-23",
-      "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE0ybjg1V0JqX1ZWb2h0dHV2dGNkdHJYRXBJdTc0LWY3MUQxdUlPZ29kYmtCWUZSQnI2aWpZenU5ZVVieXE1ZDJSV28tMkFodE00cHowV1FmeUtjdWNUUVVnV2hveXZiVFlPM05MNk1ISGVLaTNU?oc=5",
+      "id": "candidate-68b488090563debf",
+      "title": "【薬局学会】10月17日・18日に学術総会を開催／大阪で - ドラビズ on-line",
+      "dateHint": "2026-10-17",
+      "url": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE0zZ0xpaWpHQlRmTDh6Nml1NzNDSkJVTGc4UVBNY0tJTERwQmdlUGpEU3poRTVGS09BVENJTFhJbmY3dXQ2UlVMQkxqMThqN1lseHA4?oc=5",
       "source": "GoogleニュースRSS（未確認）",
-      "published": "Mon, 05 Oct 2026 06:08:00 GMT",
+      "published": "Thu, 24 Sep 2026 07:00:00 GMT",
       "confidence": "candidate",
-      "relevance": 75,
+      "relevance": 77,
       "reason": "未来の開催日候補あり・公式照合が必要"
     }
   ],
