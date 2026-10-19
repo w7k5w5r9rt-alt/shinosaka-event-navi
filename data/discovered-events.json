@@ -1,20 +1,8 @@
 {
   "version": "7.21-article-dates-dynamic-years",
-  "checkedAt": "2026-10-19T01:05:22.874003+00:00",
+  "checkedAt": "2026-10-19T04:57:51.468023+00:00",
   "confirmed": [],
-  "candidates": [
-    {
-      "id": "candidate-27c7e6a7412697a7",
-      "title": "『御堂筋ランウェイ2026』11月23日開催決定！大阪・御堂筋で14時から、当日は大規模な交通規制も - ｄメニューニュース",
-      "dateHint": "2026-11-23",
-      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNMTJYTi1SRk9FWTktdVd2TzVVWWpjRVJtWW9fYVROTmxGeFZoMDA1Y3B5QkphMENtTFI1ang3eVUzc2ZVd29oTTZvaWRxR21DN0czbDRxNTZuQ3R1ZHZPVEplbjFrd0Jmd01VX2dVS1lfSGdmdTNzS3JxaHBXaldJbHczUVJjWE9Ec3fSAY8BQVVfeXFMT3VSekZFRE0tald1SzJtVTZtSkNyNmVhOHZBMlNBVnFUTllWcEdOUUo1c05tSzZxbEhRMEYyOENPQjEtVFJVTU9QZXgyamtIdzdTZUEwdGZOR2VDM1RkSm1GdEFHTDFoVGdIUzc5ZlFxQUNZZGhFelZrQTZGVl9PRXpsREx6eXhkdTRYTjhnVlk?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Tue, 29 Sep 2026 10:23:26 GMT",
-      "confidence": "candidate",
-      "relevance": 89,
-      "reason": "未来の開催日候補あり・公式照合が必要"
-    }
-  ],
+  "candidates": [],
   "queries": 5,
   "successfulQueries": 5,
   "errors": [],
