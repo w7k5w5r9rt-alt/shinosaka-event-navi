@@ -12,7 +12,7 @@
       "suspect_empty": 0,
       "error": 0,
       "extracted": 52,
-      "lastCheckedAt": "2026-10-19T19:02:14.635951+00:00"
+      "lastCheckedAt": "2026-10-20T07:06:14.399944+00:00"
     },
     "大阪城ホール": {
       "ok": 5,
@@ -22,7 +22,7 @@
       "suspect_empty": 0,
       "error": 0,
       "extracted": 41,
-      "lastCheckedAt": "2026-10-19T19:02:14.635951+00:00"
+      "lastCheckedAt": "2026-10-20T07:06:14.399944+00:00"
     },
     "インテックス大阪": {
       "ok": 1,
@@ -31,8 +31,8 @@
       "empty_confirmed": 0,
       "suspect_empty": 0,
       "error": 0,
-      "extracted": 70,
-      "lastCheckedAt": "2026-10-19T19:02:14.635951+00:00"
+      "extracted": 86,
+      "lastCheckedAt": "2026-10-20T07:06:14.399944+00:00"
     },
     "万博記念公園": {
       "ok": 1,
@@ -41,8 +41,8 @@
       "empty_confirmed": 0,
       "suspect_empty": 0,
       "error": 0,
-      "extracted": 27,
-      "lastCheckedAt": "2026-10-19T19:02:14.635951+00:00"
+      "extracted": 36,
+      "lastCheckedAt": "2026-10-20T07:06:14.399944+00:00"
     },
     "パナソニックスタジアム吹田": {
       "ok": 1,
@@ -52,7 +52,7 @@
       "suspect_empty": 0,
       "error": 0,
       "extracted": 10,
-      "lastCheckedAt": "2026-10-19T19:02:14.635951+00:00"
+      "lastCheckedAt": "2026-10-20T07:06:14.399944+00:00"
     },
     "大阪市内（会場要確認）": {
       "ok": 1,
@@ -62,14 +62,14 @@
       "suspect_empty": 0,
       "error": 0,
       "extracted": 9,
-      "lastCheckedAt": "2026-10-19T19:02:14.635951+00:00"
+      "lastCheckedAt": "2026-10-20T07:06:14.399944+00:00"
     }
   },
-  "checkedAt": "2026-10-19T19:02:14.635951+00:00",
+  "checkedAt": "2026-10-20T07:06:14.399944+00:00",
   "sources": 17,
   "fetched": 17,
-  "structuredEventsExtractedThisRun": 209,
-  "totalAutoEvents": 245,
-  "newAlerts": 8,
+  "structuredEventsExtractedThisRun": 234,
+  "totalAutoEvents": 287,
+  "newAlerts": 9,
   "note": "万博記念公園・ガンバ大阪ホームゲーム・大阪観光局MICEカレンダーも収集対象。来場者数は実測未確認。消失から中止を推定しません。"
 }
