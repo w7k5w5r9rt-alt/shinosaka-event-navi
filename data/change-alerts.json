@@ -1,34 +1,45 @@
 [
   {
-    "id": "change-47522b79eaf978ec",
+    "id": "change-b46ad2c8d32233cc",
     "type": "page_changed",
     "title": "京セラドーム大阪 公式スケジュール のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "京セラドーム大阪 公式スケジュール",
     "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=3&yearId=2027",
-    "detectedAt": "2026-10-21T01:04:58.898823+00:00",
+    "detectedAt": "2026-10-21T07:08:21.090061+00:00",
     "status": "要確認",
     "priority": "info"
   },
   {
-    "id": "change-6830dbe1665b8266",
+    "id": "change-3d51cdf6559f3662",
     "type": "page_changed",
     "title": "ガンバ大阪 公式試合日程 のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "ガンバ大阪 公式試合日程",
     "url": "https://www.gamba-osaka.net/game/",
-    "detectedAt": "2026-10-21T01:04:58.898823+00:00",
+    "detectedAt": "2026-10-21T07:08:21.090061+00:00",
     "status": "要確認",
     "priority": "info"
   },
   {
-    "id": "change-eb91af215b8aa4cb",
+    "id": "change-e0e5fe88f72eb22f",
     "type": "page_changed",
     "title": "万博記念公園 公式イベント一覧 のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "万博記念公園 公式イベント一覧",
     "url": "https://www.expo70-park.jp/events/during-events/",
-    "detectedAt": "2026-10-21T01:04:58.898823+00:00",
+    "detectedAt": "2026-10-21T07:08:21.090061+00:00",
+    "status": "要確認",
+    "priority": "info"
+  },
+  {
+    "id": "change-9489f09712cd55c0",
+    "type": "page_changed",
+    "title": "インテックス大阪 公式イベント情報 のページ変更を検知",
+    "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
+    "source": "インテックス大阪 公式イベント情報",
+    "url": "https://www.intex-osaka.com/jp/event/",
+    "detectedAt": "2026-10-21T07:08:21.090061+00:00",
     "status": "要確認",
     "priority": "info"
   },
@@ -62,17 +73,6 @@
     "source": "大阪観光局 MICEカレンダー",
     "url": "https://mice.osaka-info.jp/businesses/calendar/_partial/ja/index.html",
     "detectedAt": "2026-10-15T19:01:12.179229+00:00",
-    "status": "要確認",
-    "priority": "info"
-  },
-  {
-    "id": "change-f58e46dc9e4811b4",
-    "type": "page_changed",
-    "title": "インテックス大阪 公式イベント情報 のページ変更を検知",
-    "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
-    "source": "インテックス大阪 公式イベント情報",
-    "url": "https://www.intex-osaka.com/jp/event/",
-    "detectedAt": "2026-10-14T07:06:03.671519+00:00",
     "status": "要確認",
     "priority": "info"
   },
