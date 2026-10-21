@@ -1,8 +1,20 @@
 {
   "version": "7.21-article-dates-dynamic-years",
-  "checkedAt": "2026-10-21T16:56:25.243085+00:00",
+  "checkedAt": "2026-10-21T20:54:24.229383+00:00",
   "confirmed": [],
-  "candidates": [],
+  "candidates": [
+    {
+      "id": "candidate-27c7e6a7412697a7",
+      "title": "『御堂筋ランウェイ2026』11月23日開催決定！大阪・御堂筋で14時から、当日は大規模な交通規制も - WWSチャンネル",
+      "dateHint": "2026-11-23",
+      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9OS09YemZPRjh2ZmVzZ0ZGV2psOXZqdTBHQTNYYlg1V2ZaSThxWUI3WTNaaDdtakUyc08xZ2ZDOHhKM011aEUyd1BRZU9BZU44MVhKM0FBN3I?oc=5",
+      "source": "GoogleニュースRSS（未確認）",
+      "published": "Tue, 29 Sep 2026 07:00:00 GMT",
+      "confidence": "candidate",
+      "relevance": 89,
+      "reason": "未来の開催日候補あり・公式照合が必要"
+    }
+  ],
   "queries": 5,
   "successfulQueries": 5,
   "errors": [],
