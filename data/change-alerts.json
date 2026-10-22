@@ -1,12 +1,12 @@
 [
   {
-    "id": "change-891e28f680cd6373",
+    "id": "change-680e028879ac98ed",
     "type": "page_changed",
     "title": "京セラドーム大阪 公式スケジュール のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "京セラドーム大阪 公式スケジュール",
     "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=3&yearId=2027",
-    "detectedAt": "2026-10-22T07:10:02.199889+00:00",
+    "detectedAt": "2026-10-22T13:07:02.154182+00:00",
     "status": "要確認",
     "priority": "info"
   },
@@ -17,7 +17,84 @@
     "message": "サイト取得失敗。中止とは判断しないでください。",
     "source": "万博記念公園 公式イベント一覧",
     "url": "https://www.expo70-park.jp/events/during-events/",
-    "detectedAt": "2026-10-22T07:10:02.199889+00:00",
+    "detectedAt": "2026-10-22T13:07:02.154182+00:00",
+    "status": "要確認",
+    "priority": "info"
+  },
+  {
+    "id": "change-dfd6d99995ea9fa6",
+    "type": "page_changed",
+    "title": "インテックス大阪 公式イベント情報 のページ変更を検知",
+    "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
+    "source": "インテックス大阪 公式イベント情報",
+    "url": "https://www.intex-osaka.com/jp/event/",
+    "detectedAt": "2026-10-22T13:07:02.154182+00:00",
+    "status": "要確認",
+    "priority": "info"
+  },
+  {
+    "id": "fetch-error-4b0650ca7f1b7b11",
+    "type": "fetch_error",
+    "title": "大阪城ホール 公式スケジュール の取得に失敗",
+    "message": "サイト取得失敗。中止とは判断しないでください。",
+    "source": "大阪城ホール 公式スケジュール",
+    "url": "https://www.osaka-johall.com/event/?ym=202610",
+    "detectedAt": "2026-10-22T13:07:02.154182+00:00",
+    "status": "要確認",
+    "priority": "info"
+  },
+  {
+    "id": "fetch-error-7c1a3babaf7d86a1",
+    "type": "fetch_error",
+    "title": "大阪城ホール 公式スケジュール の取得に失敗",
+    "message": "サイト取得失敗。中止とは判断しないでください。",
+    "source": "大阪城ホール 公式スケジュール",
+    "url": "https://www.osaka-johall.com/event/?ym=202611",
+    "detectedAt": "2026-10-22T13:07:02.154182+00:00",
+    "status": "要確認",
+    "priority": "info"
+  },
+  {
+    "id": "fetch-error-c784581d172ffec6",
+    "type": "fetch_error",
+    "title": "大阪城ホール 公式スケジュール の取得に失敗",
+    "message": "サイト取得失敗。中止とは判断しないでください。",
+    "source": "大阪城ホール 公式スケジュール",
+    "url": "https://www.osaka-johall.com/event/?ym=202612",
+    "detectedAt": "2026-10-22T13:07:02.154182+00:00",
+    "status": "要確認",
+    "priority": "info"
+  },
+  {
+    "id": "fetch-error-bb0dc35830e1e665",
+    "type": "fetch_error",
+    "title": "大阪城ホール 公式スケジュール の取得に失敗",
+    "message": "サイト取得失敗。中止とは判断しないでください。",
+    "source": "大阪城ホール 公式スケジュール",
+    "url": "https://www.osaka-johall.com/event/?ym=202701",
+    "detectedAt": "2026-10-22T13:07:02.154182+00:00",
+    "status": "要確認",
+    "priority": "info"
+  },
+  {
+    "id": "fetch-error-10a370f69e1c5917",
+    "type": "fetch_error",
+    "title": "大阪城ホール 公式スケジュール の取得に失敗",
+    "message": "サイト取得失敗。中止とは判断しないでください。",
+    "source": "大阪城ホール 公式スケジュール",
+    "url": "https://www.osaka-johall.com/event/?ym=202702",
+    "detectedAt": "2026-10-22T13:07:02.154182+00:00",
+    "status": "要確認",
+    "priority": "info"
+  },
+  {
+    "id": "fetch-error-ba72514c6c2efae2",
+    "type": "fetch_error",
+    "title": "大阪城ホール 公式スケジュール の取得に失敗",
+    "message": "サイト取得失敗。中止とは判断しないでください。",
+    "source": "大阪城ホール 公式スケジュール",
+    "url": "https://www.osaka-johall.com/event/?ym=202703",
+    "detectedAt": "2026-10-22T13:07:02.154182+00:00",
     "status": "要確認",
     "priority": "info"
   },
@@ -51,17 +128,6 @@
     "source": "大阪城ホール 公式スケジュール",
     "url": "https://www.osaka-johall.com/event/?ym=202703",
     "detectedAt": "2026-10-21T19:01:41.613955+00:00",
-    "status": "要確認",
-    "priority": "info"
-  },
-  {
-    "id": "change-9489f09712cd55c0",
-    "type": "page_changed",
-    "title": "インテックス大阪 公式イベント情報 のページ変更を検知",
-    "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
-    "source": "インテックス大阪 公式イベント情報",
-    "url": "https://www.intex-osaka.com/jp/event/",
-    "detectedAt": "2026-10-21T07:08:21.090061+00:00",
     "status": "要確認",
     "priority": "info"
   },
