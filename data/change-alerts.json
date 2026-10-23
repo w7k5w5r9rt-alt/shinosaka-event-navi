@@ -1,23 +1,12 @@
 [
   {
-    "id": "change-e21c4abb80ce9f03",
+    "id": "change-813b005374afb30f",
     "type": "page_changed",
     "title": "京セラドーム大阪 公式スケジュール のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "京セラドーム大阪 公式スケジュール",
     "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=3&yearId=2027",
-    "detectedAt": "2026-10-23T01:07:54.632533+00:00",
-    "status": "要確認",
-    "priority": "info"
-  },
-  {
-    "id": "fetch-error-f6aa1f9159240f48",
-    "type": "fetch_error",
-    "title": "万博記念公園 公式イベント一覧 の取得に失敗",
-    "message": "サイト取得失敗。中止とは判断しないでください。",
-    "source": "万博記念公園 公式イベント一覧",
-    "url": "https://www.expo70-park.jp/events/during-events/",
-    "detectedAt": "2026-10-23T01:07:54.632533+00:00",
+    "detectedAt": "2026-10-23T07:07:32.834495+00:00",
     "status": "要確認",
     "priority": "info"
   },
@@ -28,7 +17,7 @@
     "message": "サイト取得失敗。中止とは判断しないでください。",
     "source": "大阪城ホール 公式スケジュール",
     "url": "https://www.osaka-johall.com/event/?ym=202610",
-    "detectedAt": "2026-10-23T01:07:54.632533+00:00",
+    "detectedAt": "2026-10-23T07:07:32.834495+00:00",
     "status": "要確認",
     "priority": "info"
   },
@@ -39,7 +28,7 @@
     "message": "サイト取得失敗。中止とは判断しないでください。",
     "source": "大阪城ホール 公式スケジュール",
     "url": "https://www.osaka-johall.com/event/?ym=202611",
-    "detectedAt": "2026-10-23T01:07:54.632533+00:00",
+    "detectedAt": "2026-10-23T07:07:32.834495+00:00",
     "status": "要確認",
     "priority": "info"
   },
@@ -50,7 +39,7 @@
     "message": "サイト取得失敗。中止とは判断しないでください。",
     "source": "大阪城ホール 公式スケジュール",
     "url": "https://www.osaka-johall.com/event/?ym=202612",
-    "detectedAt": "2026-10-23T01:07:54.632533+00:00",
+    "detectedAt": "2026-10-23T07:07:32.834495+00:00",
     "status": "要確認",
     "priority": "info"
   },
@@ -61,7 +50,7 @@
     "message": "サイト取得失敗。中止とは判断しないでください。",
     "source": "大阪城ホール 公式スケジュール",
     "url": "https://www.osaka-johall.com/event/?ym=202701",
-    "detectedAt": "2026-10-23T01:07:54.632533+00:00",
+    "detectedAt": "2026-10-23T07:07:32.834495+00:00",
     "status": "要確認",
     "priority": "info"
   },
@@ -72,7 +61,7 @@
     "message": "サイト取得失敗。中止とは判断しないでください。",
     "source": "大阪城ホール 公式スケジュール",
     "url": "https://www.osaka-johall.com/event/?ym=202702",
-    "detectedAt": "2026-10-23T01:07:54.632533+00:00",
+    "detectedAt": "2026-10-23T07:07:32.834495+00:00",
     "status": "要確認",
     "priority": "info"
   },
@@ -83,7 +72,18 @@
     "message": "サイト取得失敗。中止とは判断しないでください。",
     "source": "大阪城ホール 公式スケジュール",
     "url": "https://www.osaka-johall.com/event/?ym=202703",
-    "detectedAt": "2026-10-23T01:07:54.632533+00:00",
+    "detectedAt": "2026-10-23T07:07:32.834495+00:00",
+    "status": "要確認",
+    "priority": "info"
+  },
+  {
+    "id": "change-3c5321a9d1d4479a",
+    "type": "page_changed",
+    "title": "コスモスクエア開発協議会（インテックス大阪予定表） のページ変更を検知",
+    "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
+    "source": "コスモスクエア開発協議会（インテックス大阪予定表）",
+    "url": "https://www.cosmosquare-djc.jp/eventinfo/",
+    "detectedAt": "2026-10-23T07:07:32.834495+00:00",
     "status": "要確認",
     "priority": "info"
   },
@@ -128,17 +128,6 @@
     "source": "大阪城ホール 公式スケジュール",
     "url": "https://www.osaka-johall.com/event/?ym=202703",
     "detectedAt": "2026-10-21T19:01:41.613955+00:00",
-    "status": "要確認",
-    "priority": "info"
-  },
-  {
-    "id": "change-ca58b2424f246d3e",
-    "type": "page_changed",
-    "title": "コスモスクエア開発協議会（インテックス大阪予定表） のページ変更を検知",
-    "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
-    "source": "コスモスクエア開発協議会（インテックス大阪予定表）",
-    "url": "https://www.cosmosquare-djc.jp/eventinfo/",
-    "detectedAt": "2026-10-20T07:06:14.399944+00:00",
     "status": "要確認",
     "priority": "info"
   },
