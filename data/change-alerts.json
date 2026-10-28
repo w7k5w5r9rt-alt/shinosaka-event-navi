@@ -1,12 +1,34 @@
 [
   {
-    "id": "change-662d250d4d7d69ed",
+    "id": "event-change-d90cd12995b95e5a",
+    "type": "event_changed",
+    "title": "2026 MAMA AWARDS Presented by Visa の内容変更候補",
+    "message": "開演時刻または状態が変更された可能性があります。公式情報をご確認ください。",
+    "source": "京セラドーム大阪 公式スケジュール",
+    "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=11&yearId=2026",
+    "detectedAt": "2026-10-28T13:18:52.113299+00:00",
+    "status": "要確認",
+    "priority": "important"
+  },
+  {
+    "id": "event-change-2d4dedecabc570aa",
+    "type": "event_changed",
+    "title": "2026 MAMA AWARDS Presented by Visa の内容変更候補",
+    "message": "開演時刻または状態が変更された可能性があります。公式情報をご確認ください。",
+    "source": "京セラドーム大阪 公式スケジュール",
+    "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=11&yearId=2026",
+    "detectedAt": "2026-10-28T13:18:52.113299+00:00",
+    "status": "要確認",
+    "priority": "important"
+  },
+  {
+    "id": "change-bff54b63481e1a9b",
     "type": "page_changed",
     "title": "京セラドーム大阪 公式スケジュール のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "京セラドーム大阪 公式スケジュール",
     "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=3&yearId=2027",
-    "detectedAt": "2026-10-28T07:21:05.041724+00:00",
+    "detectedAt": "2026-10-28T13:18:52.113299+00:00",
     "status": "要確認",
     "priority": "info"
   },
@@ -17,7 +39,7 @@
     "message": "サイト取得失敗。中止とは判断しないでください。",
     "source": "大阪城ホール 公式スケジュール",
     "url": "https://www.osaka-johall.com/event/?ym=202610",
-    "detectedAt": "2026-10-28T07:21:05.041724+00:00",
+    "detectedAt": "2026-10-28T13:18:52.113299+00:00",
     "status": "要確認",
     "priority": "info"
   },
@@ -28,7 +50,7 @@
     "message": "サイト取得失敗。中止とは判断しないでください。",
     "source": "大阪城ホール 公式スケジュール",
     "url": "https://www.osaka-johall.com/event/?ym=202611",
-    "detectedAt": "2026-10-28T07:21:05.041724+00:00",
+    "detectedAt": "2026-10-28T13:18:52.113299+00:00",
     "status": "要確認",
     "priority": "info"
   },
@@ -39,7 +61,7 @@
     "message": "サイト取得失敗。中止とは判断しないでください。",
     "source": "大阪城ホール 公式スケジュール",
     "url": "https://www.osaka-johall.com/event/?ym=202612",
-    "detectedAt": "2026-10-28T07:21:05.041724+00:00",
+    "detectedAt": "2026-10-28T13:18:52.113299+00:00",
     "status": "要確認",
     "priority": "info"
   },
@@ -50,7 +72,7 @@
     "message": "サイト取得失敗。中止とは判断しないでください。",
     "source": "大阪城ホール 公式スケジュール",
     "url": "https://www.osaka-johall.com/event/?ym=202701",
-    "detectedAt": "2026-10-28T07:21:05.041724+00:00",
+    "detectedAt": "2026-10-28T13:18:52.113299+00:00",
     "status": "要確認",
     "priority": "info"
   },
@@ -61,7 +83,7 @@
     "message": "サイト取得失敗。中止とは判断しないでください。",
     "source": "大阪城ホール 公式スケジュール",
     "url": "https://www.osaka-johall.com/event/?ym=202702",
-    "detectedAt": "2026-10-28T07:21:05.041724+00:00",
+    "detectedAt": "2026-10-28T13:18:52.113299+00:00",
     "status": "要確認",
     "priority": "info"
   },
@@ -72,29 +94,29 @@
     "message": "サイト取得失敗。中止とは判断しないでください。",
     "source": "大阪城ホール 公式スケジュール",
     "url": "https://www.osaka-johall.com/event/?ym=202703",
-    "detectedAt": "2026-10-28T07:21:05.041724+00:00",
+    "detectedAt": "2026-10-28T13:18:52.113299+00:00",
     "status": "要確認",
     "priority": "info"
   },
   {
-    "id": "change-c8eeb278395503ed",
+    "id": "change-8943f8b9b605db73",
     "type": "page_changed",
     "title": "ガンバ大阪 公式試合日程 のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "ガンバ大阪 公式試合日程",
     "url": "https://www.gamba-osaka.net/game/",
-    "detectedAt": "2026-10-28T07:21:05.041724+00:00",
+    "detectedAt": "2026-10-28T13:18:52.113299+00:00",
     "status": "要確認",
     "priority": "info"
   },
   {
-    "id": "change-19bb5f99fdc6c44e",
+    "id": "change-74d6cd9eb51d7edf",
     "type": "page_changed",
     "title": "万博記念公園 公式イベント一覧 のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "万博記念公園 公式イベント一覧",
     "url": "https://www.expo70-park.jp/events/during-events/",
-    "detectedAt": "2026-10-28T07:21:05.041724+00:00",
+    "detectedAt": "2026-10-28T13:18:52.113299+00:00",
     "status": "要確認",
     "priority": "info"
   },
