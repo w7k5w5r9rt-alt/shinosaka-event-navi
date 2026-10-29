@@ -1,7 +1,7 @@
 {
   "https://www.kyoceradome-osaka.jp/schedule/?monthId=10&yearId=2026": {
-    "hash": "80dd3740475c7b9a6ae70746fc512c6096e7dfd9d3382d45c5561696cb80dd70",
-    "checkedAt": "2026-10-29T01:20:20.009889+00:00",
+    "hash": "1055ce1cfa0a6b80ca93d3013baf057868fd588d4c84ab8891f1b4250f877c2d",
+    "checkedAt": "2026-10-29T07:22:07.740114+00:00",
     "status": "ok",
     "extracted": 3,
     "previousExtracted": 3,
@@ -9,8 +9,8 @@
     "venue": "京セラドーム大阪"
   },
   "https://www.kyoceradome-osaka.jp/schedule/?monthId=11&yearId=2026": {
-    "hash": "75deea00d24d1b3ffbaf7f8aeeda55969ddae068a8159a520de28faa85f018ae",
-    "checkedAt": "2026-10-29T01:20:20.009889+00:00",
+    "hash": "11f94c4f87575f9b02540dd321da2dc5ddb9bf95ea8053cfb75da42f0f4555b7",
+    "checkedAt": "2026-10-29T07:22:07.740114+00:00",
     "status": "ok",
     "extracted": 18,
     "previousExtracted": 18,
@@ -18,26 +18,26 @@
     "venue": "京セラドーム大阪"
   },
   "https://www.kyoceradome-osaka.jp/schedule/?monthId=12&yearId=2026": {
-    "hash": "a074891c48cb749e2cde90262066a1ed248ba4c1018ec1e88161f8d1d97d21de",
-    "checkedAt": "2026-10-29T01:20:20.009889+00:00",
+    "hash": "288458bfe30ca2997ba9a85466d3e5a8debc9e2e44b13b5aa45a2785e56f72eb",
+    "checkedAt": "2026-10-29T07:22:07.740114+00:00",
     "status": "ok",
-    "extracted": 10,
+    "extracted": 11,
     "previousExtracted": 10,
     "method": "kyocera",
     "venue": "京セラドーム大阪"
   },
   "https://www.kyoceradome-osaka.jp/schedule/?monthId=1&yearId=2027": {
-    "hash": "47034d798c5992f731993c1d6ce7a6d96f5a862c877af5914cb5bbf119c6749c",
-    "checkedAt": "2026-10-29T01:20:20.009889+00:00",
+    "hash": "1318edff6a5fd93e39074148c1942039157fe7488045e37ed90a5eec9bd50534",
+    "checkedAt": "2026-10-29T07:22:07.740114+00:00",
     "status": "ok",
-    "extracted": 15,
+    "extracted": 16,
     "previousExtracted": 15,
     "method": "kyocera",
     "venue": "京セラドーム大阪"
   },
   "https://www.kyoceradome-osaka.jp/schedule/?monthId=2&yearId=2027": {
-    "hash": "39a5700646e07fbdab669982a8707f04a1db2db72326851c02b77b4e985507c8",
-    "checkedAt": "2026-10-29T01:20:20.009889+00:00",
+    "hash": "39aa03dc73f49e36dd27c2e058a7b425c74d840ca29e127a4d4593ba5f1baf35",
+    "checkedAt": "2026-10-29T07:22:07.740114+00:00",
     "status": "ok",
     "extracted": 8,
     "previousExtracted": 8,
@@ -45,8 +45,8 @@
     "venue": "京セラドーム大阪"
   },
   "https://www.kyoceradome-osaka.jp/schedule/?monthId=3&yearId=2027": {
-    "hash": "b7a601a9c4b98c90aa418388f569bf01cbd4c7036c4105f10c2302f91ade39c3",
-    "checkedAt": "2026-10-29T01:20:20.009889+00:00",
+    "hash": "4c3f9c6d08bdc19549bff3f879d6c977474262119d578e15a540094241df7561",
+    "checkedAt": "2026-10-29T07:22:07.740114+00:00",
     "status": "ok",
     "extracted": 2,
     "previousExtracted": 2,
@@ -54,50 +54,62 @@
     "venue": "京セラドーム大阪"
   },
   "https://www.osaka-johall.com/event/?ym=202610": {
-    "checkedAt": "2026-10-29T01:20:20.009889+00:00",
-    "status": "error",
-    "error": "503 Server Error: Service Unavailable for url: https://www.osaka-johall.com/event/?ym=202610",
+    "hash": "2bd540e27cd1b471f437d6979b51c63fb52f9c171b0a417056a6b38376c43b28",
+    "checkedAt": "2026-10-29T07:22:07.740114+00:00",
+    "status": "ok",
+    "extracted": 1,
+    "previousExtracted": 0,
     "method": "johall",
     "venue": "大阪城ホール"
   },
   "https://www.osaka-johall.com/event/?ym=202611": {
-    "checkedAt": "2026-10-29T01:20:20.009889+00:00",
-    "status": "error",
-    "error": "503 Server Error: Service Unavailable for url: https://www.osaka-johall.com/event/?ym=202611",
+    "hash": "f6868980af9cd553c8c7d39a9044aa6b52a727640135578c0b0fb12b2c761dbb",
+    "checkedAt": "2026-10-29T07:22:07.740114+00:00",
+    "status": "ok",
+    "extracted": 15,
+    "previousExtracted": 0,
     "method": "johall",
     "venue": "大阪城ホール"
   },
   "https://www.osaka-johall.com/event/?ym=202612": {
-    "checkedAt": "2026-10-29T01:20:20.009889+00:00",
-    "status": "error",
-    "error": "503 Server Error: Service Unavailable for url: https://www.osaka-johall.com/event/?ym=202612",
+    "hash": "81d0aeb4c2646f86f05cc1a62c697979e130289df27427c51d359a1c11fda76a",
+    "checkedAt": "2026-10-29T07:22:07.740114+00:00",
+    "status": "ok",
+    "extracted": 16,
+    "previousExtracted": 0,
     "method": "johall",
     "venue": "大阪城ホール"
   },
   "https://www.osaka-johall.com/event/?ym=202701": {
-    "checkedAt": "2026-10-29T01:20:20.009889+00:00",
-    "status": "error",
-    "error": "503 Server Error: Service Unavailable for url: https://www.osaka-johall.com/event/?ym=202701",
+    "hash": "d5f36942ddc40518ea478f084216fc721df9824971f8168630dbb8c1c8e64695",
+    "checkedAt": "2026-10-29T07:22:07.740114+00:00",
+    "status": "ok",
+    "extracted": 1,
+    "previousExtracted": 0,
     "method": "johall",
     "venue": "大阪城ホール"
   },
   "https://www.osaka-johall.com/event/?ym=202702": {
-    "checkedAt": "2026-10-29T01:20:20.009889+00:00",
-    "status": "error",
-    "error": "503 Server Error: Service Unavailable for url: https://www.osaka-johall.com/event/?ym=202702",
+    "hash": "77c98fefcdb38123e4f1a419e769be84990a3e93b2cf933f8e72afa49da68652",
+    "checkedAt": "2026-10-29T07:22:07.740114+00:00",
+    "status": "empty_confirmed",
+    "extracted": 0,
+    "previousExtracted": 0,
     "method": "johall",
     "venue": "大阪城ホール"
   },
   "https://www.osaka-johall.com/event/?ym=202703": {
-    "checkedAt": "2026-10-29T01:20:20.009889+00:00",
-    "status": "error",
-    "error": "503 Server Error: Service Unavailable for url: https://www.osaka-johall.com/event/?ym=202703",
+    "hash": "ffb6b16beb19f954b4c9eeef0c2b62fe2ee3d338d4fccff3a838277088f861af",
+    "checkedAt": "2026-10-29T07:22:07.740114+00:00",
+    "status": "ok",
+    "extracted": 4,
+    "previousExtracted": 0,
     "method": "johall",
     "venue": "大阪城ホール"
   },
   "https://www.intex-osaka.com/jp/event/": {
     "hash": "284bb431081149a4ddc359e82c8abe53ec7f59d99c4cd4c20226a300a4d6c4a0",
-    "checkedAt": "2026-10-29T01:20:20.009889+00:00",
+    "checkedAt": "2026-10-29T07:22:07.740114+00:00",
     "status": "monitor_only",
     "extracted": 0,
     "previousExtracted": 0,
@@ -105,17 +117,17 @@
     "venue": "インテックス大阪"
   },
   "https://www.expo70-park.jp/events/during-events/": {
-    "hash": "7a6bd986e8765b9287c0eceebb66bb874c226d6f870a5e16fa8577a3edcbaa4e",
-    "checkedAt": "2026-10-29T01:20:20.009889+00:00",
+    "hash": "b56b66d98c5f68140d9dcc66702294cb78e0050cbb80a505227480496777daa5",
+    "checkedAt": "2026-10-29T07:22:07.740114+00:00",
     "status": "ok",
-    "extracted": 34,
+    "extracted": 35,
     "previousExtracted": 34,
     "method": "expo_park",
     "venue": "万博記念公園"
   },
   "https://www.gamba-osaka.net/game/": {
-    "hash": "5cfc387bf2eeee083ab8e1ae374aa88ea05cd7758a142ada5698b5de849fe8ce",
-    "checkedAt": "2026-10-29T01:20:20.009889+00:00",
+    "hash": "6b461923295edc4c40524dd7378e34267b18dd3ff87c66ebce87d34c3070e95e",
+    "checkedAt": "2026-10-29T07:22:07.740114+00:00",
     "status": "ok",
     "extracted": 9,
     "previousExtracted": 9,
@@ -124,7 +136,7 @@
   },
   "https://mice.osaka-info.jp/businesses/calendar/_partial/ja/index.html": {
     "hash": "a8e79df816183081f16342b85efa9c17d0f3a30c960c68f2b17e1930e8e2f481",
-    "checkedAt": "2026-10-29T01:20:20.009889+00:00",
+    "checkedAt": "2026-10-29T07:22:07.740114+00:00",
     "status": "ok",
     "extracted": 9,
     "previousExtracted": 9,
@@ -133,7 +145,7 @@
   },
   "https://www.cosmosquare-djc.jp/eventinfo/": {
     "hash": "6ec3c3ae176280e4a0b0a27f8a83adab3728e98f0b6384afee4ddeb6d468c0b7",
-    "checkedAt": "2026-10-29T01:20:20.009889+00:00",
+    "checkedAt": "2026-10-29T07:22:07.740114+00:00",
     "status": "ok",
     "extracted": 86,
     "previousExtracted": 86,
