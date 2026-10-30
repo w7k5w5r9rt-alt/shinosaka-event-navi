@@ -1,8 +1,8 @@
 {
   "schemaVersion": 2,
-  "health": "ok",
-  "healthyTargets": 17,
-  "attentionTargets": 0,
+  "health": "warning",
+  "healthyTargets": 15,
+  "attentionTargets": 2,
   "sourceSummary": {
     "京セラドーム大阪": {
       "ok": 6,
@@ -12,7 +12,7 @@
       "suspect_empty": 0,
       "error": 0,
       "extracted": 58,
-      "lastCheckedAt": "2026-10-30T07:21:41.087497+00:00"
+      "lastCheckedAt": "2026-10-30T13:18:00.267936+00:00"
     },
     "大阪城ホール": {
       "ok": 5,
@@ -22,27 +22,27 @@
       "suspect_empty": 0,
       "error": 0,
       "extracted": 37,
-      "lastCheckedAt": "2026-10-30T07:21:41.087497+00:00"
+      "lastCheckedAt": "2026-10-30T13:18:00.267936+00:00"
     },
     "インテックス大阪": {
-      "ok": 1,
+      "ok": 0,
       "monitor_only": 1,
       "empty_unverified": 0,
       "empty_confirmed": 0,
       "suspect_empty": 0,
-      "error": 0,
-      "extracted": 86,
-      "lastCheckedAt": "2026-10-30T07:21:41.087497+00:00"
+      "error": 1,
+      "extracted": 0,
+      "lastCheckedAt": "2026-10-30T13:18:00.267936+00:00"
     },
     "万博記念公園": {
-      "ok": 1,
+      "ok": 0,
       "monitor_only": 0,
       "empty_unverified": 0,
       "empty_confirmed": 0,
       "suspect_empty": 0,
-      "error": 0,
-      "extracted": 36,
-      "lastCheckedAt": "2026-10-30T07:21:41.087497+00:00"
+      "error": 1,
+      "extracted": 0,
+      "lastCheckedAt": "2026-10-30T13:18:00.267936+00:00"
     },
     "パナソニックスタジアム吹田": {
       "ok": 1,
@@ -52,7 +52,7 @@
       "suspect_empty": 0,
       "error": 0,
       "extracted": 9,
-      "lastCheckedAt": "2026-10-30T07:21:41.087497+00:00"
+      "lastCheckedAt": "2026-10-30T13:18:00.267936+00:00"
     },
     "大阪市内（会場要確認）": {
       "ok": 1,
@@ -62,14 +62,14 @@
       "suspect_empty": 0,
       "error": 0,
       "extracted": 9,
-      "lastCheckedAt": "2026-10-30T07:21:41.087497+00:00"
+      "lastCheckedAt": "2026-10-30T13:18:00.267936+00:00"
     }
   },
-  "checkedAt": "2026-10-30T07:21:41.087497+00:00",
+  "checkedAt": "2026-10-30T13:18:00.267936+00:00",
   "sources": 17,
-  "fetched": 17,
-  "structuredEventsExtractedThisRun": 235,
+  "fetched": 15,
+  "structuredEventsExtractedThisRun": 113,
   "totalAutoEvents": 306,
-  "newAlerts": 8,
+  "newAlerts": 9,
   "note": "万博記念公園・ガンバ大阪ホームゲーム・大阪観光局MICEカレンダーも収集対象。来場者数は実測未確認。消失から中止を推定しません。"
 }
