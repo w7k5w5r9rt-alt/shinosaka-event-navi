@@ -318,7 +318,40 @@ def run():
     # Keep dated, higher-confidence leads first. Avoid flooding the iPhone with vague news.
     selected.sort(key=lambda x: (x['dateHint'] is None, -x['relevance'], x['dateHint'] or '', x['title']))
     selected = selected[:25]
-    payload = {'version': '7.21-article-dates-dynamic-years', 'checkedAt': dt.datetime.now(dt.timezone.utc).isoformat(),
+    # Compare with the previous published discovery dataset. The first run
+    # establishes a baseline, so existing entries are not mislabeled "new".
+    previous = None
+    if OUTPUT.exists():
+        try:
+            previous = json.loads(OUTPUT.read_text(encoding='utf-8'))
+            if not isinstance(previous, dict) or not isinstance(previous.get('candidates'), list) or not isinstance(previous.get('confirmed'), list):
+                previous = None
+        except (OSError, ValueError, TypeError):
+            previous = None
+    checked_at = dt.datetime.now(dt.timezone.utc).isoformat()
+    current = [(e, 'candidate') for e in selected] + [(e, 'official') for e in confirmed]
+    old_ids = ({str(e.get('id')) for group in ('candidates', 'confirmed')
+                for e in previous[group] if isinstance(e, dict) and e.get('id')}
+               if previous is not None else set())
+    history = (previous.get('discoveryHistory', []) if previous is not None else [])
+    if not isinstance(history, list):
+        history = []
+    history = [h for h in history if isinstance(h, dict) and h.get('id') and h.get('detectedAt')]
+    known = {str(h['id']) for h in history} | old_ids
+    newly_found = []
+    if previous is not None:
+        for e, status in current:
+            if e['id'] in known:
+                continue
+            newly_found.append({'id': e['id'], 'title': e['title'],
+                                'eventDate': e.get('start') or e.get('dateHint'),
+                                'detectedAt': checked_at, 'status': status,
+                                'url': e.get('url', '')})
+    # Keep recent discoveries even after later searches stop returning them.
+    history = (newly_found + history)[:100]
+    payload = {'version': '7.22-discovery-history', 'checkedAt': checked_at,
+               'newDiscoveries': newly_found, 'discoveryHistory': history,
+               'historyInitialized': previous is not None,
                'confirmed': confirmed, 'candidates': selected, 'queries': len(queries),
                'successfulQueries': len(queries) - len(errors), 'errors': errors, 'selectionPolicy': '未来184日以内の開催日を見出し・記事本文・イベント構造化データから確認できた候補のみ表示。検索年は自動更新。未確認はスコア加算なし。',
                'note': '未確認候補は総合需要に反映しません。公式確認済みでも定性的加点は実績に基づく予測ではありません。'}

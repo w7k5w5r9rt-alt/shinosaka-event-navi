@@ -79,10 +79,15 @@
 </section>
 <section id="view-admin" hidden>
 <section class="panel" id="discoveryPanel" style="margin:12px 0;padding:16px">
-<div class="phead"><h2>大阪の大型需要要因を自動発見（v7.20）</h2><span class="tag">候補を自動選別・公式確認と区別</span></div>
+<div class="phead"><h2>大阪の大型需要要因を自動発見（v7.22）</h2><span class="tag">候補を自動選別・公式確認と区別</span></div>
+<div class="actions" style="margin:10px 0 8px;display:flex;flex-wrap:wrap;gap:8px">
+<a class="btn secondary" href="https://github.com/w7k5w5r9rt-alt/shinosaka-event-navi/actions/workflows/discover-demand.yml" target="_blank" rel="noopener noreferrer">今すぐ探索 ↗</a>
+<button class="btn ghost" type="button" id="refreshDiscoveryNow">探索結果を再読み込み</button>
+</div>
+<p class="muted" style="margin:0 0 10px;font-size:11px">「今すぐ探索」はGitHub Actionsを開きます。GitHubで「Run workflow」を押すと新しい探索を開始できます。完了後、この画面に戻り「探索結果を再読み込み」を押してください。アプリ内から直接実行するボタンではありません。</p>
 <div id="discoveryStatus" class="muted">発見データを確認しています…</div>
 <div class="muted" style="margin:8px 0">公式確認済みの大型催事はカレンダーに表示。未確認のニュースは候補として表示し、需要点数には加算しません。公式確認は自動判定ではなく、確認済み登録情報に限ります。自動探索はGitHub Actionsの定期実行時に更新されます。</div>
-<div id="discoveryConfirmed" class="list"></div>
+<div class="panel" style="margin:12px 0;padding:12px;background:#f6faf8"><div class="phead"><h3 style="font-size:15px;margin:0">新規発見イベント・履歴</h3><span id="discoveryNewCount" class="tag">確認中</span></div><p class="muted" style="margin:6px 0">開催日と発見日時を表示します。未確認候補は共有イベントや需要点数には追加されません。</p><div id="discoveryHistory" class="list"></div></div><div id="discoveryConfirmed" class="list"></div>
 <details style="margin-top:10px"><summary style="cursor:pointer;font-weight:bold">未確認の発見候補を表示</summary><div id="discoveryCandidates" class="list" style="margin-top:10px"></div></details>
 </section>
 
@@ -91,7 +96,7 @@
 <div class="panel"><div class="phead"><h2>イベントデータ</h2><div style="display:flex;gap:6px"><button class="btn secondary" id="export">JSON出力</button><button class="btn secondary" id="backupAll">全データ保存</button><button class="btn ghost" id="csv">CSV出力</button></div></div><p class="muted">端末変更やバックアップに使えます。JSONファイルを読み込むと、イベントデータを復元できます。</p><input type="file" id="importFile" accept=".json,application/json"><p class="muted">全データ保存には手動イベント・ホテル実績・確認済み通知が含まれます。iPhoneの「ファイル」に定期的に保存してください（自動バックアップではありません）。</p><input type="file" id="restoreAll" accept=".json,application/json"><div class="actions"><button class="btn ghost" id="resetDemo">サンプルイベントを再読み込み</button><button class="btn ghost" id="clearDemo">サンプルのみ削除</button></div><div class="muted" id="lastSaved" style="margin-top:10px"></div></div>
 <div class="panel"><h2 style="font-size:16px;margin:0 0 8px">重複・更新の扱い</h2><ul class="muted" style="padding-left:18px;line-height:1.8"><li>登録時に「イベント名＋会場＋開始日」が一致する候補を検知します。</li><li>編集時に変更前の内容と更新時刻を記録します。</li><li>公式サイト上で明示された中止・延期は収集時に検知します。ただし、別ページやSNSのみの発表は検知できない場合があります。</li></ul></div>
 </section>
-<footer>新大阪イベントナビ v7.20 · 来場者規模と根拠を表示 · 自動収集と初期データは共通・手動登録は端末別保存 · 実務利用前に公式情報を再確認</footer>
+<footer>新大阪イベントナビ v7.22 · 来場者規模と根拠を表示 · 自動収集と初期データは共通・手動登録は端末別保存 · 実務利用前に公式情報を再確認</footer>
 </main>
 <div class="modalback" id="back"><div class="modal"><h2 id="modalTitle">イベント登録</h2><form id="form"><input id="eid" type="hidden"><div class="formgrid">
 <label class="field full">イベント名<input id="title" required></label><label class="field">開始日<input id="start" type="date" required></label><label class="field">終了日<input id="end" type="date" required></label><label class="field">開始時刻<input id="time" type="time"></label><label class="field">ジャンル<select id="category"><option>ライブ・コンサート</option><option>展示会・見本市</option><option>スポーツ</option><option>学会・会議</option><option>その他</option></select></label><label class="field full">会場<input id="place" required></label><label class="field">規模<select id="scale"><option value="1">小規模・不明</option><option value="2">中規模</option><option value="3">大規模</option><option value="4">特大規模</option></select></label><label class="field">アクセス影響<select id="access"><option value="1">遠め・不明</option><option value="2">アクセス良好</option><option value="3">新大阪利用が見込まれる</option></select></label><label class="field">予想来場者数（任意）<input id="attendance" type="number" min="0" step="1" placeholder="例：30000"></label><label class="field">人数の根拠<select id="attendanceBasis"><option value="estimate">推定・手入力</option><option value="official">公式公表値</option><option value="unknown">不明</option></select></label><label class="field">遠方来場率（%・任意）<input id="farRate" type="number" min="0" max="100" step="1" placeholder="自動推定"></label><label class="field">遠方客の宿泊率（%・任意）<input id="stayRate" type="number" min="0" max="100" step="1" placeholder="自動推定"></label><label class="field">新大阪選択率（%・任意）<input id="areaRate" type="number" min="0" max="100" step="1" placeholder="自動推定"></label><label class="field full">公式URL<input id="url" type="url" placeholder="https://..."></label><label class="field full">メモ<input id="notes" placeholder="終演時間、規模の根拠など"></label></div><div class="modalactions"><button class="btn ghost" type="button" id="cancel">キャンセル</button><button class="btn primary" type="submit">保存</button></div><button class="btn ghost" type="button" id="del" style="display:none;width:100%;margin-top:8px">削除</button></form></div></div>
@@ -741,7 +746,7 @@ async function refreshAuto(){
  }catch(err){$('#sourceHealth').textContent='⚠ 自動データの確認に失敗しました。前回表示中のデータは最新とは限りません。';status.textContent='自動更新を確認できませんでした：'+err.message;box.innerHTML='<div class="empty">GitHub Actionsの初回実行後に再度「今すぐ更新」を押してください。</div>';}
 }
 async function refreshDiscovery(){
- const st=$('#discoveryStatus'), confirmedBox=$('#discoveryConfirmed'), candidateBox=$('#discoveryCandidates');
+ const st=$('#discoveryStatus'), confirmedBox=$('#discoveryConfirmed'), candidateBox=$('#discoveryCandidates'), historyBox=$('#discoveryHistory'), newCount=$('#discoveryNewCount');
  try{
   const base=new URL('.',location.href).href;
   const response=await fetch(base+'data/discovered-events.json?ts='+Date.now(),{cache:'no-store'});
@@ -749,6 +754,12 @@ async function refreshDiscovery(){
   const data=await response.json();
   if(!Array.isArray(data.confirmed)||!Array.isArray(data.candidates))throw new Error('データ形式が不正です');
   discoveredConfirmed=data.confirmed.filter(e=>e&&e.id&&/^\d{4}-\d{2}-\d{2}$/.test(e.start)&&/^\d{4}-\d{2}-\d{2}$/.test(e.end)&&e.start<=e.end&&e.title&&/^https:\/\//.test(e.url||'')&&e.discoveryConfidence==='official');
+  const history=Array.isArray(data.discoveryHistory)?data.discoveryHistory:[];
+  const newly=Array.isArray(data.newDiscoveries)?data.newDiscoveries:[];
+  const fmtDate=s=>{if(!s)return '日付未確認';const d=new Date(s);return Number.isNaN(d.getTime())?String(s):new Intl.DateTimeFormat('ja-JP',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}).format(d)};
+  const historyCard=e=>`<article class="discovery-card"><div class="discovery-top"><strong class="discovery-title">${esc(e.title||'イベント名未確認')}</strong><span class="discovery-tag ${e.status==='official'?'':'pending'}">${e.status==='official'?'公式確認済':'未確認候補'}</span></div><div class="discovery-sub">開催日：${esc(e.eventDate||'未確認')} ／ 発見：${esc(fmtDate(e.detectedAt))}</div>${/^https:\/\//.test(e.url||'')?`<div class="actions"><a class="btn ghost" href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">出典を確認 ↗</a></div>`:''}</article>`;
+  newCount.textContent='今回新規 '+newly.length+'件';
+  historyBox.innerHTML=history.length?history.slice(0,30).map(historyCard).join(''):(data.historyInitialized===false?'<div class="empty">初回の探索結果を基準として記録しました。次回以降、新たに見つかったイベントを表示します。</div>':'<div class="empty">まだ新規発見の履歴はありません。</div>');
   const link=e=>/^https:\/\//.test(e.url||'')?`<a class="btn ghost" target="_blank" rel="noopener noreferrer" href="${esc(e.url)}">出典を確認 ↗</a>`:'';
   const discoveryCard=(e,official)=>`<article class="discovery-card"><div class="discovery-top"><strong class="discovery-title">${esc(e.title)}</strong><span class="discovery-tag ${official?'':'pending'}">${official?'公式確認済':'未確認'}</span></div><div class="discovery-sub">${esc(official?e.start:(e.dateHint||'開催日未確認'))} ${official?'・ '+esc(e.venue||'会場未確認'):'・ 確認優先度 '+esc(String(e.relevance??'未算定'))+'（参考）'}</div><details><summary>詳細・出典を表示</summary><div class="discovery-sub">${official?'人数不明 ／ 定性補正最大'+esc(String(Number(e.discoveryImpact)||0))+'点（仮）':esc(e.reason||'公式情報との照合が必要')+' ／ 点数反映なし'}</div><div class="actions">${link(e)}</div></details></article>`;
   confirmedBox.innerHTML=discoveredConfirmed.length?discoveredConfirmed.map(e=>discoveryCard(e,true)).join(''):'<div class="empty">対象期間内の公式確認済み追加イベントはありません。</div>';
@@ -756,9 +767,10 @@ async function refreshDiscovery(){
   candidateBox.innerHTML=cs.length?cs.map(e=>discoveryCard(e,false)).join(''):'<div class="empty">条件に合う候補がありません。RSSの取得状況も確認してください。</div>';
   st.textContent=`最終探索：${data.checkedAt||'不明'} ／ 公式確認 ${discoveredConfirmed.length}件 ／ 未確認候補 ${data.candidates.length}件 ／ RSS取得成功 ${data.successfulQueries||0}/${data.queries||0}`+(data.errors?.length?' ／ ⚠一部取得失敗':'')+(data.checkedAt&&Date.now()-Date.parse(data.checkedAt)>48*3600000?' ／ ⚠48時間以上未更新':'');
   render();
- }catch(err){discoveredConfirmed=[];st.textContent='⚠ '+err.message;confirmedBox.innerHTML='';candidateBox.innerHTML='';render()}
+ }catch(err){discoveredConfirmed=[];st.textContent='⚠ '+err.message;confirmedBox.innerHTML='';candidateBox.innerHTML='';historyBox.innerHTML='';newCount.textContent='取得失敗';render()}
 }
 $('#refreshAuto').onclick=()=>{refreshAuto();refreshDiscovery()};
+$('#refreshDiscoveryNow').onclick=()=>refreshDiscovery();
 $('#kDate').value=iso(today);$('#range').textContent=`${iso(today)} 〜 ${iso(endRange)}`;render();calcKpi();
  // Fetch the same published dataset automatically in Safari and Home Screen.
  refreshAuto();
