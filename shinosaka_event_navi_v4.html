@@ -91,7 +91,7 @@
 <details style="margin-top:10px"><summary style="cursor:pointer;font-weight:bold">未確認の発見候補を表示</summary><div id="discoveryCandidates" class="list" style="margin-top:10px"></div></details>
 </section>
 
-<div class="panel"><div class="phead"><h2 style="font-size:16px;margin:0">自動収集・変更検知</h2><button class="btn secondary" id="refreshAuto">今すぐ更新</button></div><div id="autoStatus" class="muted">自動データの取得状態を確認しています…</div><div id="sourceHealth" class="muted" style="margin-top:10px"></div><div id="autoAlerts" class="list" style="margin-top:10px"></div><p class="muted" style="margin-top:10px">自動取得イベントと初期データは共通です。手動登録・インポートは端末ごとに保存され、一覧の件数が異なる場合があります。公式ページで明示された「中止」「延期」のみ状態を反映し、需要予測から除外します。掲載が消えただけでは中止と判断しません。重要な変更は公式URLで確認してください。</p></div>
+<div class="panel"><div class="phead"><h2 style="font-size:16px;margin:0">自動収集・変更検知</h2><button class="btn secondary" id="refreshAuto">今すぐ更新</button></div><div id="autoStatus" class="muted">自動データの取得状態を確認しています…</div><div id="sourceHealth" class="muted" style="margin-top:10px"></div><div class="panel" style="margin:12px 0;padding:12px"><div class="phead"><h3>公式サイト自動収集・新規追加履歴</h3><span id="officialHistoryCount" class="tag">確認中</span></div><p class="muted">開催日・イベント名・会場・初回発見日時を表示します。導入初回は既存イベントを新規扱いしません。</p><div id="officialHistory" class="list"></div></div><div id="autoAlerts" class="list" style="margin-top:10px"></div><p class="muted" style="margin-top:10px">自動取得イベントと初期データは共通です。手動登録・インポートは端末ごとに保存され、一覧の件数が異なる場合があります。公式ページで明示された「中止」「延期」のみ状態を反映し、需要予測から除外します。掲載が消えただけでは中止と判断しません。重要な変更は公式URLで確認してください。</p></div>
 <div class="panel"><h2 style="font-size:16px;margin:0 0 8px">情報源と更新状況</h2><p class="muted">初期データは以下を参照し、自動収集データは各イベントの公式URLを参照してください。GitHub Actionsによる定期収集を利用しています。</p><p><a href="https://www.kyoceradome-osaka.jp/schedule/" target="_blank" rel="noopener">京セラドーム大阪 公式イベントスケジュール ↗</a></p><div class="notice" style="margin-top:10px">GitHub Actionsで定期収集しています。未対応会場や変更検知の精度は引き続き改善します。会場側の利用規約やアクセス制限を確認して構築します。</div></div>
 <div class="panel"><div class="phead"><h2>イベントデータ</h2><div style="display:flex;gap:6px"><button class="btn secondary" id="export">JSON出力</button><button class="btn secondary" id="backupAll">全データ保存</button><button class="btn ghost" id="csv">CSV出力</button></div></div><p class="muted">端末変更やバックアップに使えます。JSONファイルを読み込むと、イベントデータを復元できます。</p><input type="file" id="importFile" accept=".json,application/json"><p class="muted">全データ保存には手動イベント・ホテル実績・確認済み通知が含まれます。iPhoneの「ファイル」に定期的に保存してください（自動バックアップではありません）。</p><input type="file" id="restoreAll" accept=".json,application/json"><div class="actions"><button class="btn ghost" id="resetDemo">サンプルイベントを再読み込み</button><button class="btn ghost" id="clearDemo">サンプルのみ削除</button></div><div class="muted" id="lastSaved" style="margin-top:10px"></div></div>
 <div class="panel"><h2 style="font-size:16px;margin:0 0 8px">重複・更新の扱い</h2><ul class="muted" style="padding-left:18px;line-height:1.8"><li>登録時に「イベント名＋会場＋開始日」が一致する候補を検知します。</li><li>編集時に変更前の内容と更新時刻を記録します。</li><li>公式サイト上で明示された中止・延期は収集時に検知します。ただし、別ページやSNSのみの発表は検知できない場合があります。</li></ul></div>
@@ -695,6 +695,18 @@ async function refreshAuto(){
   ]);
   if(!er.ok||!ar.ok||!sr.ok) throw new Error('自動データがまだ公開されていません。GitHub Actionsの初回実行を確認してください。');
   const auto=await er.json(), alerts=await ar.json(), st=await sr.json();
+  try {
+    const hr=await fetch(base+'data/official-discovery-history.json?ts='+Date.now(),{cache:'no-store'});
+    if(!hr.ok)throw Error('履歴ファイル未作成');
+    const hd=await hr.json(), items=Array.isArray(hd.entries)?hd.entries:[];
+    $('#officialHistoryCount').textContent=items.length+'件';
+    const fmt=x=>{const d=new Date(x);return Number.isNaN(d.getTime())?String(x||'不明'):d.toLocaleString('ja-JP',{timeZone:'Asia/Tokyo',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});};
+    $('#officialHistory').innerHTML=items.length?items.slice(0,30).map(e=>`<div class="event" style="display:block;min-width:0"><strong style="overflow-wrap:anywhere">${esc(e.title||'名称不明')}</strong><div class="meta">開催日：${esc(e.start||'不明')}${e.end&&e.end!==e.start?' ～ '+esc(e.end):''} ／ ${esc(e.venue||'会場不明')}</div><div class="meta">初回発見：${esc(fmt(e.firstSeenAt))} ／ ${esc(e.source||'公式収集')}</div>${/^https:\/\//.test(e.url||'')?`<div class="actions"><a class="btn ghost" href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">出典を確認 ↗</a></div>`:''}</div>`).join(''):'<div class="empty">新規追加履歴はまだありません。初回は既存イベントを基準登録します。</div>';
+  } catch(e) {
+    $('#officialHistoryCount').textContent='準備中';
+    $('#officialHistory').textContent='履歴データの公開待ちです。公式サイト収集のActionsを実行してください。';
+  }
+
   if(!Array.isArray(auto)||!Array.isArray(alerts)||!auto.every(e=>e&&e.id&&e.title&&e.start&&e.end&&e.venue))
     throw new Error('自動データの形式が正しくありません');
   if(!st.checkedAt||!Number.isFinite(Date.parse(st.checkedAt)))throw new Error('更新日時が不正です');

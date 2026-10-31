@@ -648,6 +648,27 @@ def main():
     if old_events and len(valid_events) < len(old_events) * 0.8:
         raise RuntimeError('Safety stop: event feed shrank unexpectedly')
     write_json('auto-events.json', sorted(valid_events, key=lambda e: (e.get('start', ''), e.get('title', ''))))
+    history = read_json('data/official-discovery-history.json', None)
+    current_ids = {e['id'] for e in valid_events}
+    if not isinstance(history, dict) or not isinstance(history.get('knownIds'), list):
+        history = {'schemaVersion': 1, 'initializedAt': NOW,
+                   'knownIds': sorted(current_ids), 'entries': [], 'updatedAt': NOW}
+    else:
+        known = set(history['knownIds'])
+        entries = history.get('entries', [])
+        if not isinstance(entries, list): entries = []
+        for e in valid_events:
+            if e['id'] not in known and e.get('start', '') >= TODAY.isoformat():
+                entries.append({'id': e['id'], 'title': e['title'], 'start': e['start'],
+                                'end': e.get('end', e['start']), 'venue': e['venue'],
+                                'source': e.get('source', ''), 'url': e.get('url', ''),
+                                'firstSeenAt': NOW})
+        history['knownIds'] = sorted(known | current_ids)
+        history['entries'] = sorted(entries, key=lambda e: e.get('firstSeenAt', ''),
+                                    reverse=True)[:300]
+        history['updatedAt'] = NOW
+    write_json('official-discovery-history.json', history)
+
 
     # Remove stale extraction/fetch warnings only when a subsequent run actually
     # extracted events from the exact same URL. A successful HTTP request alone
