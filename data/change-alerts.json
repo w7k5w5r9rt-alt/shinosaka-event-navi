@@ -33,35 +33,35 @@
     "priority": "important"
   },
   {
-    "id": "change-008c092c20103a1f",
+    "id": "change-426dcf4195ab7ba0",
     "type": "page_changed",
     "title": "京セラドーム大阪 公式スケジュール のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "京セラドーム大阪 公式スケジュール",
-    "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=3&yearId=2027",
-    "detectedAt": "2026-10-31T17:04:13.980197+00:00",
+    "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=4&yearId=2027",
+    "detectedAt": "2026-10-31T19:03:29.700389+00:00",
     "status": "要確認",
     "priority": "info"
   },
   {
-    "id": "change-74457c8462fb4345",
+    "id": "change-0d7c0695684e788c",
     "type": "page_changed",
     "title": "ガンバ大阪 公式試合日程 のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "ガンバ大阪 公式試合日程",
     "url": "https://www.gamba-osaka.net/game/",
-    "detectedAt": "2026-10-31T17:04:13.980197+00:00",
+    "detectedAt": "2026-10-31T19:03:29.700389+00:00",
     "status": "要確認",
     "priority": "info"
   },
   {
-    "id": "change-ae552ea393ea1109",
+    "id": "change-18be9ebe5eac75a3",
     "type": "page_changed",
     "title": "万博記念公園 公式イベント一覧 のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "万博記念公園 公式イベント一覧",
     "url": "https://www.expo70-park.jp/events/during-events/",
-    "detectedAt": "2026-10-31T17:04:13.980197+00:00",
+    "detectedAt": "2026-10-31T19:03:29.700389+00:00",
     "status": "要確認",
     "priority": "info"
   },
