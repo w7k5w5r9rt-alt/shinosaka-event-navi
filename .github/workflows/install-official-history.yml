@@ -1,0 +1,32 @@
+
+name: Install official event history
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Apply patch to current files
+        run: python install_official_history.py
+
+      - name: Commit code
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add collector.py shinosaka_event_navi_v4.html
+          git diff --cached --quiet || (git commit -m 'Add official discovery history' && git push)
