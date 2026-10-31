@@ -1,6 +1,9 @@
 {
-  "version": "7.21-article-dates-dynamic-years",
-  "checkedAt": "2026-10-31T13:14:38.550648+00:00",
+  "version": "7.22-discovery-history",
+  "checkedAt": "2026-10-31T16:37:37.775819+00:00",
+  "newDiscoveries": [],
+  "discoveryHistory": [],
+  "historyInitialized": true,
   "confirmed": [],
   "candidates": [],
   "queries": 5,
