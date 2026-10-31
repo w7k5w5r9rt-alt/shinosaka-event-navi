@@ -1,0 +1,20 @@
+from pathlib import Path
+import ast,re,subprocess,tempfile
+p=Path('collector.py'); h=Path('shinosaka_event_navi_v4.html')
+c=p.read_text(encoding='utf-8'); s=h.read_text(encoding='utf-8')
+if 'official-discovery-history.json' in c or 'id="officialHistory"' in s:
+    raise SystemExit('Already installed; nothing changed')
+a="    write_json('auto-events.json', sorted(valid_events, key=lambda e: (e.get('start', ''), e.get('title', ''))))"
+b='<div id="autoAlerts" class="list" style="margin-top:10px"></div>'
+d='  const auto=await er.json(), alerts=await ar.json(), st=await sr.json();'
+if any(v!=1 for v in (c.count(a),s.count(b),s.count(d))):
+    raise SystemExit('Code changed: expected anchor missing. Nothing changed.')
+c=c.replace(a,a+'\n'+"    history = read_json('data/official-discovery-history.json', None)\n    current_ids = {e['id'] for e in valid_events}\n    if not isinstance(history, dict) or not isinstance(history.get('knownIds'), list):\n        history = {'schemaVersion': 1, 'initializedAt': NOW,\n                   'knownIds': sorted(current_ids), 'entries': [], 'updatedAt': NOW}\n    else:\n        known = set(history['knownIds'])\n        entries = history.get('entries', [])\n        if not isinstance(entries, list): entries = []\n        for e in valid_events:\n            if e['id'] not in known and e.get('start', '') >= TODAY.isoformat():\n                entries.append({'id': e['id'], 'title': e['title'], 'start': e['start'],\n                                'end': e.get('end', e['start']), 'venue': e['venue'],\n                                'source': e.get('source', ''), 'url': e.get('url', ''),\n                                'firstSeenAt': NOW})\n        history['knownIds'] = sorted(known | current_ids)\n        history['entries'] = sorted(entries, key=lambda e: e.get('firstSeenAt', ''),\n                                    reverse=True)[:300]\n        history['updatedAt'] = NOW\n    write_json('official-discovery-history.json', history)\n",1)
+s=s.replace(b,'<div class="panel" style="margin:12px 0;padding:12px"><div class="phead"><h3>公式サイト自動収集・新規追加履歴</h3><span id="officialHistoryCount" class="tag">確認中</span></div><p class="muted">開催日・イベント名・会場・初回発見日時を表示します。導入初回は既存イベントを新規扱いしません。</p><div id="officialHistory" class="list"></div></div>'+b,1)
+s=s.replace(d,d+'\n'+'  try {\n    const hr=await fetch(base+\'data/official-discovery-history.json?ts=\'+Date.now(),{cache:\'no-store\'});\n    if(!hr.ok)throw Error(\'履歴ファイル未作成\');\n    const hd=await hr.json(), items=Array.isArray(hd.entries)?hd.entries:[];\n    $(\'#officialHistoryCount\').textContent=items.length+\'件\';\n    const fmt=x=>{const d=new Date(x);return Number.isNaN(d.getTime())?String(x||\'不明\'):d.toLocaleString(\'ja-JP\',{timeZone:\'Asia/Tokyo\',year:\'numeric\',month:\'2-digit\',day:\'2-digit\',hour:\'2-digit\',minute:\'2-digit\'});};\n    $(\'#officialHistory\').innerHTML=items.length?items.slice(0,30).map(e=>`<div class="event" style="display:block;min-width:0"><strong style="overflow-wrap:anywhere">${esc(e.title||\'名称不明\')}</strong><div class="meta">開催日：${esc(e.start||\'不明\')}${e.end&&e.end!==e.start?\' ～ \'+esc(e.end):\'\'} ／ ${esc(e.venue||\'会場不明\')}</div><div class="meta">初回発見：${esc(fmt(e.firstSeenAt))} ／ ${esc(e.source||\'公式収集\')}</div>${/^https:\\/\\//.test(e.url||\'\')?`<div class="actions"><a class="btn ghost" href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">出典を確認 ↗</a></div>`:\'\'}</div>`).join(\'\'):\'<div class="empty">新規追加履歴はまだありません。初回は既存イベントを基準登録します。</div>\';\n  } catch(e) {\n    $(\'#officialHistoryCount\').textContent=\'準備中\';\n    $(\'#officialHistory\').textContent=\'履歴データの公開待ちです。公式サイト収集のActionsを実行してください。\';\n  }\n',1)
+ast.parse(c)
+for js in re.findall(r'<script\b[^>]*>(.*?)</script>',s,re.S|re.I):
+    with tempfile.NamedTemporaryFile(mode='w',suffix='.js',encoding='utf-8') as f:
+        f.write(js);f.flush();subprocess.run(['node','--check',f.name],check=True)
+p.write_text(c,encoding='utf-8');h.write_text(s,encoding='utf-8')
+print('Official event history installed; syntax checks passed')
