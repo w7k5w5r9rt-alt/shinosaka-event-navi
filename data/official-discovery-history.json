@@ -80,6 +80,7 @@
     "auto-3e3ef0ff7adf19ba",
     "auto-3e488d67e10b3eb2",
     "auto-3eb6dee011727201",
+    "auto-3f33692cd38ca526",
     "auto-40e66fbafa74473f",
     "auto-417c05d4cc3e1509",
     "auto-435476797ad0f81a",
@@ -313,6 +314,16 @@
   ],
   "entries": [
     {
+      "id": "auto-3f33692cd38ca526",
+      "title": "KANSAI COLLECTION 2027 SPRING&SUMMER",
+      "start": "2027-02-23",
+      "end": "2027-02-23",
+      "venue": "京セラドーム大阪",
+      "source": "京セラドーム大阪 公式スケジュール",
+      "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=2&yearId=2027",
+      "firstSeenAt": "2026-11-01T13:11:50.320778+00:00"
+    },
+    {
       "id": "auto-73f37009cd425de3",
       "title": "ハンブレッダーズ",
       "start": "2027-04-04",
@@ -323,5 +334,5 @@
       "firstSeenAt": "2026-11-01T07:23:42.709473+00:00"
     }
   ],
-  "updatedAt": "2026-11-01T07:23:42.709473+00:00"
+  "updatedAt": "2026-11-01T13:11:50.320778+00:00"
 }
