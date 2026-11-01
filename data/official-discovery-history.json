@@ -135,6 +135,7 @@
     "auto-70acb3f685fd2e7f",
     "auto-72ba9c4b862e0d58",
     "auto-73302cf1c8c3b93b",
+    "auto-73f37009cd425de3",
     "auto-755e81442ba86aa3",
     "auto-75afff80e5ffa82f",
     "auto-762233a40ab1a20c",
@@ -310,6 +311,17 @@
     "auto-ffcd18ae8561c44d",
     "auto-ffd0ffe46e48e133"
   ],
-  "entries": [],
-  "updatedAt": "2026-11-01T01:28:58.005986+00:00"
+  "entries": [
+    {
+      "id": "auto-73f37009cd425de3",
+      "title": "ハンブレッダーズ",
+      "start": "2027-04-04",
+      "end": "2027-04-04",
+      "venue": "大阪城ホール",
+      "source": "大阪城ホール 公式スケジュール",
+      "url": "https://www.osaka-johall.com/event/?ym=202704",
+      "firstSeenAt": "2026-11-01T07:23:42.709473+00:00"
+    }
+  ],
+  "updatedAt": "2026-11-01T07:23:42.709473+00:00"
 }
