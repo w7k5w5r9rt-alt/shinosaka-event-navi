@@ -88,6 +88,7 @@
     "auto-47bd9527a3809000",
     "auto-48261b63836d3a53",
     "auto-487d1db537f0b29b",
+    "auto-49d4faee07e453c2",
     "auto-4b343c36b7dab01c",
     "auto-4b40d3fc4c82fb2b",
     "auto-4b6d3acf4851e8dd",
@@ -110,6 +111,7 @@
     "auto-5f7d960c02f47d59",
     "auto-60101767ad9d3aa3",
     "auto-61be61fe3ba9aff1",
+    "auto-628b8396a6f996ac",
     "auto-62d5f4d5ea829642",
     "auto-62d7834783cab380",
     "auto-636051a306529b37",
@@ -198,6 +200,7 @@
     "auto-a496350f78beab54",
     "auto-a496993e52eef931",
     "auto-a5004b14515fcbc7",
+    "auto-a5d7e6099b1960b2",
     "auto-a5fe388f4f7e72f5",
     "auto-a603a63923a933bc",
     "auto-a819c73ac86b1c6c",
@@ -314,6 +317,36 @@
   ],
   "entries": [
     {
+      "id": "auto-a5d7e6099b1960b2",
+      "title": "第8回 チーズEXPO in 万博公園",
+      "start": "2026-11-14",
+      "end": "2026-11-14",
+      "venue": "万博記念公園",
+      "source": "万博記念公園 公式イベント一覧",
+      "url": "https://www.expo70-park.jp/event/78377/",
+      "firstSeenAt": "2026-11-02T07:46:19.168241+00:00"
+    },
+    {
+      "id": "auto-628b8396a6f996ac",
+      "title": "第12回 ラーメンEXPO 2026 in 万博記念公園",
+      "start": "2026-11-21",
+      "end": "2026-11-21",
+      "venue": "万博記念公園",
+      "source": "万博記念公園 公式イベント一覧",
+      "url": "https://www.expo70-park.jp/event/78407/",
+      "firstSeenAt": "2026-11-02T07:46:19.168241+00:00"
+    },
+    {
+      "id": "auto-49d4faee07e453c2",
+      "title": "森のクラフト工房 干支かざり作り＜要事前申込＞",
+      "start": "2026-12-13",
+      "end": "2026-12-13",
+      "venue": "万博記念公園",
+      "source": "万博記念公園 公式イベント一覧",
+      "url": "https://www.expo70-park.jp/event/78101/",
+      "firstSeenAt": "2026-11-02T07:46:19.168241+00:00"
+    },
+    {
       "id": "auto-3f33692cd38ca526",
       "title": "KANSAI COLLECTION 2027 SPRING&SUMMER",
       "start": "2027-02-23",
@@ -334,5 +367,5 @@
       "firstSeenAt": "2026-11-01T07:23:42.709473+00:00"
     }
   ],
-  "updatedAt": "2026-11-02T01:28:34.719157+00:00"
+  "updatedAt": "2026-11-02T07:46:19.168241+00:00"
 }
