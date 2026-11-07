@@ -73,6 +73,7 @@
     "auto-355f058cb513458c",
     "auto-3593436d5cfc4d69",
     "auto-3655ad266629d78f",
+    "auto-36648a30553c6006",
     "auto-38eaa7983dee00cf",
     "auto-397ff6f5091dfe8a",
     "auto-3bc98b5c3df00c4b",
@@ -189,6 +190,7 @@
     "auto-9b6db0c2e26e8f20",
     "auto-9b82686c42698564",
     "auto-9c6e95dd7cd0c87b",
+    "auto-9ccbffd46ba04438",
     "auto-9dfbd8de64e9cf16",
     "auto-9ea7604ca9ac9f30",
     "auto-9ee5031420b4158e",
@@ -321,6 +323,26 @@
   ],
   "entries": [
     {
+      "id": "auto-9ccbffd46ba04438",
+      "title": "日本庭園ボランティアガイド（2026年11月）",
+      "start": "2026-11-08",
+      "end": "2026-11-08",
+      "venue": "万博記念公園",
+      "source": "万博記念公園 公式イベント一覧",
+      "url": "https://www.expo70-park.jp/event/77563/",
+      "firstSeenAt": "2026-11-07T19:05:23.531943+00:00"
+    },
+    {
+      "id": "auto-36648a30553c6006",
+      "title": "森のクラフト工房 どんぐりおえかき",
+      "start": "2026-11-15",
+      "end": "2026-11-15",
+      "venue": "万博記念公園",
+      "source": "万博記念公園 公式イベント一覧",
+      "url": "https://www.expo70-park.jp/event/77657/",
+      "firstSeenAt": "2026-11-07T19:05:23.531943+00:00"
+    },
+    {
       "id": "auto-30d12034687c947a",
       "title": "ベストヒット歌謡祭2026",
       "start": "2026-11-11",
@@ -411,5 +433,5 @@
       "firstSeenAt": "2026-11-01T07:23:42.709473+00:00"
     }
   ],
-  "updatedAt": "2026-11-07T13:14:14.238491+00:00"
+  "updatedAt": "2026-11-07T19:05:23.531943+00:00"
 }
