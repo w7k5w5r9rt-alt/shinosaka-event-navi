@@ -77,6 +77,7 @@
     "auto-3bc98b5c3df00c4b",
     "auto-3c2327b6641589c7",
     "auto-3cb25e85458e3533",
+    "auto-3dd0ac2ed226b653",
     "auto-3e3ef0ff7adf19ba",
     "auto-3e488d67e10b3eb2",
     "auto-3eb6dee011727201",
@@ -319,6 +320,16 @@
   ],
   "entries": [
     {
+      "id": "auto-3dd0ac2ed226b653",
+      "title": "大和地所スペシャル 超プロ野球ULTRA",
+      "start": "2026-12-07",
+      "end": "2026-12-07",
+      "venue": "大阪城ホール",
+      "source": "大阪城ホール 公式スケジュール",
+      "url": "https://www.osaka-johall.com/event/?ym=202612",
+      "firstSeenAt": "2026-11-07T07:23:43.683374+00:00"
+    },
+    {
       "id": "auto-7c17fc320d819798",
       "title": "【受付終了】野鳥観察会＜要事前申込＞",
       "start": "2026-11-14",
@@ -389,5 +400,5 @@
       "firstSeenAt": "2026-11-01T07:23:42.709473+00:00"
     }
   ],
-  "updatedAt": "2026-11-07T01:23:37.854668+00:00"
+  "updatedAt": "2026-11-07T07:23:43.683374+00:00"
 }
