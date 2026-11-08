@@ -291,6 +291,7 @@
     "auto-e69627d4cafa03eb",
     "auto-e7da7eab4a79e237",
     "auto-ea08f6e85b060ab5",
+    "auto-ea6f24c7bee7eb4b",
     "auto-ebc086d71b1ee56f",
     "auto-ec39e3f0a8c8af40",
     "auto-ed959ce2089da0be",
@@ -322,6 +323,16 @@
     "auto-ffd0ffe46e48e133"
   ],
   "entries": [
+    {
+      "id": "auto-ea6f24c7bee7eb4b",
+      "title": "日本庭園ボランティアガイド（2026年11月）",
+      "start": "2026-11-21",
+      "end": "2026-11-21",
+      "venue": "万博記念公園",
+      "source": "万博記念公園 公式イベント一覧",
+      "url": "https://www.expo70-park.jp/event/77563/",
+      "firstSeenAt": "2026-11-08T19:05:15.136811+00:00"
+    },
     {
       "id": "auto-9ccbffd46ba04438",
       "title": "日本庭園ボランティアガイド（2026年11月）",
@@ -433,5 +444,5 @@
       "firstSeenAt": "2026-11-01T07:23:42.709473+00:00"
     }
   ],
-  "updatedAt": "2026-11-08T13:13:48.393638+00:00"
+  "updatedAt": "2026-11-08T19:05:15.136811+00:00"
 }
