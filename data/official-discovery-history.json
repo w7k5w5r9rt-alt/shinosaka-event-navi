@@ -113,6 +113,7 @@
     "auto-5e48ce57426803d1",
     "auto-5f7d960c02f47d59",
     "auto-60101767ad9d3aa3",
+    "auto-60beebef50185127",
     "auto-61be61fe3ba9aff1",
     "auto-628b8396a6f996ac",
     "auto-62d5f4d5ea829642",
@@ -262,6 +263,7 @@
     "auto-d30426fe8b646046",
     "auto-d31b38446cf35996",
     "auto-d3c7c9cf620c6dd4",
+    "auto-d4ab9d961360b585",
     "auto-d4c466f9efeb254f",
     "auto-d5973bd4c07ea570",
     "auto-d597f3170e545a0a",
@@ -323,6 +325,26 @@
     "auto-ffd0ffe46e48e133"
   ],
   "entries": [
+    {
+      "id": "auto-60beebef50185127",
+      "title": "sumika",
+      "start": "2027-04-24",
+      "end": "2027-04-24",
+      "venue": "大阪城ホール",
+      "source": "大阪城ホール 公式スケジュール",
+      "url": "https://www.osaka-johall.com/event/?ym=202704",
+      "firstSeenAt": "2026-11-10T07:28:31.886771+00:00"
+    },
+    {
+      "id": "auto-d4ab9d961360b585",
+      "title": "sumika",
+      "start": "2027-04-25",
+      "end": "2027-04-25",
+      "venue": "大阪城ホール",
+      "source": "大阪城ホール 公式スケジュール",
+      "url": "https://www.osaka-johall.com/event/?ym=202704",
+      "firstSeenAt": "2026-11-10T07:28:31.886771+00:00"
+    },
     {
       "id": "auto-ea6f24c7bee7eb4b",
       "title": "日本庭園ボランティアガイド（2026年11月）",
@@ -444,5 +466,5 @@
       "firstSeenAt": "2026-11-01T07:23:42.709473+00:00"
     }
   ],
-  "updatedAt": "2026-11-09T19:16:01.317378+00:00"
+  "updatedAt": "2026-11-10T07:28:31.886771+00:00"
 }
