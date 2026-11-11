@@ -141,6 +141,7 @@
     "auto-6ed67ad5fc659f8e",
     "auto-70acb3f685fd2e7f",
     "auto-72ba9c4b862e0d58",
+    "auto-72c1b798ebf6be86",
     "auto-73302cf1c8c3b93b",
     "auto-73f37009cd425de3",
     "auto-755e81442ba86aa3",
@@ -326,6 +327,16 @@
   ],
   "entries": [
     {
+      "id": "auto-72c1b798ebf6be86",
+      "title": "日本ロービジョン学会学術総会",
+      "start": "2027-05-21",
+      "end": "2027-05-23",
+      "venue": "大阪市内（会場要確認）",
+      "source": "大阪観光局 MICEカレンダー",
+      "url": "https://mice.osaka-info.jp/businesses/calendar/",
+      "firstSeenAt": "2026-11-11T19:42:53.248181+00:00"
+    },
+    {
       "id": "auto-60beebef50185127",
       "title": "sumika",
       "start": "2027-04-24",
@@ -466,5 +477,5 @@
       "firstSeenAt": "2026-11-01T07:23:42.709473+00:00"
     }
   ],
-  "updatedAt": "2026-11-11T06:42:09.123720+00:00"
+  "updatedAt": "2026-11-11T19:42:53.248181+00:00"
 }
