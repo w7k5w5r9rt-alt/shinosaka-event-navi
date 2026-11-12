@@ -119,6 +119,7 @@
     "auto-62d5f4d5ea829642",
     "auto-62d7834783cab380",
     "auto-636051a306529b37",
+    "auto-63ba00285a0a142c",
     "auto-63c8c467178a4dc3",
     "auto-64773311a4e069ad",
     "auto-6519ed334cf61e54",
@@ -306,6 +307,7 @@
     "auto-f0be638e5c1fe79b",
     "auto-f0ed8ca1cc8c924d",
     "auto-f14e047c3d1a7059",
+    "auto-f1eee553918f515a",
     "auto-f2c1d10442e2dccd",
     "auto-f2f248921124628d",
     "auto-f3e25b4733de1f6d",
@@ -326,6 +328,26 @@
     "auto-ffd0ffe46e48e133"
   ],
   "entries": [
+    {
+      "id": "auto-f1eee553918f515a",
+      "title": "【受付終了】森の自由工作＜要事前申込＞",
+      "start": "2026-11-14",
+      "end": "2026-11-14",
+      "venue": "万博記念公園",
+      "source": "万博記念公園 公式イベント一覧",
+      "url": "https://www.expo70-park.jp/event/77661/",
+      "firstSeenAt": "2026-11-12T07:23:13.209876+00:00"
+    },
+    {
+      "id": "auto-63ba00285a0a142c",
+      "title": "イルミナイト万博〜2026 WINTER〜",
+      "start": "2026-11-22",
+      "end": "2026-11-22",
+      "venue": "万博記念公園",
+      "source": "万博記念公園 公式イベント一覧",
+      "url": "https://www.expo70-park.jp/event/78001/",
+      "firstSeenAt": "2026-11-12T07:23:13.209876+00:00"
+    },
     {
       "id": "auto-72c1b798ebf6be86",
       "title": "日本ロービジョン学会学術総会",
@@ -477,5 +499,5 @@
       "firstSeenAt": "2026-11-01T07:23:42.709473+00:00"
     }
   ],
-  "updatedAt": "2026-11-11T19:42:53.248181+00:00"
+  "updatedAt": "2026-11-12T07:23:13.209876+00:00"
 }
