@@ -1,7 +1,7 @@
 {
   "https://www.kyoceradome-osaka.jp/schedule/?monthId=11&yearId=2026": {
-    "hash": "be754e374e5f1858b7058d09386d3902989ecf5a938553d53c42f09656e318df",
-    "checkedAt": "2026-11-14T06:41:12.261491+00:00",
+    "hash": "980a7c2c893cb383c0518bc2d247fa9fb313d3ff4db274d5c95a009620e32775",
+    "checkedAt": "2026-11-14T18:15:36.809176+00:00",
     "status": "ok",
     "extracted": 18,
     "previousExtracted": 18,
@@ -9,8 +9,8 @@
     "venue": "京セラドーム大阪"
   },
   "https://www.kyoceradome-osaka.jp/schedule/?monthId=12&yearId=2026": {
-    "hash": "273860a59b4646e707a9f056450cee40fe5af7d6d46da663c289bb8743a61875",
-    "checkedAt": "2026-11-14T06:41:12.261491+00:00",
+    "hash": "0ea996aac510c88b131602d146b10562fd7ea5bda93458dc433a5f6c6eecfe53",
+    "checkedAt": "2026-11-14T18:15:36.809176+00:00",
     "status": "ok",
     "extracted": 11,
     "previousExtracted": 11,
@@ -18,8 +18,8 @@
     "venue": "京セラドーム大阪"
   },
   "https://www.kyoceradome-osaka.jp/schedule/?monthId=1&yearId=2027": {
-    "hash": "f6b79eae37b0e085611fb5389a042cff4b6028f4dcf02d565a402eb51471f7a6",
-    "checkedAt": "2026-11-14T06:41:12.261491+00:00",
+    "hash": "2b27ae4e629fd8e78be6e4b514a3c9182f8ac5d489ded105fe211383c588ad27",
+    "checkedAt": "2026-11-14T18:15:36.809176+00:00",
     "status": "ok",
     "extracted": 16,
     "previousExtracted": 16,
@@ -27,8 +27,8 @@
     "venue": "京セラドーム大阪"
   },
   "https://www.kyoceradome-osaka.jp/schedule/?monthId=2&yearId=2027": {
-    "hash": "b7574140d6b5321664102b7a48d68b2d209db13bdc860895c4603589b609f047",
-    "checkedAt": "2026-11-14T06:41:12.261491+00:00",
+    "hash": "7e1eee1409a3e590edc41496e92cdff785a0f5fba5f6cf64532994f72261dc75",
+    "checkedAt": "2026-11-14T18:15:36.809176+00:00",
     "status": "ok",
     "extracted": 9,
     "previousExtracted": 9,
@@ -36,8 +36,8 @@
     "venue": "京セラドーム大阪"
   },
   "https://www.kyoceradome-osaka.jp/schedule/?monthId=3&yearId=2027": {
-    "hash": "8a182908a3512c4a649e61bef116da917e6d1c5212a82ced29f04eb2888bb09b",
-    "checkedAt": "2026-11-14T06:41:12.261491+00:00",
+    "hash": "52ced50729c4af78cb64c62059c3157d6401b84e246c475799db68781312bdd5",
+    "checkedAt": "2026-11-14T18:15:36.809176+00:00",
     "status": "ok",
     "extracted": 2,
     "previousExtracted": 2,
@@ -45,8 +45,8 @@
     "venue": "京セラドーム大阪"
   },
   "https://www.kyoceradome-osaka.jp/schedule/?monthId=4&yearId=2027": {
-    "hash": "acaba79db1658cfe63ec7f0886722f9611342f94ea4a7a4ea42bc89e86679df8",
-    "checkedAt": "2026-11-14T06:41:12.261491+00:00",
+    "hash": "1cdb25783c84d8d913d641cce8063b457ab6011e7b4f014d71c5f77876bd9503",
+    "checkedAt": "2026-11-14T18:15:36.809176+00:00",
     "status": "empty_unverified",
     "extracted": 0,
     "previousExtracted": 0,
@@ -54,17 +54,17 @@
     "venue": "京セラドーム大阪"
   },
   "https://www.osaka-johall.com/event/?ym=202611": {
-    "hash": "53ef4201ee83b2e63c38380a065c638b1ff8ed4e86a1c2387da9c0cfc4c0663e",
-    "checkedAt": "2026-11-14T06:41:12.261491+00:00",
+    "hash": "a3a39d6010c5c7cfecaf3649eafa3a51f02a86ac4ff4b8120a4556e188f18c85",
+    "checkedAt": "2026-11-14T18:15:36.809176+00:00",
     "status": "ok",
-    "extracted": 11,
+    "extracted": 10,
     "previousExtracted": 11,
     "method": "johall",
     "venue": "大阪城ホール"
   },
   "https://www.osaka-johall.com/event/?ym=202612": {
-    "hash": "8eb67d2773d7d37ca70c0f0c3eaf186b5dc4fb7e878f5b999c70f33ee161611b",
-    "checkedAt": "2026-11-14T06:41:12.261491+00:00",
+    "hash": "94aa18cbfc242714be11a9ad5186ca5c3b85639b8e2433f314bec938aff6fb75",
+    "checkedAt": "2026-11-14T18:15:36.809176+00:00",
     "status": "ok",
     "extracted": 17,
     "previousExtracted": 17,
@@ -72,17 +72,17 @@
     "venue": "大阪城ホール"
   },
   "https://www.osaka-johall.com/event/?ym=202701": {
-    "hash": "4ec4f455a2d987906db400a3d8fb9df2243c881b7935894fe35c5c05dff0fc34",
-    "checkedAt": "2026-11-14T06:41:12.261491+00:00",
+    "hash": "d0d3e38d60d380f29946670b3577485c8216bb32876ac56aa212a1bc33e4f84f",
+    "checkedAt": "2026-11-14T18:15:36.809176+00:00",
     "status": "ok",
     "extracted": 4,
-    "previousExtracted": 1,
+    "previousExtracted": 4,
     "method": "johall",
     "venue": "大阪城ホール"
   },
   "https://www.osaka-johall.com/event/?ym=202702": {
-    "hash": "b643f0a06f186e5137ce3add45259d8ef81be7885f9c5ba6f881607f35dfc363",
-    "checkedAt": "2026-11-14T06:41:12.261491+00:00",
+    "hash": "488a17c3b374d23ca5bcf63851c38ca6ba813364f40ca70133faafc5cd851e10",
+    "checkedAt": "2026-11-14T18:15:36.809176+00:00",
     "status": "empty_confirmed",
     "extracted": 0,
     "previousExtracted": 0,
@@ -90,8 +90,8 @@
     "venue": "大阪城ホール"
   },
   "https://www.osaka-johall.com/event/?ym=202703": {
-    "hash": "641eb2e2cf2a4f82ff352c6dcc99f12bdb18540df79af03da1af9bc5b8710824",
-    "checkedAt": "2026-11-14T06:41:12.261491+00:00",
+    "hash": "4c61b8ff888bb6f669290a36c7f4492923ee95e21da5d60086acbd72c839a6a4",
+    "checkedAt": "2026-11-14T18:15:36.809176+00:00",
     "status": "ok",
     "extracted": 4,
     "previousExtracted": 4,
@@ -99,8 +99,8 @@
     "venue": "大阪城ホール"
   },
   "https://www.osaka-johall.com/event/?ym=202704": {
-    "hash": "c6369b04f546ffc3d8e2a1c0c016185a7948ebcc0721f3f773f97c9a2978c6ab",
-    "checkedAt": "2026-11-14T06:41:12.261491+00:00",
+    "hash": "8d77ca01c212af421e1e79e5477a9d82c75c2afcafa4474f442e7319e00b44be",
+    "checkedAt": "2026-11-14T18:15:36.809176+00:00",
     "status": "ok",
     "extracted": 4,
     "previousExtracted": 4,
@@ -108,24 +108,24 @@
     "venue": "大阪城ホール"
   },
   "https://www.intex-osaka.com/jp/event/": {
-    "checkedAt": "2026-11-14T06:41:12.261491+00:00",
+    "checkedAt": "2026-11-14T18:15:36.809176+00:00",
     "status": "error",
-    "error": "HTTPSConnectionPool(host='www.intex-osaka.com', port=443): Max retries exceeded with url: /jp/event/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.intex-osaka.com', port=443) at 0x7ce54397cd70>, 'Connection to www.intex-osaka.com timed out. (connect timeout=25)'))",
+    "error": "HTTPSConnectionPool(host='www.intex-osaka.com', port=443): Max retries exceeded with url: /jp/event/ (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.intex-osaka.com', port=443) at 0x751c836bcb00>, 'Connection to www.intex-osaka.com timed out. (connect timeout=25)'))",
     "method": "structured",
     "venue": "インテックス大阪"
   },
   "https://www.expo70-park.jp/events/during-events/": {
-    "hash": "6204453f05a5f5702997b2f2fcb39c47c32474d4331bcb75ccd8f1eda1b569e0",
-    "checkedAt": "2026-11-14T06:41:12.261491+00:00",
+    "hash": "92155f4617ed08e72565e8add056e2066cbbb4d23c92a2e78cdd368a3c2d6542",
+    "checkedAt": "2026-11-14T18:15:36.809176+00:00",
     "status": "ok",
-    "extracted": 30,
+    "extracted": 25,
     "previousExtracted": 30,
     "method": "expo_park",
     "venue": "万博記念公園"
   },
   "https://www.gamba-osaka.net/game/": {
-    "hash": "8dcce3c3885ac6318b0183024d9c69f77de6de466c6639958fe0cf69df459d6d",
-    "checkedAt": "2026-11-14T06:41:12.261491+00:00",
+    "hash": "3f640f630db92b26a3dedfa5530e2ddab7a60f9a5c195d3b3afbf456ef0a23bb",
+    "checkedAt": "2026-11-14T18:15:36.809176+00:00",
     "status": "ok",
     "extracted": 8,
     "previousExtracted": 8,
@@ -134,7 +134,7 @@
   },
   "https://mice.osaka-info.jp/businesses/calendar/_partial/ja/index.html": {
     "hash": "e07ffacc3235cc6d3df03d3f9f3b537dda65ef41f9120dd16b38d956c63ce76b",
-    "checkedAt": "2026-11-14T06:41:12.261491+00:00",
+    "checkedAt": "2026-11-14T18:15:36.809176+00:00",
     "status": "ok",
     "extracted": 8,
     "previousExtracted": 8,
@@ -143,9 +143,9 @@
   },
   "https://www.cosmosquare-djc.jp/eventinfo/": {
     "hash": "43f1fe6ddeb3299e2cc0ea5591cbae5d7daa1045d27fe44813f58457132ab071",
-    "checkedAt": "2026-11-14T06:41:12.261491+00:00",
+    "checkedAt": "2026-11-14T18:15:36.809176+00:00",
     "status": "ok",
-    "extracted": 71,
+    "extracted": 69,
     "previousExtracted": 71,
     "method": "intex_supplement",
     "venue": "インテックス大阪"
