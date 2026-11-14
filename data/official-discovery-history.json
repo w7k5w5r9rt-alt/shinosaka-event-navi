@@ -109,6 +109,7 @@
     "auto-59fa7bcbf946af76",
     "auto-5a15923adc42ff28",
     "auto-5aee65a3b16d1a51",
+    "auto-5bb0ecc5c265d904",
     "auto-5ca68f4111eaca72",
     "auto-5e48ce57426803d1",
     "auto-5f7d960c02f47d59",
@@ -247,6 +248,7 @@
     "auto-c3ea090bfa4506ab",
     "auto-c519085a554e1457",
     "auto-c653b5c51ee4a5fd",
+    "auto-c7c72535582984a6",
     "auto-c7ffa3c44066ff8c",
     "auto-c80edc7d8837274e",
     "auto-c87a8e1a9ac16d8a",
@@ -291,6 +293,7 @@
     "auto-e23b0b78460ceab0",
     "auto-e27e328948dc6d78",
     "auto-e3025ab29694907b",
+    "auto-e3ae3505d48bf058",
     "auto-e50b39bdb74beaae",
     "auto-e5b909f8d1ec9c30",
     "auto-e69627d4cafa03eb",
@@ -329,6 +332,36 @@
     "auto-ffd0ffe46e48e133"
   ],
   "entries": [
+    {
+      "id": "auto-5bb0ecc5c265d904",
+      "title": "関西ジュニア",
+      "start": "2027-01-03",
+      "end": "2027-01-03",
+      "venue": "大阪城ホール",
+      "source": "大阪城ホール 公式スケジュール",
+      "url": "https://www.osaka-johall.com/event/?ym=202701",
+      "firstSeenAt": "2026-11-14T06:41:12.261491+00:00"
+    },
+    {
+      "id": "auto-e3ae3505d48bf058",
+      "title": "関西ジュニア",
+      "start": "2027-01-04",
+      "end": "2027-01-04",
+      "venue": "大阪城ホール",
+      "source": "大阪城ホール 公式スケジュール",
+      "url": "https://www.osaka-johall.com/event/?ym=202701",
+      "firstSeenAt": "2026-11-14T06:41:12.261491+00:00"
+    },
+    {
+      "id": "auto-c7c72535582984a6",
+      "title": "関西ジュニア",
+      "start": "2027-01-05",
+      "end": "2027-01-05",
+      "venue": "大阪城ホール",
+      "source": "大阪城ホール 公式スケジュール",
+      "url": "https://www.osaka-johall.com/event/?ym=202701",
+      "firstSeenAt": "2026-11-14T06:41:12.261491+00:00"
+    },
     {
       "id": "auto-674370bd3ab29949",
       "title": "フレイル予防教室ボランティア養成講座＜要事前申込＞",
@@ -510,5 +543,5 @@
       "firstSeenAt": "2026-11-01T07:23:42.709473+00:00"
     }
   ],
-  "updatedAt": "2026-11-13T19:50:48.929558+00:00"
+  "updatedAt": "2026-11-14T06:41:12.261491+00:00"
 }
