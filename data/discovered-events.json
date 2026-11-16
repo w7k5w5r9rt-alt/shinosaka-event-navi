@@ -1,8 +1,25 @@
 {
   "version": "7.22-discovery-history",
-  "checkedAt": "2026-11-16T06:50:22.350409+00:00",
-  "newDiscoveries": [],
+  "checkedAt": "2026-11-16T18:41:07.370523+00:00",
+  "newDiscoveries": [
+    {
+      "id": "candidate-b85b6c67c6ba9b48",
+      "title": "【インクルーシブな社会の創造を目指して】誰もが楽しめる「桜十字インクルーシブ スポーツフェスタ2026」をりすのこスクエアにて11月22日（日）開催！ - 東大阪経済新聞",
+      "eventDate": "2026-11-22",
+      "detectedAt": "2026-11-16T18:41:07.370523+00:00",
+      "status": "candidate",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE93YzJuZWpoWFRycFN1QVpFTjdFcDI3YjJOcmw3S1RveElfT2lJc3ByXzJKd1NKeFk1RWd2MXBabmdLcHlvWk9xZm4tZFlHaHUyRzZtSXExd2ROeHM?oc=5"
+    }
+  ],
   "discoveryHistory": [
+    {
+      "id": "candidate-b85b6c67c6ba9b48",
+      "title": "【インクルーシブな社会の創造を目指して】誰もが楽しめる「桜十字インクルーシブ スポーツフェスタ2026」をりすのこスクエアにて11月22日（日）開催！ - 東大阪経済新聞",
+      "eventDate": "2026-11-22",
+      "detectedAt": "2026-11-16T18:41:07.370523+00:00",
+      "status": "candidate",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE93YzJuZWpoWFRycFN1QVpFTjdFcDI3YjJOcmw3S1RveElfT2lJc3ByXzJKd1NKeFk1RWd2MXBabmdLcHlvWk9xZm4tZFlHaHUyRzZtSXExd2ROeHM?oc=5"
+    },
     {
       "id": "candidate-27c7e6a7412697a7",
       "title": "『御堂筋ランウェイ2026』11月23日開催決定！大阪・御堂筋で14時から、当日は大規模な交通規制も - WWSチャンネル",
@@ -16,14 +33,14 @@
   "confirmed": [],
   "candidates": [
     {
-      "id": "candidate-27c7e6a7412697a7",
-      "title": "『御堂筋ランウェイ2026』11月23日開催決定！大阪・御堂筋で14時から、当日は大規模な交通規制も - WWSチャンネル",
-      "dateHint": "2026-11-23",
-      "url": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE9OS09YemZPRjh2ZmVzZ0ZGV2psOXZqdTBHQTNYYlg1V2ZaSThxWUI3WTNaaDdtakUyc08xZ2ZDOHhKM011aEUyd1BRZU9BZU44MVhKM0FBN3I?oc=5",
+      "id": "candidate-b85b6c67c6ba9b48",
+      "title": "【インクルーシブな社会の創造を目指して】誰もが楽しめる「桜十字インクルーシブ スポーツフェスタ2026」をりすのこスクエアにて11月22日（日）開催！ - 東大阪経済新聞",
+      "dateHint": "2026-11-22",
+      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE93YzJuZWpoWFRycFN1QVpFTjdFcDI3YjJOcmw3S1RveElfT2lJc3ByXzJKd1NKeFk1RWd2MXBabmdLcHlvWk9xZm4tZFlHaHUyRzZtSXExd2ROeHM?oc=5",
       "source": "GoogleニュースRSS（未確認）",
-      "published": "Tue, 29 Sep 2026 07:00:00 GMT",
+      "published": "Mon, 16 Nov 2026 10:13:40 GMT",
       "confidence": "candidate",
-      "relevance": 89,
+      "relevance": 69,
       "reason": "未来の開催日候補あり・公式照合が必要"
     }
   ],
