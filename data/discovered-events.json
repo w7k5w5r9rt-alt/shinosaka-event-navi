@@ -1,16 +1,7 @@
 {
   "version": "7.22-discovery-history",
-  "checkedAt": "2026-11-16T18:41:07.370523+00:00",
-  "newDiscoveries": [
-    {
-      "id": "candidate-b85b6c67c6ba9b48",
-      "title": "【インクルーシブな社会の創造を目指して】誰もが楽しめる「桜十字インクルーシブ スポーツフェスタ2026」をりすのこスクエアにて11月22日（日）開催！ - 東大阪経済新聞",
-      "eventDate": "2026-11-22",
-      "detectedAt": "2026-11-16T18:41:07.370523+00:00",
-      "status": "candidate",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE93YzJuZWpoWFRycFN1QVpFTjdFcDI3YjJOcmw3S1RveElfT2lJc3ByXzJKd1NKeFk1RWd2MXBabmdLcHlvWk9xZm4tZFlHaHUyRzZtSXExd2ROeHM?oc=5"
-    }
-  ],
+  "checkedAt": "2026-11-17T02:59:23.527021+00:00",
+  "newDiscoveries": [],
   "discoveryHistory": [
     {
       "id": "candidate-b85b6c67c6ba9b48",
@@ -45,8 +36,10 @@
     }
   ],
   "queries": 5,
-  "successfulQueries": 5,
-  "errors": [],
+  "successfulQueries": 4,
+  "errors": [
+    "大阪 大規模 イベント 開催 2026 2027: HTTPError: HTTP Error 429: Too Many Requests"
+  ],
   "selectionPolicy": "未来184日以内の開催日を見出し・記事本文・イベント構造化データから確認できた候補のみ表示。検索年は自動更新。未確認はスコア加算なし。",
   "note": "未確認候補は総合需要に反映しません。公式確認済みでも定性的加点は実績に基づく予測ではありません。"
 }
