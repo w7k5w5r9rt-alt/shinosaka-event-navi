@@ -25,6 +25,7 @@
     "auto-133c33e706cb0446",
     "auto-135e8cbe2b6df274",
     "auto-1542a522f87b31de",
+    "auto-159ed1fef66f62bd",
     "auto-163646e7b2444ca7",
     "auto-167d3d87026b1e5f",
     "auto-1712aee52f4da69d",
@@ -221,6 +222,7 @@
     "auto-a9f5e954da7fac8a",
     "auto-aa915e1b4c6fc1c7",
     "auto-abb345f198ef1b74",
+    "auto-ac2c668bc3992abd",
     "auto-acadadfce6f01ccc",
     "auto-acba6331d00f275c",
     "auto-ad08f46e8f28fbca",
@@ -335,6 +337,26 @@
     "auto-ffd0ffe46e48e133"
   ],
   "entries": [
+    {
+      "id": "auto-ac2c668bc3992abd",
+      "title": "紅葉ガイド＜当日受付＞",
+      "start": "2026-11-23",
+      "end": "2026-11-23",
+      "venue": "万博記念公園",
+      "source": "万博記念公園 公式イベント一覧",
+      "url": "https://www.expo70-park.jp/event/77668/",
+      "firstSeenAt": "2026-11-17T21:03:31.418380+00:00"
+    },
+    {
+      "id": "auto-159ed1fef66f62bd",
+      "title": "Re:Bornヨルダン館プロジェクト【結果通知の一部配信遅延について】",
+      "start": "2026-11-27",
+      "end": "2026-11-27",
+      "venue": "万博記念公園",
+      "source": "万博記念公園 公式イベント一覧",
+      "url": "https://www.expo70-park.jp/event/78383/",
+      "firstSeenAt": "2026-11-17T21:03:31.418380+00:00"
+    },
     {
       "id": "auto-e125c7a3b03486ee",
       "title": "第12回 ラーメンEXPO 2026 in 万博公園",
@@ -576,5 +598,5 @@
       "firstSeenAt": "2026-11-01T07:23:42.709473+00:00"
     }
   ],
-  "updatedAt": "2026-11-17T08:05:40.600259+00:00"
+  "updatedAt": "2026-11-17T21:03:31.418380+00:00"
 }
