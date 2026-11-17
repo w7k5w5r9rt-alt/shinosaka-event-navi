@@ -291,6 +291,7 @@
     "auto-dea3380be2e81660",
     "auto-deb5972417044a00",
     "auto-dfff6f19d3ca3363",
+    "auto-e125c7a3b03486ee",
     "auto-e17cabbcfe90c489",
     "auto-e23b0b78460ceab0",
     "auto-e27e328948dc6d78",
@@ -334,6 +335,16 @@
     "auto-ffd0ffe46e48e133"
   ],
   "entries": [
+    {
+      "id": "auto-e125c7a3b03486ee",
+      "title": "第12回 ラーメンEXPO 2026 in 万博公園",
+      "start": "2026-11-21",
+      "end": "2026-11-21",
+      "venue": "万博記念公園",
+      "source": "万博記念公園 公式イベント一覧",
+      "url": "https://www.expo70-park.jp/event/78407/",
+      "firstSeenAt": "2026-11-17T08:05:40.600259+00:00"
+    },
     {
       "id": "auto-802760eff066a202",
       "title": "イルミナイト万博〜2026 WINTER〜｜プロジェクションマッピング「I’m 万博 We are 万博」",
@@ -565,5 +576,5 @@
       "firstSeenAt": "2026-11-01T07:23:42.709473+00:00"
     }
   ],
-  "updatedAt": "2026-11-16T22:17:08.190850+00:00"
+  "updatedAt": "2026-11-17T08:05:40.600259+00:00"
 }
