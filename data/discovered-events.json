@@ -1,6 +1,6 @@
 {
   "version": "7.22-discovery-history",
-  "checkedAt": "2026-11-17T13:38:46.048164+00:00",
+  "checkedAt": "2026-11-17T23:34:20.223029+00:00",
   "newDiscoveries": [],
   "discoveryHistory": [
     {
@@ -22,19 +22,7 @@
   ],
   "historyInitialized": true,
   "confirmed": [],
-  "candidates": [
-    {
-      "id": "candidate-b85b6c67c6ba9b48",
-      "title": "【インクルーシブな社会の創造を目指して】誰もが楽しめる「桜十字インクルーシブ スポーツフェスタ2026」をりすのこスクエアにて11月22日（日）開催！ - 東大阪経済新聞",
-      "dateHint": "2026-11-22",
-      "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE93YzJuZWpoWFRycFN1QVpFTjdFcDI3YjJOcmw3S1RveElfT2lJc3ByXzJKd1NKeFk1RWd2MXBabmdLcHlvWk9xZm4tZFlHaHUyRzZtSXExd2ROeHM?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Mon, 16 Nov 2026 10:13:40 GMT",
-      "confidence": "candidate",
-      "relevance": 69,
-      "reason": "未来の開催日候補あり・公式照合が必要"
-    }
-  ],
+  "candidates": [],
   "queries": 5,
   "successfulQueries": 5,
   "errors": [],
