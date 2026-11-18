@@ -100,6 +100,7 @@
     "auto-4b934af38b94298a",
     "auto-4d6d0978172431b8",
     "auto-4dee06a859d10cc5",
+    "auto-4f923c7e8dd215be",
     "auto-52cfa747e4a15b6b",
     "auto-533ab3bf0cd5749f",
     "auto-55a8a38941a87f8a",
@@ -178,6 +179,7 @@
     "auto-89e749e7eb4acd2a",
     "auto-8af6bf872c38ea64",
     "auto-8bacd4421e448969",
+    "auto-8d8b2e5e5aef7999",
     "auto-8e035f094e7aedae",
     "auto-8f2c2a87698e5c37",
     "auto-8f2c5e9b636e6f45",
@@ -337,6 +339,26 @@
     "auto-ffd0ffe46e48e133"
   ],
   "entries": [
+    {
+      "id": "auto-8d8b2e5e5aef7999",
+      "title": "aespa 2027 aespa LIVE TOUR – SYNK : COMPLaeXITY in JAPAN",
+      "start": "2027-04-03",
+      "end": "2027-04-03",
+      "venue": "京セラドーム大阪",
+      "source": "京セラドーム大阪 公式スケジュール",
+      "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=4&yearId=2027",
+      "firstSeenAt": "2026-11-18T07:40:41.629006+00:00"
+    },
+    {
+      "id": "auto-4f923c7e8dd215be",
+      "title": "aespa 2027 aespa LIVE TOUR – SYNK : COMPLaeXITY in JAPAN",
+      "start": "2027-04-04",
+      "end": "2027-04-04",
+      "venue": "京セラドーム大阪",
+      "source": "京セラドーム大阪 公式スケジュール",
+      "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=4&yearId=2027",
+      "firstSeenAt": "2026-11-18T07:40:41.629006+00:00"
+    },
     {
       "id": "auto-ac2c668bc3992abd",
       "title": "紅葉ガイド＜当日受付＞",
@@ -598,5 +620,5 @@
       "firstSeenAt": "2026-11-01T07:23:42.709473+00:00"
     }
   ],
-  "updatedAt": "2026-11-17T21:03:31.418380+00:00"
+  "updatedAt": "2026-11-18T07:40:41.629006+00:00"
 }
