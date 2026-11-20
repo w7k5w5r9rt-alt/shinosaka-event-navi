@@ -1,6 +1,6 @@
 {
   "version": "7.22-discovery-history",
-  "checkedAt": "2026-11-19T23:07:15.139885+00:00",
+  "checkedAt": "2026-11-20T07:31:15.639852+00:00",
   "newDiscoveries": [],
   "discoveryHistory": [
     {
@@ -24,8 +24,11 @@
   "confirmed": [],
   "candidates": [],
   "queries": 5,
-  "successfulQueries": 5,
-  "errors": [],
+  "successfulQueries": 3,
+  "errors": [
+    "大阪 花火大会 祭り 開催: HTTPError: HTTP Error 429: Too Many Requests",
+    "大阪 大規模 イベント 開催 2026 2027: HTTPError: HTTP Error 429: Too Many Requests"
+  ],
   "selectionPolicy": "未来184日以内の開催日を見出し・記事本文・イベント構造化データから確認できた候補のみ表示。検索年は自動更新。未確認はスコア加算なし。",
   "note": "未確認候補は総合需要に反映しません。公式確認済みでも定性的加点は実績に基づく予測ではありません。"
 }
