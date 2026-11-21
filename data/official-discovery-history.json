@@ -315,6 +315,7 @@
     "auto-d5973bd4c07ea570",
     "auto-d597f3170e545a0a",
     "auto-d5a14c663bb869bc",
+    "auto-d5e84812bb26c1a6",
     "auto-d5f4adfae73cd6a1",
     "auto-d75fe35060882e5d",
     "auto-d85d11afb8a32f02",
@@ -382,6 +383,16 @@
     "auto-ffd0ffe46e48e133"
   ],
   "entries": [
+    {
+      "id": "auto-d5e84812bb26c1a6",
+      "title": "日本庭園ボランティアガイド（2026年11月）",
+      "start": "2026-11-22",
+      "end": "2026-11-22",
+      "venue": "万博記念公園",
+      "source": "万博記念公園 公式イベント一覧",
+      "url": "https://www.expo70-park.jp/event/77563/",
+      "firstSeenAt": "2026-11-21T19:26:35.953736+00:00"
+    },
     {
       "id": "auto-6a6e0f75cdd4a208",
       "title": "万博フリマ「東の広場」",
@@ -1093,5 +1104,5 @@
       "firstSeenAt": "2026-11-01T07:23:42.709473+00:00"
     }
   ],
-  "updatedAt": "2026-11-21T07:22:44.022430+00:00"
+  "updatedAt": "2026-11-21T19:26:35.953736+00:00"
 }
