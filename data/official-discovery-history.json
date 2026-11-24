@@ -362,6 +362,7 @@
     "auto-e50b39bdb74beaae",
     "auto-e5b909f8d1ec9c30",
     "auto-e69627d4cafa03eb",
+    "auto-e78b976cb77526d0",
     "auto-e7da7eab4a79e237",
     "auto-e941a7ac872a7b62",
     "auto-ea08f6e85b060ab5",
@@ -403,6 +404,16 @@
     "auto-ffd0ffe46e48e133"
   ],
   "entries": [
+    {
+      "id": "auto-e78b976cb77526d0",
+      "title": "第6回OSAKAデュアスロン2027 IN 万博記念公園",
+      "start": "2027-01-23",
+      "end": "2027-01-23",
+      "venue": "万博記念公園",
+      "source": "万博記念公園 公式イベント一覧",
+      "url": "https://www.expo70-park.jp/event/78857/",
+      "firstSeenAt": "2026-11-24T10:03:41.517115+00:00"
+    },
     {
       "id": "auto-9b2889de6aa902ee",
       "title": "紅葉ガイド＜当日受付＞",
@@ -1324,5 +1335,5 @@
       "firstSeenAt": "2026-11-01T07:23:42.709473+00:00"
     }
   ],
-  "updatedAt": "2026-11-24T00:01:46.851988+00:00"
+  "updatedAt": "2026-11-24T10:03:41.517115+00:00"
 }
