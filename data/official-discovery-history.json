@@ -235,6 +235,7 @@
     "auto-9a30935ed78578a6",
     "auto-9a721f26107e2576",
     "auto-9a87782d5dec2d7b",
+    "auto-9b2889de6aa902ee",
     "auto-9b6db0c2e26e8f20",
     "auto-9b82686c42698564",
     "auto-9b960f1d030e2c05",
@@ -402,6 +403,16 @@
     "auto-ffd0ffe46e48e133"
   ],
   "entries": [
+    {
+      "id": "auto-9b2889de6aa902ee",
+      "title": "紅葉ガイド＜当日受付＞",
+      "start": "2026-12-01",
+      "end": "2026-12-01",
+      "venue": "万博記念公園",
+      "source": "万博記念公園 公式イベント一覧",
+      "url": "https://www.expo70-park.jp/event/77668/",
+      "firstSeenAt": "2026-11-24T00:01:46.851988+00:00"
+    },
     {
       "id": "auto-1ef0036b25f569af",
       "title": "阪神vs広島",
@@ -1313,5 +1324,5 @@
       "firstSeenAt": "2026-11-01T07:23:42.709473+00:00"
     }
   ],
-  "updatedAt": "2026-11-23T07:51:35.340125+00:00"
+  "updatedAt": "2026-11-24T00:01:46.851988+00:00"
 }
