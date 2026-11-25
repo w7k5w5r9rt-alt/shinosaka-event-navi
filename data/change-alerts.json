@@ -55,35 +55,35 @@
     "priority": "important"
   },
   {
-    "id": "change-a296d7594fe9df73",
+    "id": "change-a103c9dfc6177edc",
     "type": "page_changed",
     "title": "京セラドーム大阪 公式スケジュール のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "京セラドーム大阪 公式スケジュール",
     "url": "https://www.kyoceradome-osaka.jp/schedule/?monthId=4&yearId=2027",
-    "detectedAt": "2026-11-24T22:34:54.593995+00:00",
+    "detectedAt": "2026-11-25T08:48:41.843905+00:00",
     "status": "要確認",
     "priority": "info"
   },
   {
-    "id": "change-743443d6e475d852",
+    "id": "change-be581aed91684fe9",
     "type": "page_changed",
     "title": "ガンバ大阪 公式試合日程 のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "ガンバ大阪 公式試合日程",
     "url": "https://www.gamba-osaka.net/game/",
-    "detectedAt": "2026-11-24T22:34:54.593995+00:00",
+    "detectedAt": "2026-11-25T08:48:41.843905+00:00",
     "status": "要確認",
     "priority": "info"
   },
   {
-    "id": "change-acf6b4f30397a404",
+    "id": "change-5e620a2843560c4a",
     "type": "page_changed",
     "title": "万博記念公園 公式イベント一覧 のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "万博記念公園 公式イベント一覧",
     "url": "https://www.expo70-park.jp/events/during-events/",
-    "detectedAt": "2026-11-24T22:34:54.593995+00:00",
+    "detectedAt": "2026-11-25T08:48:41.843905+00:00",
     "status": "要確認",
     "priority": "info"
   },
@@ -94,18 +94,18 @@
     "message": "サイト取得失敗。中止とは判断しないでください。",
     "source": "インテックス大阪 公式イベント情報",
     "url": "https://www.intex-osaka.com/jp/event/",
-    "detectedAt": "2026-11-24T22:34:54.593995+00:00",
+    "detectedAt": "2026-11-25T08:48:41.843905+00:00",
     "status": "要確認",
     "priority": "info"
   },
   {
-    "id": "change-c9e9481953f3f35b",
+    "id": "change-496369a05bb408b2",
     "type": "page_changed",
     "title": "大阪城ホール 公式スケジュール のページ変更を検知",
     "message": "ページの変更を検知。イベントの変更・中止を意味するとは限りません。",
     "source": "大阪城ホール 公式スケジュール",
     "url": "https://www.osaka-johall.com/event/?ym=202704",
-    "detectedAt": "2026-11-24T00:01:46.851988+00:00",
+    "detectedAt": "2026-11-25T08:48:41.843905+00:00",
     "status": "要確認",
     "priority": "info"
   },

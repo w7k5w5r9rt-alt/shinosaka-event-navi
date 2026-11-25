@@ -20,6 +20,7 @@
     "auto-0e3a29a9fb3b3835",
     "auto-0f7555186d9d9e4a",
     "auto-1066b5e3c7db6bf5",
+    "auto-108f1e79287756f5",
     "auto-1137af54ae89380f",
     "auto-123503cd82e22451",
     "auto-124eb4f52fccbcc4",
@@ -57,6 +58,7 @@
     "auto-227f72ee76932365",
     "auto-22f114f9ccbf5186",
     "auto-235f99c028389e84",
+    "auto-240190c5da472e72",
     "auto-24a9c0ebac74860c",
     "auto-24b818282269d1e9",
     "auto-24c990ec8a154bc0",
@@ -108,7 +110,9 @@
     "auto-47bd9527a3809000",
     "auto-48261b63836d3a53",
     "auto-487d1db537f0b29b",
+    "auto-48fdeb2fda7b250e",
     "auto-49d4faee07e453c2",
+    "auto-49fc0c86e0e21e51",
     "auto-4b343c36b7dab01c",
     "auto-4b40d3fc4c82fb2b",
     "auto-4b6d3acf4851e8dd",
@@ -121,6 +125,7 @@
     "auto-533ab3bf0cd5749f",
     "auto-55a8a38941a87f8a",
     "auto-55e2e4ac2649106f",
+    "auto-56910edf530941a5",
     "auto-56a97b3149a95644",
     "auto-56c90b767cb69731",
     "auto-57480f5b2dc77bb4",
@@ -393,6 +398,7 @@
     "auto-f5f9bcd53d7f19cf",
     "auto-f6e135f23ef5eda0",
     "auto-f8e5a78f19a5fd48",
+    "auto-f944967a046bb04d",
     "auto-faf10c0de6710819",
     "auto-fbb85e0373ea7162",
     "auto-fbc1ef7bb5fb50f9",
@@ -404,6 +410,66 @@
     "auto-ffd0ffe46e48e133"
   ],
   "entries": [
+    {
+      "id": "auto-108f1e79287756f5",
+      "title": "MISIA",
+      "start": "2027-03-13",
+      "end": "2027-03-13",
+      "venue": "大阪城ホール",
+      "source": "大阪城ホール 公式スケジュール",
+      "url": "https://www.osaka-johall.com/event/?ym=202703",
+      "firstSeenAt": "2026-11-25T08:48:41.843905+00:00"
+    },
+    {
+      "id": "auto-48fdeb2fda7b250e",
+      "title": "MISIA",
+      "start": "2027-03-14",
+      "end": "2027-03-14",
+      "venue": "大阪城ホール",
+      "source": "大阪城ホール 公式スケジュール",
+      "url": "https://www.osaka-johall.com/event/?ym=202703",
+      "firstSeenAt": "2026-11-25T08:48:41.843905+00:00"
+    },
+    {
+      "id": "auto-f944967a046bb04d",
+      "title": "櫻坂46",
+      "start": "2027-03-20",
+      "end": "2027-03-20",
+      "venue": "大阪城ホール",
+      "source": "大阪城ホール 公式スケジュール",
+      "url": "https://www.osaka-johall.com/event/?ym=202703",
+      "firstSeenAt": "2026-11-25T08:48:41.843905+00:00"
+    },
+    {
+      "id": "auto-49fc0c86e0e21e51",
+      "title": "櫻坂46",
+      "start": "2027-03-21",
+      "end": "2027-03-21",
+      "venue": "大阪城ホール",
+      "source": "大阪城ホール 公式スケジュール",
+      "url": "https://www.osaka-johall.com/event/?ym=202703",
+      "firstSeenAt": "2026-11-25T08:48:41.843905+00:00"
+    },
+    {
+      "id": "auto-56910edf530941a5",
+      "title": "MISIA",
+      "start": "2027-04-22",
+      "end": "2027-04-22",
+      "venue": "大阪城ホール",
+      "source": "大阪城ホール 公式スケジュール",
+      "url": "https://www.osaka-johall.com/event/?ym=202704",
+      "firstSeenAt": "2026-11-25T08:48:41.843905+00:00"
+    },
+    {
+      "id": "auto-240190c5da472e72",
+      "title": "MISIA",
+      "start": "2027-04-23",
+      "end": "2027-04-23",
+      "venue": "大阪城ホール",
+      "source": "大阪城ホール 公式スケジュール",
+      "url": "https://www.osaka-johall.com/event/?ym=202704",
+      "firstSeenAt": "2026-11-25T08:48:41.843905+00:00"
+    },
     {
       "id": "auto-e78b976cb77526d0",
       "title": "第6回OSAKAデュアスロン2027 IN 万博記念公園",
@@ -1335,5 +1401,5 @@
       "firstSeenAt": "2026-11-01T07:23:42.709473+00:00"
     }
   ],
-  "updatedAt": "2026-11-24T22:34:54.593995+00:00"
+  "updatedAt": "2026-11-25T08:48:41.843905+00:00"
 }
