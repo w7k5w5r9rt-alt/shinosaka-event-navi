@@ -1,16 +1,7 @@
 {
   "version": "7.22-discovery-history",
-  "checkedAt": "2026-11-27T00:40:53.347373+00:00",
-  "newDiscoveries": [
-    {
-      "id": "candidate-ae77f4df49dc784b",
-      "title": "大阪駅前第１ビルに特産品が集結 「１ビルまつり」１２月１０・１１日開催 - 47NEWS",
-      "eventDate": "2026-12-10",
-      "detectedAt": "2026-11-27T00:40:53.347373+00:00",
-      "status": "candidate",
-      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5rTjVfdks5TUs0MWx6WlRJbTR6MFhzc2JXdktIMm5sRXhRcXJZS01yMEY5dkdvM2Vsb1VWWHhrZEtiUUFtQXQwVHAzRQ?oc=5"
-    }
-  ],
+  "checkedAt": "2026-11-27T14:01:12.162846+00:00",
+  "newDiscoveries": [],
   "discoveryHistory": [
     {
       "id": "candidate-ae77f4df49dc784b",
@@ -39,19 +30,7 @@
   ],
   "historyInitialized": true,
   "confirmed": [],
-  "candidates": [
-    {
-      "id": "candidate-ae77f4df49dc784b",
-      "title": "大阪駅前第１ビルに特産品が集結 「１ビルまつり」１２月１０・１１日開催 - 47NEWS",
-      "dateHint": "2026-12-10",
-      "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTE5rTjVfdks5TUs0MWx6WlRJbTR6MFhzc2JXdktIMm5sRXhRcXJZS01yMEY5dkdvM2Vsb1VWWHhrZEtiUUFtQXQwVHAzRQ?oc=5",
-      "source": "GoogleニュースRSS（未確認）",
-      "published": "Thu, 26 Nov 2026 10:10:17 GMT",
-      "confidence": "candidate",
-      "relevance": 69,
-      "reason": "未来の開催日候補あり・公式照合が必要"
-    }
-  ],
+  "candidates": [],
   "queries": 5,
   "successfulQueries": 5,
   "errors": [],
